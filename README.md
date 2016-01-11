@@ -1,3 +1,2 @@
-# clal
-Command Line Application Launcher
+# Command Line Application Launcher
 
