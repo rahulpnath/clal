@@ -18,6 +18,11 @@ namespace CommandLineApplicationLauncherModel
             this.internalName = name;
         }
 
+        public static explicit operator Name(string nameCandidate)
+        {
+            return new Name(nameCandidate);
+        }
+
         public static explicit operator string(Name name)
         {
             if (name == null)

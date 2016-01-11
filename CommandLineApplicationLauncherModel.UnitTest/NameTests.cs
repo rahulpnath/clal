@@ -49,11 +49,21 @@ namespace CommandLineApplicationLauncherModel.UnitTest
 
             Assert.Equal(false, validName.Equals(aNullName));
         }
+
         [Fact]
         public void ImplicitlyCastNullToStringThrowsException()
         {
             Name nullName = null;
             Assert.Throws<ArgumentNullException>(() => (string)nullName);
+        }
+
+
+        [Fact]
+        public void ExplicitConversionOfStringRetursValidName()
+        {
+            var anonymousName = "test Name";
+            Assert.Throws<ArgumentNullException>(() => (Name)string.Empty);
+            Assert.Equal(new Name(anonymousName), (Name)anonymousName);
         }
     }
 }
