@@ -20,21 +20,27 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         }
 
         [Theory, AutoData]
-        public void SutExposesName(IFixture fixture, Name expectedName)
+        public void SutExposesName(IFixture fixture, [Frozen]Name expectedName)
         {
-            fixture.Inject<Name>(expectedName);
             var sut = fixture.Create<CmdApplication>();
 
             Assert.Equal(expectedName, sut.FriendlyName);
         }
 
         [Theory, AutoData]
-        public void SutExposesApplicationName(IFixture fixture, Name expectedName)
+        public void SutExposesApplicationName(IFixture fixture, [Frozen]Name expectedName)
         {
-            fixture.Inject<Name>(expectedName);
             var sut = fixture.Create<CmdApplication>();
 
             Assert.Equal(expectedName, sut.ApplicationName);
+        }
+
+        [Theory, AutoData]
+        public void SutExposesApplicationName(IFixture fixture, [Frozen]IEnumerable<Name> expectedParameterNames)
+        {
+            var sut = fixture.Create<CmdApplication>();
+            Assert.Equal(expectedParameterNames, sut.ParameterNames);
+
         }
     }
 }
