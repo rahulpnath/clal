@@ -1,4 +1,6 @@
-﻿using Ploeh.AutoFixture.Xunit2;
+﻿using Ploeh.AutoFixture;
+using Ploeh.AutoFixture.Idioms;
+using Ploeh.AutoFixture.Xunit2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +12,29 @@ namespace CommandLineApplicationLauncherModel.UnitTest
 {
     public class CmdApplicationTest
     {
-        [Fact]
-        public void EmptyNameInCtorThrowsException()
+        [Theory, AutoData]
+        public void NullForCtorArgumentsThrowsException(IFixture fixture)
         {
-            Name nullName = null;
-            Assert.Throws<ArgumentNullException>(() => new CmdApplication(nullName));
+            var assertion = new GuardClauseAssertion(fixture);
+            assertion.Verify(typeof(CmdApplication).GetConstructors());
         }
 
+        [Theory, AutoData]
+        public void SutExposesName(IFixture fixture, Name expectedName)
+        {
+            fixture.Inject<Name>(expectedName);
+            var sut = fixture.Create<CmdApplication>();
+
+            Assert.Equal(expectedName, sut.FriendlyName);
+        }
 
         [Theory, AutoData]
-        public void SutExposesName(Name name)
+        public void SutExposesApplicationName(IFixture fixture, Name expectedName)
         {
-            var sut = new CmdApplication(name);
+            fixture.Inject<Name>(expectedName);
+            var sut = fixture.Create<CmdApplication>();
 
-            Assert.Equal(name, sut.FriendlyName);
+            Assert.Equal(expectedName, sut.ApplicationName);
         }
     }
 }

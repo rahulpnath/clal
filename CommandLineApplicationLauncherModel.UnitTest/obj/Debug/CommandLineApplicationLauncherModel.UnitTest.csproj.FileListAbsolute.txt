@@ -26,3 +26,7 @@ C:\Users\rahulpnath\Documents\Work\Personal\CommandLineApplicationLauncher\Comma
 C:\Users\rahulpnath\Documents\Work\Personal\CommandLineApplicationLauncher\CommandLineApplicationLauncherModel.UnitTest\obj\Debug\CommandLineApplicationLauncherModel.UnitTest.csprojResolveAssemblyReference.cache
 C:\Users\rahulpnath\Documents\Work\Personal\CommandLineApplicationLauncher\CommandLineApplicationLauncherModel.UnitTest\obj\Debug\CommandLineApplicationLauncherModel.UnitTest.dll
 C:\Users\rahulpnath\Documents\Work\Personal\CommandLineApplicationLauncher\CommandLineApplicationLauncherModel.UnitTest\obj\Debug\CommandLineApplicationLauncherModel.UnitTest.pdb
+C:\Users\rahulpnath\Documents\Work\Personal\CommandLineApplicationLauncher\CommandLineApplicationLauncherModel.UnitTest\bin\Debug\Ploeh.Albedo.dll
+C:\Users\rahulpnath\Documents\Work\Personal\CommandLineApplicationLauncher\CommandLineApplicationLauncherModel.UnitTest\bin\Debug\Ploeh.AutoFixture.Idioms.dll
+C:\Users\rahulpnath\Documents\Work\Personal\CommandLineApplicationLauncher\CommandLineApplicationLauncherModel.UnitTest\bin\Debug\Ploeh.Albedo.xml
+C:\Users\rahulpnath\Documents\Work\Personal\CommandLineApplicationLauncher\CommandLineApplicationLauncherModel.UnitTest\bin\Debug\Ploeh.AutoFixture.Idioms.xml
