@@ -95,6 +95,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommandLineApplicationLauncherModel\CommandLineApplicationLauncherModel.csproj">
+      <Project>{929a05c3-7874-4711-a629-285b7b7fcb07}</Project>
+      <Name>CommandLineApplicationLauncherModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
