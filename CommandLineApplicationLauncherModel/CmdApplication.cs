@@ -4,14 +4,14 @@ namespace CommandLineApplicationLauncherModel
 {
     public class CmdApplication
     {
-        public Name Name { get; private set; }
+        public Name FriendlyName { get; private set; }
 
-        public CmdApplication(Name name)
+        public CmdApplication(Name friendlyName)
         {
-            if (name == null)
-                throw new ArgumentNullException(nameof(name));
+            if (friendlyName == null)
+                throw new ArgumentNullException(nameof(friendlyName));
 
-            this.Name = name;
+            this.FriendlyName = friendlyName;
         }
 
         

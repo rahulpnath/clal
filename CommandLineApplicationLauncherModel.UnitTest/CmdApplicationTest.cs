@@ -23,7 +23,7 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         {
             var sut = new CmdApplication(name);
 
-            Assert.Equal(name, sut.Name);
+            Assert.Equal(name, sut.FriendlyName);
         }
     }
 }
