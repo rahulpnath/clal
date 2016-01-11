@@ -36,9 +36,10 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         }
 
         [Theory, AutoData]
-        public void SutExposesApplicationName(IFixture fixture, [Frozen]IEnumerable<Name> expectedParameterNames)
+        public void SutExposesParameterNames(IFixture fixture, [Frozen]IEnumerable<Name> expectedParameterNames)
         {
             var sut = fixture.Create<CmdApplication>();
+            Assert.IsAssignableFrom<IReadOnlyCollection<Name>>(sut.ParameterNames);
             Assert.Equal(expectedParameterNames, sut.ParameterNames);
 
         }

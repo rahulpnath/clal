@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace CommandLineApplicationLauncherModel
 {
@@ -7,7 +8,7 @@ namespace CommandLineApplicationLauncherModel
     {
         public Name FriendlyName { get; private set; }
         public Name ApplicationName { get; private set; }
-        public IEnumerable<Name> ParameterNames { get; set; }
+        public ReadOnlyCollection<Name> ParameterNames { get; set; }
 
         public CmdApplication(Name friendlyName, Name applicationName, IEnumerable<Name> parameterNames)
         {
@@ -22,7 +23,7 @@ namespace CommandLineApplicationLauncherModel
 
             this.FriendlyName = friendlyName;
             this.ApplicationName = applicationName;
-            this.ParameterNames = parameterNames;
+            this.ParameterNames = new ReadOnlyCollection<Name>(new List<Name>(parameterNames));
         }
 
         
