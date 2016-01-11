@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ploeh.AutoFixture.Xunit2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,6 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Equal(expected, (string)actual);
         }
 
-
         [Theory]
         [InlineData("testName","testName", true)]
         [InlineData("testName", "anotherTestName", false)]
@@ -42,11 +42,10 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Equal(expected, aName.Equals(anotherName));
         }
 
-        [Fact]
-        public void EqualsWithNullNameReturnsFalse()
+        [Theory, AutoData]
+        public void EqualsWithNullNameReturnsFalse(Name validName)
         {
             Name aNullName = null;
-            Name validName = new Name("testName");
 
             Assert.Equal(false, validName.Equals(aNullName));
         }
