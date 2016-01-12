@@ -18,7 +18,8 @@ namespace CommandLineApplicationLauncherUI
                     (Name)"ssms",
                     new List<ParameterMeta>()
                     {
-                        ParameterMeta.Create<NameOnlyParameter>((Name)"-E")
+                        ParameterMeta.Create<NameOnlyParameter>((Name)"-E"),
+                        ParameterMeta.Create<NameValueParameter>((Name)"-S")
                     });
             }
         }
