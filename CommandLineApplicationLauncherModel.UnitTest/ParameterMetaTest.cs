@@ -1,6 +1,7 @@
 ﻿using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
 using Ploeh.AutoFixture.Xunit2;
+using System;
 using Xunit;
 
 namespace CommandLineApplicationLauncherModel.UnitTest
@@ -10,14 +11,13 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         [Theory,AutoData]
         public void NullForCtorArgumentsThrowsException(IFixture fixture)
         {
-            var assertion = new GuardClauseAssertion(fixture);
-            assertion.Verify(typeof(ParameterMeta<IParameter>));
+            Assert.Throws<ArgumentNullException>(() => ParameterMeta.Create<IParameter>(null));
         }
 
         [Theory, AutoData]
-        public void ParameterTypeExposesTheCorrectType(IFixture fixture)
+        public void ParameterTypeExposesTheCorrectType(Name name)
         {
-            var sut = fixture.Create<ParameterMeta<ParameterTest>>();
+            var sut = ParameterMeta.Create<ParameterTest>(name);
             Assert.Equal(typeof(ParameterTest), sut.ParameterType);
         }
 

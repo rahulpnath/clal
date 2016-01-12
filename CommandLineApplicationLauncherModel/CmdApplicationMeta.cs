@@ -8,9 +8,9 @@ namespace CommandLineApplicationLauncherModel
     {
         public Name FriendlyName { get; private set; }
         public Name ApplicationName { get; private set; }
-        public ReadOnlyCollection<ParameterMeta<IParameter>> ParameterMetas { get; set; }
+        public ReadOnlyCollection<ParameterMeta> ParameterMetas { get; set; }
 
-        public CmdApplicationMeta(Name friendlyName, Name applicationName, IEnumerable<ParameterMeta<IParameter>> parameterMetas)
+        public CmdApplicationMeta(Name friendlyName, Name applicationName, IEnumerable<ParameterMeta> parameterMetas)
         {
             if (friendlyName == null)
                 throw new ArgumentNullException(nameof(friendlyName));
@@ -23,7 +23,7 @@ namespace CommandLineApplicationLauncherModel
 
             this.FriendlyName = friendlyName;
             this.ApplicationName = applicationName;
-            this.ParameterMetas = new ReadOnlyCollection<ParameterMeta<IParameter>>(new List<ParameterMeta<IParameter>>(parameterMetas));
+            this.ParameterMetas = new ReadOnlyCollection<ParameterMeta>(new List<ParameterMeta>(parameterMetas));
         }
 
         
