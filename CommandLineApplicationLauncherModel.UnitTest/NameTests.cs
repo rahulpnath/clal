@@ -1,4 +1,6 @@
-﻿using Ploeh.AutoFixture.Xunit2;
+﻿using Ploeh.AutoFixture;
+using Ploeh.AutoFixture.Idioms;
+using Ploeh.AutoFixture.Xunit2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,6 @@ namespace CommandLineApplicationLauncherModel.UnitTest
 {
     public class NameTests
     {
-
         [Theory]
         [InlineData(null)]
         [InlineData("")]
@@ -57,13 +58,20 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Throws<ArgumentNullException>(() => (string)nullName);
         }
 
-
         [Fact]
         public void ExplicitConversionOfStringRetursValidName()
         {
             var anonymousName = "test Name";
             Assert.Throws<ArgumentNullException>(() => (Name)string.Empty);
             Assert.Equal(new Name(anonymousName), (Name)anonymousName);
+        }
+
+        [Theory, AutoData]
+        public void GetHashCodeIsImplementedCorrectly(string name)
+        {
+            var aName = new Name(name);
+            var sameName = new Name(name);
+            Assert.Equal(aName.GetHashCode(), sameName.GetHashCode());
         }
     }
 }

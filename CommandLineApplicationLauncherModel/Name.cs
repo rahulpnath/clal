@@ -31,6 +31,11 @@ namespace CommandLineApplicationLauncherModel
             return name.internalName;
         }
 
+        public override int GetHashCode()
+        {
+            return this.internalName.GetHashCode();
+        }
+
         public override bool Equals(object obj)
         {
             var objAsName = obj as Name;
