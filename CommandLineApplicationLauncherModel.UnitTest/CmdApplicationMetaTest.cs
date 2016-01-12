@@ -36,10 +36,12 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         }
 
         [Theory, AutoData]
-        public void SutExposesParameterNames(IFixture fixture, [Frozen]IEnumerable<ParameterMeta> expectedParameterNames)
+        public void SutExposesParameterNames(
+            IFixture fixture,
+            [Frozen]IEnumerable<ParameterMeta<IParameter>> expectedParameterNames)
         {
             var sut = fixture.Create<CmdApplicationMeta>();
-            Assert.IsAssignableFrom<IReadOnlyCollection<ParameterMeta>>(sut.ParameterMetas);
+            Assert.IsAssignableFrom<IReadOnlyCollection<ParameterMeta<IParameter>>>(sut.ParameterMetas);
             Assert.Equal(expectedParameterNames, sut.ParameterMetas);
 
         }

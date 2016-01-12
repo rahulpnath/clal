@@ -11,7 +11,16 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         public void NullForCtorArgumentsThrowsException(IFixture fixture)
         {
             var assertion = new GuardClauseAssertion(fixture);
-            assertion.Verify(typeof(ParameterMeta));
+            assertion.Verify(typeof(ParameterMeta<IParameter>));
         }
+
+        [Theory, AutoData]
+        public void ParameterTypeExposesTheCorrectType(IFixture fixture)
+        {
+            var sut = fixture.Create<ParameterMeta<ParameterTest>>();
+            Assert.Equal(typeof(ParameterTest), sut.ParameterType);
+        }
+
+        private class ParameterTest : IParameter { }
     }
 }

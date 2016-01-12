@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class ParameterMeta
+    public class ParameterMeta<T> where T : IParameter
     {
         public Name Name { get; private set; }
+        public Type ParameterType { get; private set; }
 
         public ParameterMeta(Name name)
         {
@@ -16,6 +17,7 @@ namespace CommandLineApplicationLauncherModel
                 throw new ArgumentNullException(nameof(name));
 
             this.Name = name;
+            this.ParameterType = typeof(T);
         }
     }
 }

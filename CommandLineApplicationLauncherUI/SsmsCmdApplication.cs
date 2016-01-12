@@ -16,7 +16,7 @@ namespace CommandLineApplicationLauncherUI
                 return new CmdApplicationMeta(
                     (Name)"Sql Server",
                     (Name)"ssms",
-                    new List<ParameterMeta>()
+                    new List<ParameterMeta<IParameter>>()
                     {
                     });
             }
