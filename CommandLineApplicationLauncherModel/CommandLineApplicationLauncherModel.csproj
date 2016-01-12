@@ -43,6 +43,7 @@
     <Compile Include="CmdApplicationMeta.cs" />
     <Compile Include="IParameter.cs" />
     <Compile Include="Name.cs" />
+    <Compile Include="NameValueParameter.cs" />
     <Compile Include="ParameterMeta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

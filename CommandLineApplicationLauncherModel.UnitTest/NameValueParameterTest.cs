@@ -10,20 +10,20 @@ using Xunit;
 
 namespace CommandLineApplicationLauncherModel.UnitTest
 {
-    public class CmdApplicationMetaTest
+    public class NameValueParameterTest
     {
         [Theory, AutoData]
-        public void NullForCtorArgumentsThrowsException(IFixture fixture)
+        public void CtorWithNullArgumentsThrowsException(IFixture fixture)
         {
             var assertion = new GuardClauseAssertion(fixture);
-            assertion.Verify(typeof(CmdApplicationMeta).GetConstructors());
+            assertion.Verify(typeof(NameValueParameter));
         }
 
         [Theory, AutoData]
         public void CtorParametersAreInitialized(IFixture fixture)
         {
             var assertion = new ConstructorInitializedMemberAssertion(fixture);
-            assertion.Verify(typeof(CmdApplicationMeta));
+            assertion.Verify(typeof(NameValueParameter));
         }
     }
 }
