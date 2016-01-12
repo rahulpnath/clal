@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdApplicationMetaTest.cs" />
+    <Compile Include="NameOnlyParameterTest.cs" />
     <Compile Include="NameTests.cs" />
     <Compile Include="NameValueParameterTest.cs" />
     <Compile Include="ParameterMetaTest.cs" />
