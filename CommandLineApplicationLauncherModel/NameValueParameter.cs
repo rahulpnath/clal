@@ -22,5 +22,19 @@ namespace CommandLineApplicationLauncherModel
             this.Name = name;
             this.Value = value;
         }
+
+        public override bool Equals(object obj)
+        {
+            var objAsParameter = obj as NameValueParameter;
+            if (objAsParameter == null)
+                return false;
+
+            return objAsParameter.Name == this.Name && objAsParameter.Value == this.Value;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode() ^ this.Value.GetHashCode();
+        }
     }
 }

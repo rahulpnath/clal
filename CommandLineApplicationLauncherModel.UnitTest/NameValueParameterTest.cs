@@ -25,5 +25,16 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             var assertion = new ConstructorInitializedMemberAssertion(fixture);
             assertion.Verify(typeof(NameValueParameter));
         }
+
+        [Theory,AutoData]
+        public void SutWithSameValuesAreEqual(
+            Name name,
+            string value)
+        {
+            var aParameter = new NameValueParameter(name, value);
+            var anotherParameter = new NameValueParameter(name, value);
+            Assert.Equal(aParameter, anotherParameter);
+            Assert.Equal(aParameter.GetHashCode(), anotherParameter.GetHashCode());
+        }
     }
 }
