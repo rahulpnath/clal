@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="CmdApplicationTest.cs" />
     <Compile Include="NameTests.cs" />
+    <Compile Include="ParameterMetaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

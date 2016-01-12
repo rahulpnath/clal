@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CmdApplicationMeta.cs" />
     <Compile Include="Name.cs" />
+    <Compile Include="ParameterMeta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
