@@ -13,6 +13,9 @@ namespace CommandLineApplicationLauncherModel
 
         public static ParameterMeta Create<T>(Name name) where T : IParameter
         {
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+
             return new ParameterMeta(name, typeof(T));
         }
 
