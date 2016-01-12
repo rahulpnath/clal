@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class CmdApplication
+    public class CmdApplicationMeta
     {
         public Name FriendlyName { get; private set; }
         public Name ApplicationName { get; private set; }
         public ReadOnlyCollection<Name> ParameterNames { get; set; }
 
-        public CmdApplication(Name friendlyName, Name applicationName, IEnumerable<Name> parameterNames)
+        public CmdApplicationMeta(Name friendlyName, Name applicationName, IEnumerable<Name> parameterNames)
         {
             if (friendlyName == null)
                 throw new ArgumentNullException(nameof(friendlyName));

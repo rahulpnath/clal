@@ -9,14 +9,18 @@ namespace CommandLineApplicationLauncherUI
 {
     public static class SsmsCmdApplication
     {
-        public static CmdApplication Application
+        public static CmdApplicationMeta Application
         {
             get
             {
-                return new CmdApplication(
+                return new CmdApplicationMeta(
                     (Name)"Sql Server",
                     (Name)"ssms",
-                    new List<Name>());
+                    new List<Name>()
+                    {
+                        (Name)"-S",
+                        (Name)"-E",
+                    });
             }
         }
     }

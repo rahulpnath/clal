@@ -16,13 +16,13 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         public void NullForCtorArgumentsThrowsException(IFixture fixture)
         {
             var assertion = new GuardClauseAssertion(fixture);
-            assertion.Verify(typeof(CmdApplication).GetConstructors());
+            assertion.Verify(typeof(CmdApplicationMeta).GetConstructors());
         }
 
         [Theory, AutoData]
         public void SutExposesName(IFixture fixture, [Frozen]Name expectedName)
         {
-            var sut = fixture.Create<CmdApplication>();
+            var sut = fixture.Create<CmdApplicationMeta>();
 
             Assert.Equal(expectedName, sut.FriendlyName);
         }
@@ -30,7 +30,7 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         [Theory, AutoData]
         public void SutExposesApplicationName(IFixture fixture, [Frozen]Name expectedName)
         {
-            var sut = fixture.Create<CmdApplication>();
+            var sut = fixture.Create<CmdApplicationMeta>();
 
             Assert.Equal(expectedName, sut.ApplicationName);
         }
@@ -38,7 +38,7 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         [Theory, AutoData]
         public void SutExposesParameterNames(IFixture fixture, [Frozen]IEnumerable<Name> expectedParameterNames)
         {
-            var sut = fixture.Create<CmdApplication>();
+            var sut = fixture.Create<CmdApplicationMeta>();
             Assert.IsAssignableFrom<IReadOnlyCollection<Name>>(sut.ParameterNames);
             Assert.Equal(expectedParameterNames, sut.ParameterNames);
 

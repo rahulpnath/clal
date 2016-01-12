@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CmdApplication.cs" />
+    <Compile Include="CmdApplicationMeta.cs" />
     <Compile Include="Name.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
