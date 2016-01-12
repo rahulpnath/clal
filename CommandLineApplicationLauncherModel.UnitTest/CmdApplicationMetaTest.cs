@@ -10,7 +10,7 @@ using Xunit;
 
 namespace CommandLineApplicationLauncherModel.UnitTest
 {
-    public class CmdApplicationTest
+    public class CmdApplicationMetaTest
     {
         [Theory, AutoData]
         public void NullForCtorArgumentsThrowsException(IFixture fixture)
@@ -36,11 +36,11 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         }
 
         [Theory, AutoData]
-        public void SutExposesParameterNames(IFixture fixture, [Frozen]IEnumerable<Name> expectedParameterNames)
+        public void SutExposesParameterNames(IFixture fixture, [Frozen]IEnumerable<ParameterMeta> expectedParameterNames)
         {
             var sut = fixture.Create<CmdApplicationMeta>();
-            Assert.IsAssignableFrom<IReadOnlyCollection<Name>>(sut.ParameterNames);
-            Assert.Equal(expectedParameterNames, sut.ParameterNames);
+            Assert.IsAssignableFrom<IReadOnlyCollection<ParameterMeta>>(sut.ParameterMetas);
+            Assert.Equal(expectedParameterNames, sut.ParameterMetas);
 
         }
     }
