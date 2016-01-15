@@ -16,19 +16,14 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        public CmdApplicationConfigurationViewModel CmdApplicationConfigurationViewModel { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            this.CmdApplicationConfigurationViewModel = new CmdApplicationConfigurationViewModel(SsmsCmdApplication.Application);
         }
     }
 }

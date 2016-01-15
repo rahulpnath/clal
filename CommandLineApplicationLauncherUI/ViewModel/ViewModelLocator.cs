@@ -43,6 +43,7 @@ namespace CommandLineApplicationLauncherUI.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<CmdApplicationConfigurationViewModel>();
         }
 
         public MainViewModel Main
