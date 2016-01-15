@@ -52,7 +52,15 @@ namespace CommandLineApplicationLauncherUI.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+        public CmdApplicationConfigurationViewModel CmdApplicationConfiguration
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CmdApplicationConfigurationViewModel>();
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

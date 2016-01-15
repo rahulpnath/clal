@@ -12,6 +12,8 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     {
         public CmdApplicationMeta Meta { get; private set; }
 
+        public string FriendlyName { get; set; }
+
         public CmdApplicationConfigurationViewModel(CmdApplicationMeta meta)
         {
             if (meta == null)
