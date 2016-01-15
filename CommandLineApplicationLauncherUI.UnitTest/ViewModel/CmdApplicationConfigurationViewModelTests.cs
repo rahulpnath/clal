@@ -13,13 +13,13 @@ using Xunit;
 
 namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
 {
-    public class CmdApplicationViewModelTests
+    public class CmdApplicationConfigurationViewModelTests
     {
         [Theory, AutoData]
         public void SutIsViewModelBase(IFixture fixture, Name name)
         {
             fixture.Inject<ParameterMeta>(ParameterMeta.Create<IParameter>(name));
-            var sut = fixture.Create<CmdApplicationViewModel>();
+            var sut = fixture.Create<CmdApplicationConfigurationViewModel>();
             Assert.IsAssignableFrom<ViewModelBase>(sut);
         }
 
@@ -28,7 +28,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         {
             fixture.Inject<ParameterMeta>(ParameterMeta.Create<IParameter>(name));
             var assertion = new GuardClauseAssertion(fixture);
-            assertion.Verify(typeof(CmdApplicationViewModel).GetConstructors(System.Reflection.BindingFlags.Public));
+            assertion.Verify(typeof(CmdApplicationConfigurationViewModel).GetConstructors(System.Reflection.BindingFlags.Public));
         }
 
         [Theory, AutoData]
@@ -36,7 +36,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         {
             fixture.Inject<ParameterMeta>(ParameterMeta.Create<IParameter>(name));
             var assertion = new ConstructorInitializedMemberAssertion(fixture);
-            assertion.Verify(typeof(CmdApplicationViewModel).GetConstructors(System.Reflection.BindingFlags.Public));
+            assertion.Verify(typeof(CmdApplicationConfigurationViewModel).GetConstructors(System.Reflection.BindingFlags.Public));
         }
     }
 }

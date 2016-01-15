@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherUI.ViewModel
 {
-    public class CmdApplicationViewModel : ViewModelBase
+    public class CmdApplicationConfigurationViewModel : ViewModelBase
     {
         public CmdApplicationMeta Meta { get; private set; }
 
-        public CmdApplicationViewModel(CmdApplicationMeta meta)
+        public CmdApplicationConfigurationViewModel(CmdApplicationMeta meta)
         {
             if (meta == null)
                 throw new ArgumentNullException(nameof(meta));
