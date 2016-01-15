@@ -10,7 +10,7 @@ using Xunit;
 
 namespace CommandLineApplicationLauncherModel.UnitTest
 {
-    public class CmdApplicationTest
+    public class CmdApplicationConfigurationTest
     {
         [Theory, AutoData]
         public void NullForCtorArgumentsThrowsException(IFixture fixture, Name name)
@@ -18,7 +18,7 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             fixture.Inject<IParameter>(new ParameterTest());
             fixture.Inject<ParameterMeta>(ParameterMeta.Create<IParameter>(name));
             var assertion = new GuardClauseAssertion(fixture);
-            assertion.Verify(typeof(CmdApplication).GetConstructors());
+            assertion.Verify(typeof(CmdApplicationConfiguration).GetConstructors());
         }
 
         [Theory, AutoData]
@@ -27,7 +27,7 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             fixture.Inject<IParameter>(new ParameterTest());
             fixture.Inject<ParameterMeta>(ParameterMeta.Create<IParameter>(name));
             var assertion = new ConstructorInitializedMemberAssertion(fixture);
-            assertion.Verify(typeof(CmdApplication));
+            assertion.Verify(typeof(CmdApplicationConfiguration));
         }
 
         private class ParameterTest : IParameter { }

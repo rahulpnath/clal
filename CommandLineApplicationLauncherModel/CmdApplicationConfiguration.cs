@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class CmdApplication
+    public class CmdApplicationConfiguration
     {
         public Name Name { get; private set; }
         public Name ApplicationName { get; private set; }
         public ReadOnlyCollection<IParameter> Parameters { get; private set; }
 
-        public CmdApplication(Name name, Name applicationName, ReadOnlyCollection<IParameter> parameters)
+        public CmdApplicationConfiguration(Name name, Name applicationName, ReadOnlyCollection<IParameter> parameters)
         {
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
