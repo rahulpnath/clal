@@ -1,4 +1,5 @@
-﻿using CommandLineApplicationLauncherUI.ViewModel;
+﻿using CommandLineApplicationLauncherModel;
+using CommandLineApplicationLauncherUI.ViewModel;
 using GalaSoft.MvvmLight;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
@@ -18,6 +19,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         public void SutIsViewModelBase(NameValueParameterViewModel sut)
         {
             Assert.IsAssignableFrom<ParameterViewModel>(sut);
+            Assert.Equal(typeof(NameValueParameter), sut.GetParameterType());
         }
 
         [Theory, AutoData]

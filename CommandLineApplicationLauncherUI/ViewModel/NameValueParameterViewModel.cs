@@ -12,12 +12,11 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     {
         public NameValueParameterViewModel(Name name)
         {
-
         }
 
         public override Type GetParameterType()
         {
-            throw new NotImplementedException();
+            return typeof(NameValueParameter);
         }
     }
 }
