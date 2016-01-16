@@ -15,5 +15,10 @@ namespace CommandLineApplicationLauncherUI.ViewModel
         {
 
         }
+
+        public override Type GetParameterType()
+        {
+            return typeof(NameOnlyParameter);
+        }
     }
 }

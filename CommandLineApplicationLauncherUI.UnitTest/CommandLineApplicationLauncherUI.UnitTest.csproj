@@ -103,11 +103,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\AutoMoqData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CmdApplicationConfigurationViewModelTests.cs" />
     <Compile Include="ViewModel\NameOnlyParameterViewModelTest.cs" />
     <Compile Include="ViewModel\NameValueParameterViewModelTest.cs" />
-    <Compile Include="ViewModel\ParameterViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

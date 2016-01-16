@@ -16,21 +16,20 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
 {
     public class CmdApplicationConfigurationViewModelTests
     {
-        [Theory, AutoData]
+        [Theory, AutoMoqData]
         public void SutIsViewModelBase(CmdApplicationConfigurationViewModel sut)
         {
             Assert.IsAssignableFrom<ViewModelBase>(sut);
         }
 
-        [Theory, AutoData]
-        public void CtorWithNullArgumentsThrowsException(IFixture fixture, Name name)
+        [Theory, AutoMoqData]
+        public void CtorWithNullArgumentsThrowsException(IFixture fixture)
         {
-            fixture.Inject<ParameterMeta>(ParameterMeta.Create<IParameter>(name));
             var assertion = new GuardClauseAssertion(fixture);
             assertion.Verify(typeof(CmdApplicationConfigurationViewModel).GetConstructors(System.Reflection.BindingFlags.Public));
         }
 
-        [Theory, AutoData]
+        [Theory, AutoMoqData]
         public void CtorParametersAreInitialized(IFixture fixture, Name name)
         {
             fixture.Inject<ParameterMeta>(ParameterMeta.Create<IParameter>(name));

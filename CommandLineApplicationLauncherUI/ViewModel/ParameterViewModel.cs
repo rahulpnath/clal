@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherUI.ViewModel
 {
-    public class ParameterViewModel : ViewModelBase
+    public abstract class ParameterViewModel : ViewModelBase
     {
+        public abstract Type GetParameterType();
     }
 }

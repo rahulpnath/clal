@@ -14,5 +14,10 @@ namespace CommandLineApplicationLauncherUI.ViewModel
         {
 
         }
+
+        public override Type GetParameterType()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
