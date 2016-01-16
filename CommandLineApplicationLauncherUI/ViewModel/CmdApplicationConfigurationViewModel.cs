@@ -12,14 +12,21 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     {
         public CmdApplicationMeta Meta { get; private set; }
 
+        public Name ApplicationName { get; private set; }
+
         public string FriendlyName { get; set; }
 
-        public CmdApplicationConfigurationViewModel(CmdApplicationMeta meta)
-        {
-            if (meta == null)
-                throw new ArgumentNullException(nameof(meta));
+        public List<ParameterViewModel> Properties { get; private set; }
 
-            this.Meta = meta;
+        public CmdApplicationConfigurationViewModel(Name applicationName, List<ParameterViewModel> properties)
+        {
+            if (applicationName == null)
+                throw new ArgumentNullException(nameof(applicationName));
+
+            if (properties == null)
+                throw new ArgumentNullException(nameof(properties));
+
+            
         }
     }
 }

@@ -78,6 +78,7 @@
     <Compile Include="SsmsCmdApplication.cs" />
     <Compile Include="ViewModel\NameOnlyParameterViewModel.cs" />
     <Compile Include="ViewModel\NameValueParameterViewModel.cs" />
+    <Compile Include="ViewModel\ParameterViewModel.cs" />
     <Compile Include="View\NameOnlyParameterView.xaml.cs">
       <DependentUpon>NameOnlyParameterView.xaml</DependentUpon>
     </Compile>

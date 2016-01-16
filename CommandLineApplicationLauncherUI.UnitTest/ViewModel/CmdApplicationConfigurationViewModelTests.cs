@@ -17,10 +17,8 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
     public class CmdApplicationConfigurationViewModelTests
     {
         [Theory, AutoData]
-        public void SutIsViewModelBase(IFixture fixture, Name name)
+        public void SutIsViewModelBase(CmdApplicationConfigurationViewModel sut)
         {
-            fixture.Inject<ParameterMeta>(ParameterMeta.Create<IParameter>(name));
-            var sut = fixture.Create<CmdApplicationConfigurationViewModel>();
             Assert.IsAssignableFrom<ViewModelBase>(sut);
         }
 

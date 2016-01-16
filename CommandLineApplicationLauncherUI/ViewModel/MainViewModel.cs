@@ -23,7 +23,7 @@ namespace CommandLineApplicationLauncherUI.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            this.CmdApplicationConfigurationViewModel = new CmdApplicationConfigurationViewModel(SsmsCmdApplication.Application);
+            // this.CmdApplicationConfigurationViewModel = new CmdApplicationConfigurationViewModel(SsmsCmdApplication.Application);
         }
     }
 }

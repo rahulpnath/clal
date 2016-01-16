@@ -107,6 +107,7 @@
     <Compile Include="ViewModel\CmdApplicationConfigurationViewModelTests.cs" />
     <Compile Include="ViewModel\NameOnlyParameterViewModelTest.cs" />
     <Compile Include="ViewModel\NameValueParameterViewModelTest.cs" />
+    <Compile Include="ViewModel\ParameterViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
