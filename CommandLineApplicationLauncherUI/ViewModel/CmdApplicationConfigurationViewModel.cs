@@ -10,8 +10,6 @@ namespace CommandLineApplicationLauncherUI.ViewModel
 {
     public class CmdApplicationConfigurationViewModel : ViewModelBase
     {
-        public CmdApplicationMeta Meta { get; private set; }
-
         public Name ApplicationName { get; private set; }
 
         public string FriendlyName { get; set; }
@@ -26,7 +24,8 @@ namespace CommandLineApplicationLauncherUI.ViewModel
             if (properties == null)
                 throw new ArgumentNullException(nameof(properties));
 
-            
+            this.ApplicationName = applicationName;
+            this.Properties = properties;
         }
     }
 }

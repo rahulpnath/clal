@@ -26,14 +26,14 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         public void CtorWithNullArgumentsThrowsException(IFixture fixture)
         {
             var assertion = new GuardClauseAssertion(fixture);
-            assertion.Verify(typeof(NameValueParameterViewModel).GetConstructors(System.Reflection.BindingFlags.Public));
+            assertion.Verify(typeof(NameValueParameterViewModel).GetConstructors());
         }
 
         [Theory, AutoData]
         public void CtorParametersAreInitialized(IFixture fixture)
         {
             var assertion = new ConstructorInitializedMemberAssertion(fixture);
-            assertion.Verify(typeof(NameValueParameterViewModel).GetConstructors(System.Reflection.BindingFlags.Public));
+            assertion.Verify(typeof(NameValueParameterViewModel).GetConstructors());
         }
     }
 }
