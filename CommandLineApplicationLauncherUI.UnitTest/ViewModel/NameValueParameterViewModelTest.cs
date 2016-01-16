@@ -17,7 +17,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         [Theory, AutoData]
         public void SutIsViewModelBase(NameValueParameterViewModel sut)
         {
-            Assert.IsAssignableFrom<ViewModelBase>(sut);
+            Assert.IsAssignableFrom<ParameterViewModel>(sut);
         }
 
         [Theory, AutoData]

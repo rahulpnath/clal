@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherUI.ViewModel
 {
-    public class NameOnlyParameterViewModel : ViewModelBase
+    public class NameOnlyParameterViewModel : ParameterViewModel
     {
         public string Name { get; set; }
         public NameOnlyParameterViewModel(Name name)
