@@ -27,5 +27,30 @@ namespace CommandLineApplicationLauncherUI.ViewModel
             this.ApplicationName = applicationName;
             this.Properties = properties;
         }
+
+        public static CmdApplicationConfigurationViewModel Create(
+            CmdApplicationMeta meta)
+        {
+            if (meta == null)
+                throw new ArgumentNullException(nameof(meta));
+
+            var properties = new List<ParameterViewModel>();
+            foreach(var parameterMeta in meta.ParameterMetas)
+            {
+                ParameterViewModel viewModel = null;
+                if(parameterMeta.ParameterType == typeof(NameValueParameter))
+                {
+                    viewModel = new NameValueParameterViewModel(parameterMeta.Name);
+                }
+                else if(parameterMeta.ParameterType == typeof(NameOnlyParameter))
+                {
+                    viewModel = new NameOnlyParameterViewModel(parameterMeta.Name);
+                }
+
+                properties.Add(viewModel);
+            }
+
+            return new CmdApplicationConfigurationViewModel(meta.ApplicationName, properties);
+        }
     }
 }
