@@ -45,6 +45,9 @@ namespace CommandLineApplicationLauncherUI.ViewModel
                 else if(parameterMeta.ParameterType == typeof(NameOnlyParameter))
                 {
                     viewModel = new NameOnlyParameterViewModel(parameterMeta.Name);
+                } else
+                {
+                    throw new ArgumentException(string.Format("Type {0} not supported for parameter {1}", parameterMeta.ParameterType, parameterMeta.Name));
                 }
 
                 properties.Add(viewModel);

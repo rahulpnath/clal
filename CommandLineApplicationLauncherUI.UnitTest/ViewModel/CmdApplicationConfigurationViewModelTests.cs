@@ -1,6 +1,7 @@
 ﻿using CommandLineApplicationLauncherModel;
 using CommandLineApplicationLauncherUI.ViewModel;
 using GalaSoft.MvvmLight;
+using Moq;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
 using System;
@@ -45,11 +46,29 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         {
             var viewModel = CmdApplicationConfigurationViewModel.Create(SsmsCmdApplication.Application);
             Assert.Equal(SsmsCmdApplication.Application.ApplicationName, viewModel.ApplicationName);
-            foreach(var meta in SsmsCmdApplication.Application.ParameterMetas)
+            foreach (var meta in SsmsCmdApplication.Application.ParameterMetas)
             {
                 viewModel.Properties.Any(a => a.GetParameterType() == meta.ParameterType);
             }
 
+        }
+
+
+        [Theory, AutoMoqData]
+        public void CreateWithInvalidParameterTypeThrowsException(
+            Name name,
+            Name applicationName,
+            Name parameterName)
+        {
+            var parameter = new Mock<IParameter>();
+            var meta = new CmdApplicationMeta(
+                name,
+                applicationName,
+                new List<ParameterMeta>()
+                {
+                    ParameterMeta.Create<IParameter>(parameterName)
+                });
+            Assert.Throws<ArgumentException>(() => CmdApplicationConfigurationViewModel.Create(meta));
         }
     }
 }
