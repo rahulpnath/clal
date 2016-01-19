@@ -20,6 +20,12 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         }
 
         [Theory, AutoMoqData]
+        public void SutHasSaveCommandInitialized(CmdApplicationConfigurationViewModel sut)
+        {
+            Assert.NotNull(sut.Save);
+        }
+
+        [Theory, AutoMoqData]
         public void CtorWithNullArgumentsThrowsException(IFixture fixture)
         {
             var assertion = new GuardClauseAssertion(fixture);

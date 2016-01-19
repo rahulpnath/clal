@@ -1,10 +1,12 @@
 ﻿using CommandLineApplicationLauncherModel;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CommandLineApplicationLauncherUI.ViewModel
 {
@@ -16,6 +18,8 @@ namespace CommandLineApplicationLauncherUI.ViewModel
 
         public List<ParameterViewModel> Properties { get; private set; }
 
+        public ICommand Save { get; private set; }
+
         public CmdApplicationConfigurationViewModel(Name applicationName, List<ParameterViewModel> properties)
         {
             if (applicationName == null)
@@ -26,6 +30,12 @@ namespace CommandLineApplicationLauncherUI.ViewModel
 
             this.ApplicationName = applicationName;
             this.Properties = properties;
+            this.Save = new RelayCommand(this.OnSaveExecuted);
+        }
+
+        private void OnSaveExecuted()
+        {
+            
         }
 
         public static CmdApplicationConfigurationViewModel Create(

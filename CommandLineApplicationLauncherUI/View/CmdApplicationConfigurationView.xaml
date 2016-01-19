@@ -12,6 +12,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -38,5 +39,6 @@
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
+        <Button Content="Save" Grid.Row="3" Command="{Binding Save}" />
     </Grid>
 </UserControl>
