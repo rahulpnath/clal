@@ -31,6 +31,11 @@ namespace CommandLineApplicationLauncherModel
             return name.internalName;
         }
 
+        public override string ToString()
+        {
+            return this.internalName;
+        }
+
         public override int GetHashCode()
         {
             return this.internalName.GetHashCode();

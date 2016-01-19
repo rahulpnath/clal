@@ -16,7 +16,9 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Content="Friendly Name" Grid.Row="0" Grid.Column="0" />
-        <TextBox Text="{Binding FriendlyName, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" />
+        <Label Content="Application Name" Grid.Row="0" Grid.Column="0" />
+        <Label Content="{Binding ApplicationName}" Grid.Row="0" Grid.Column="1" />
+        <Label Content="Friendly Name" Grid.Row="1" Grid.Column="0" />
+        <TextBox Text="{Binding FriendlyName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" />
     </Grid>
 </UserControl>

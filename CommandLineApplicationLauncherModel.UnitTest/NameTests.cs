@@ -51,6 +51,12 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Equal(false, validName.Equals(aNullName));
         }
 
+        [Theory, AutoData]
+        public void ToStringReturnNameValue(Name validName)
+        {
+            Assert.Equal((string)validName, validName.ToString());
+        }
+
         [Fact]
         public void ImplicitlyCastNullToStringThrowsException()
         {
