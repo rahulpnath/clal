@@ -35,17 +35,18 @@ namespace CommandLineApplicationLauncherUI.ViewModel
                 throw new ArgumentNullException(nameof(meta));
 
             var properties = new List<ParameterViewModel>();
-            foreach(var parameterMeta in meta.ParameterMetas)
+            foreach (var parameterMeta in meta.ParameterMetas)
             {
                 ParameterViewModel viewModel = null;
-                if(parameterMeta.ParameterType == typeof(NameValueParameter))
+                if (parameterMeta.ParameterType == typeof(NameValueParameter))
                 {
                     viewModel = new NameValueParameterViewModel(parameterMeta.Name);
                 }
-                else if(parameterMeta.ParameterType == typeof(NameOnlyParameter))
+                else if (parameterMeta.ParameterType == typeof(NameOnlyParameter))
                 {
                     viewModel = new NameOnlyParameterViewModel(parameterMeta.Name);
-                } else
+                }
+                else
                 {
                     throw new ArgumentException(string.Format("Type {0} not supported for parameter {1}", parameterMeta.ParameterType, parameterMeta.Name));
                 }
