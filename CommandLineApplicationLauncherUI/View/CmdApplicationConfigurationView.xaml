@@ -34,7 +34,7 @@
                 <DataTemplate DataType="{x:Type vm:NameOnlyParameterViewModel}">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{Binding Name}" />
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.Resources>

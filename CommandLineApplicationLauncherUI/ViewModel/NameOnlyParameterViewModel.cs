@@ -11,6 +11,9 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     public class NameOnlyParameterViewModel : ParameterViewModel
     {
         public Name Name { get; private set; }
+
+        public bool IsSelected { get; set; }
+
         public NameOnlyParameterViewModel(Name name)
         {
             if (name == null)

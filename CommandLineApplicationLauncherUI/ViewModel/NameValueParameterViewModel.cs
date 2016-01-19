@@ -12,6 +12,8 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     {
         public Name Name { get; private set; }
 
+        public string Value { get; set; }
+
         public NameValueParameterViewModel(Name name)
         {
             if (name == null)
