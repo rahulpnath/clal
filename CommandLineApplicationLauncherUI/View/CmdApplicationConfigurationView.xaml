@@ -23,12 +23,17 @@
         <Label Content="Friendly Name" Grid.Row="1" Grid.Column="0" />
         <TextBox Text="{Binding FriendlyName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" />
         <ListBox  ItemsSource="{Binding Properties}" Grid.Row="2" Grid.ColumnSpan="2">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type vm:NameValueParameterViewModel}">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Name}" />
-                        <TextBox Text="{Binding Value, Mode=TwoWay}" />
-                    </StackPanel>
+                    <DockPanel LastChildFill="True">
+                        <Label DockPanel.Dock="Left"  Content="{Binding Name}" />
+                        <TextBox DockPanel.Dock="Left" Text="{Binding Value, Mode=TwoWay}" />
+                    </DockPanel>
                 </DataTemplate>
 
                 <DataTemplate DataType="{x:Type vm:NameOnlyParameterViewModel}">
