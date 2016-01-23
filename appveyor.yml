@@ -1,2 +1,7 @@
+version: 1.0.{build}
+build:
+  verbosity: minimal
+test:
+  assemblies: '*.UnitTest'
 before_build:
   - nuget restore
