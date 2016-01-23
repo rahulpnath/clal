@@ -22,7 +22,7 @@
         <Label Content="{Binding ApplicationName}" Grid.Row="0" Grid.Column="1" />
         <Label Content="Friendly Name" Grid.Row="1" Grid.Column="0" />
         <TextBox Text="{Binding FriendlyName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" />
-        <ListBox  ItemsSource="{Binding Properties}" Grid.Row="2" Grid.ColumnSpan="2">
+        <ListBox Grid.IsSharedSizeScope="True"  ItemsSource="{Binding Properties}" Grid.Row="2" Grid.ColumnSpan="2">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -30,17 +30,25 @@
             </ListBox.ItemContainerStyle>
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type vm:NameValueParameterViewModel}">
-                    <DockPanel LastChildFill="True">
-                        <Label DockPanel.Dock="Left"  Content="{Binding Name}" />
-                        <TextBox DockPanel.Dock="Left" Text="{Binding Value, Mode=TwoWay}" />
-                    </DockPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="name" />
+                            <ColumnDefinition  />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"  Content="{Binding Name}" />
+                        <TextBox Grid.Column="1" Text="{Binding Value, Mode=TwoWay}" Margin="0,0,10,0" />
+                    </Grid>
                 </DataTemplate>
 
                 <DataTemplate DataType="{x:Type vm:NameOnlyParameterViewModel}">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Name}" />
-                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center" />
-                    </StackPanel>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="name" Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding Name}" Grid.Column="0" />
+                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" Grid.Column="1" VerticalAlignment="Center" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
