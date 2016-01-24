@@ -1,3 +1,4 @@
+using CommandLineApplicationLauncherModel;
 using GalaSoft.MvvmLight;
 
 namespace CommandLineApplicationLauncherUI.ViewModel
@@ -21,9 +22,9 @@ namespace CommandLineApplicationLauncherUI.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(IChannel<SaveCmdApplicationConfigurationCommand> channel)
         {
-             this.CmdApplicationConfigurationViewModel = CmdApplicationConfigurationViewModel.Create(SsmsCmdApplication.Application);
+             this.CmdApplicationConfigurationViewModel = CmdApplicationConfigurationViewModel.Create(SsmsCmdApplication.Application, channel);
         }
     }
 }

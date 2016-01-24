@@ -42,15 +42,16 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         [Theory, AutoMoqData]
         public void CreateThrowsExcpetionForNullParameters()
         {
-            Assert.Throws<ArgumentNullException>(() => CmdApplicationConfigurationViewModel.Create(null));
+            Assert.Throws<ArgumentNullException>(() => CmdApplicationConfigurationViewModel.Create(null, null));
         }
 
         [Theory, AutoMoqData]
         public void CreateWithValidParametersReturnsViewModel(
             Name name,
-            Name anotherName)
+            Name anotherName,
+            IChannel<SaveCmdApplicationConfigurationCommand> channel)
         {
-            var viewModel = CmdApplicationConfigurationViewModel.Create(SsmsCmdApplication.Application);
+            var viewModel = CmdApplicationConfigurationViewModel.Create(SsmsCmdApplication.Application, channel);
             Assert.Equal(SsmsCmdApplication.Application.ApplicationName, viewModel.ApplicationName);
             foreach (var meta in SsmsCmdApplication.Application.ParameterMetas)
             {
@@ -63,7 +64,8 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         public void CreateWithInvalidParameterTypeThrowsException(
             Name name,
             Name applicationName,
-            Name parameterName)
+            Name parameterName,
+            IChannel<SaveCmdApplicationConfigurationCommand> channel)
         {
             var parameter = new Mock<IParameter>();
             var meta = new CmdApplicationMeta(
@@ -73,7 +75,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
                 {
                     ParameterMeta.Create<IParameter>(parameterName)
                 });
-            Assert.Throws<ArgumentException>(() => CmdApplicationConfigurationViewModel.Create(meta));
+            Assert.Throws<ArgumentException>(() => CmdApplicationConfigurationViewModel.Create(meta, channel));
         }
     }
 }

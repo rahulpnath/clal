@@ -13,14 +13,15 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     public class CmdApplicationConfigurationViewModel : ViewModelBase
     {
         public Name ApplicationName { get; private set; }
-
         public string FriendlyName { get; set; }
-
         public List<ParameterViewModel> Properties { get; private set; }
-
         public ICommand Save { get; private set; }
+        public IChannel<SaveCmdApplicationConfigurationCommand> Channel { get; private set; }
 
-        public CmdApplicationConfigurationViewModel(Name applicationName, List<ParameterViewModel> properties)
+        public CmdApplicationConfigurationViewModel(
+            Name applicationName,
+            List<ParameterViewModel> properties,
+            IChannel<SaveCmdApplicationConfigurationCommand> channel)
         {
             if (applicationName == null)
                 throw new ArgumentNullException(nameof(applicationName));
@@ -28,18 +29,23 @@ namespace CommandLineApplicationLauncherUI.ViewModel
             if (properties == null)
                 throw new ArgumentNullException(nameof(properties));
 
+            if (channel == null)
+                throw new ArgumentNullException(nameof(channel));
+
             this.ApplicationName = applicationName;
             this.Properties = properties;
+            this.Channel = channel;
             this.Save = new RelayCommand(this.OnSaveExecuted);
         }
 
         private void OnSaveExecuted()
         {
-            
+
         }
 
         public static CmdApplicationConfigurationViewModel Create(
-            CmdApplicationMeta meta)
+            CmdApplicationMeta meta,
+            IChannel<SaveCmdApplicationConfigurationCommand> channel)
         {
             if (meta == null)
                 throw new ArgumentNullException(nameof(meta));
@@ -64,7 +70,7 @@ namespace CommandLineApplicationLauncherUI.ViewModel
                 properties.Add(viewModel);
             }
 
-            return new CmdApplicationConfigurationViewModel(meta.ApplicationName, properties);
+            return new CmdApplicationConfigurationViewModel(meta.ApplicationName, properties, channel);
         }
     }
 }
