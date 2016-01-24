@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineApplicationLaunc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineApplicationLauncherUI.UnitTest", "CommandLineApplicationLauncherUI.UnitTest\CommandLineApplicationLauncherUI.UnitTest.csproj", "{E0062356-A327-41FC-921A-E9B7F820AA0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineApplicationLauncherJson", "CommandLineApplicationLauncherJson\CommandLineApplicationLauncherJson.csproj", "{A11B1109-B979-434A-972D-3A3A27495856}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E0062356-A327-41FC-921A-E9B7F820AA0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0062356-A327-41FC-921A-E9B7F820AA0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0062356-A327-41FC-921A-E9B7F820AA0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A11B1109-B979-434A-972D-3A3A27495856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11B1109-B979-434A-972D-3A3A27495856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11B1109-B979-434A-972D-3A3A27495856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11B1109-B979-434A-972D-3A3A27495856}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
