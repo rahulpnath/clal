@@ -1,8 +1,7 @@
-﻿using System;
-using CommandLineApplicationLauncherModel;
+﻿using CommandLineApplicationLauncherModel;
 using System.IO;
 
-namespace CommandLineApplicationLauncherJson
+namespace CommandLineApplicationLauncherPersistenceModel
 {
     public interface IStoreWriter<T> where T : IMessage
     {
