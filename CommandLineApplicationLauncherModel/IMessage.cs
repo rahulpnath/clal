@@ -4,6 +4,6 @@ namespace CommandLineApplicationLauncherModel
 {
     public interface IMessage
     {
-        Guid Id { get; }
+        Guid MessageId { get; }
     }
 }

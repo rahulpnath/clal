@@ -8,6 +8,6 @@ namespace CommandLineApplicationLauncherModel
 {
     public class SaveCmdApplicationConfigurationCommand : IMessage
     {
-        public Guid Id { get; private set; }
+        public Guid MessageId { get; private set; }
     }
 }
