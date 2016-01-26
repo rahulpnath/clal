@@ -1,8 +1,17 @@
-﻿using System;
+﻿using Autofac;
+using CommandLineApplicationLauncherFilePersistence;
+using CommandLineApplicationLauncherJson;
+using CommandLineApplicationLauncherModel;
+using CommandLineApplicationLauncherPersistenceModel;
+using CommandLineApplicationLauncherUI.ViewModel;
+using GalaSoft.MvvmLight;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -13,5 +22,9 @@ namespace CommandLineApplicationLauncherUI
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            
+        }
     }
 }

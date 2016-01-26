@@ -12,9 +12,18 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using Autofac;
+using CommandLineApplicationLauncherFilePersistence;
+using CommandLineApplicationLauncherJson;
+using CommandLineApplicationLauncherModel;
+using CommandLineApplicationLauncherPersistenceModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace CommandLineApplicationLauncherUI.ViewModel
 {
@@ -22,35 +31,42 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     /// This class contains static references to all the view models in the
     /// application and provides an entry point for the bindings.
     /// </summary>
-    public class ViewModelLocator
+    public class ViewModelLocator : IDisposable
     {
+        IContainer container;
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            var containerBuilder = new ContainerBuilder();
+            string assemblyPath = AppDomain.CurrentDomain.BaseDirectory;
+            var allAssemblies = new List<Assembly>();
+            foreach (string dll in Directory.GetFiles(assemblyPath, "*.dll"))
+            {
+                if (Path.GetFileName(dll).Contains("CommandLineApplicationLauncher"))
+                    allAssemblies.Add(Assembly.LoadFile(dll));
+            }
+            allAssemblies.Add(Assembly.GetExecutingAssembly());
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
-            SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<CmdApplicationConfigurationViewModel>();
+            containerBuilder.
+                RegisterAssemblyTypes(allAssemblies.ToArray())
+                .Where(a => a.IsAssignableTo<ViewModelBase>())
+                .AsSelf();
+            containerBuilder
+                .RegisterGeneric(typeof(JsonChannel<>))
+                .As(typeof(IChannel<>));
+            containerBuilder
+                .RegisterGeneric(typeof(CmdApplicationStoreWriter<>))
+                .As(typeof(IStoreWriter<>));
+            container = containerBuilder.Build();
         }
 
         public MainViewModel Main
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
+                return container.Resolve<MainViewModel>();
             }
         }
 
@@ -58,13 +74,44 @@ namespace CommandLineApplicationLauncherUI.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<CmdApplicationConfigurationViewModel>();
+                return container.Resolve<CmdApplicationConfigurationViewModel>();
             }
         }
 
-        public static void Cleanup()
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
         {
-            // TODO Clear the ViewModels
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                    container.Dispose();
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
         }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~ViewModelLocator() {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }
