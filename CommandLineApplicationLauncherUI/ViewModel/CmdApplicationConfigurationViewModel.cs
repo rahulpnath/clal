@@ -40,7 +40,7 @@ namespace CommandLineApplicationLauncherUI.ViewModel
 
         private void OnSaveExecuted()
         {
-
+            this.Channel.Send(new SaveCmdApplicationConfigurationCommand());
         }
 
         public static CmdApplicationConfigurationViewModel Create(

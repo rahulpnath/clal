@@ -57,8 +57,8 @@ namespace CommandLineApplicationLauncherUI.ViewModel
                 .RegisterGeneric(typeof(JsonChannel<>))
                 .As(typeof(IChannel<>));
             containerBuilder
-                .RegisterGeneric(typeof(CmdApplicationStoreWriter<>))
-                .As(typeof(IStoreWriter<>));
+                .RegisterAssemblyTypes(allAssemblies.ToArray())
+                .AsClosedTypesOf(typeof(IStoreWriter<>));
             container = containerBuilder.Build();
         }
 

@@ -9,11 +9,11 @@ using CommandLineApplicationLauncherModel;
 
 namespace CommandLineApplicationLauncherFilePersistence
 {
-    public class CmdApplicationStoreWriter<T> : IStoreWriter<T> where T : IMessage
+    public class CmdApplicationStoreWriter : IStoreWriter<SaveCmdApplicationConfigurationCommand>
     {
-        public Stream OpenStreamFor(T message)
+        public Stream OpenStreamFor(SaveCmdApplicationConfigurationCommand message)
         {
-            throw new NotImplementedException();
+            return File.OpenWrite(string.Format("{0}.{1}", message.MessageId, "json"));
         }
     }
 }
