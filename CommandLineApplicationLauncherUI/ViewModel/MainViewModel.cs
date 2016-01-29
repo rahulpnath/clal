@@ -22,9 +22,9 @@ namespace CommandLineApplicationLauncherUI.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IChannel<SaveCmdApplicationConfigurationCommand> channel)
+        public MainViewModel(ICmdApplicationConfigurationViewModelFactory factory)
         {
-             this.CmdApplicationConfigurationViewModel = CmdApplicationConfigurationViewModel.Create(SsmsCmdApplication.Application, channel);
+             this.CmdApplicationConfigurationViewModel = factory.Create(SsmsCmdApplication.Application);
         }
     }
 }

@@ -38,44 +38,5 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             var assertion = new ConstructorInitializedMemberAssertion(fixture);
             assertion.Verify(typeof(CmdApplicationConfigurationViewModel).GetConstructors());
         }
-
-        [Theory, AutoMoqData]
-        public void CreateThrowsExcpetionForNullParameters()
-        {
-            Assert.Throws<ArgumentNullException>(() => CmdApplicationConfigurationViewModel.Create(null, null));
-        }
-
-        [Theory, AutoMoqData]
-        public void CreateWithValidParametersReturnsViewModel(
-            Name name,
-            Name anotherName,
-            IChannel<SaveCmdApplicationConfigurationCommand> channel)
-        {
-            var viewModel = CmdApplicationConfigurationViewModel.Create(SsmsCmdApplication.Application, channel);
-            Assert.Equal(SsmsCmdApplication.Application.ApplicationName, viewModel.ApplicationName);
-            foreach (var meta in SsmsCmdApplication.Application.ParameterMetas)
-            {
-                viewModel.Properties.Any(a => a.GetParameterType() == meta.ParameterType);
-            }
-
-        }
-
-        [Theory, AutoMoqData]
-        public void CreateWithInvalidParameterTypeThrowsException(
-            Name name,
-            Name applicationName,
-            Name parameterName,
-            IChannel<SaveCmdApplicationConfigurationCommand> channel)
-        {
-            var parameter = new Mock<IParameter>();
-            var meta = new CmdApplicationMeta(
-                name,
-                applicationName,
-                new List<ParameterMeta>()
-                {
-                    ParameterMeta.Create<IParameter>(parameterName)
-                });
-            Assert.Throws<ArgumentException>(() => CmdApplicationConfigurationViewModel.Create(meta, channel));
-        }
     }
 }

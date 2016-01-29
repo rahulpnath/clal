@@ -6,4 +6,10 @@ namespace CommandLineApplicationLauncherModel
     {
         Guid MessageId { get; }
     }
+
+    public interface ICommand : IMessage
+    { }
+
+    public interface IEvent : IMessage
+    { }
 }

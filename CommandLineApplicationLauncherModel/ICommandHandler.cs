@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class SaveCmdApplicationConfigurationCommand : ICommand
+    public interface ICommandHandler<T> where T : IMessage
     {
-        public Guid MessageId { get; private set; }
+        void Execute(T command);
     }
 }

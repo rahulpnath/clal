@@ -1,4 +1,5 @@
-﻿using CommandLineApplicationLauncherUI.ViewModel;
+﻿using CommandLineApplicationLauncherModel;
+using CommandLineApplicationLauncherUI.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,9 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
     public class MainViewModelTests
     {
         [Theory,AutoMoqData]
-        public void MainViewModelSetToSsmsApplicationByDefault(MainViewModel sut)
+        public void MainViewModelSetToSsmsApplicationByDefault(IChannel<SaveCmdApplicationConfigurationCommand> channel)
         {
+            MainViewModel sut = new MainViewModel(new CmdApplicationConfigurationViewModelFactory(channel));
             Assert.Equal(SsmsCmdApplication.Application.ApplicationName, sut.CmdApplicationConfigurationViewModel.ApplicationName);
         }
     }

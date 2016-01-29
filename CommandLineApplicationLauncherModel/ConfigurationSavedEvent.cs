@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class SaveCmdApplicationConfigurationCommand : ICommand
+    public class ConfigurationSavedEvent : IMessage
     {
         public Guid MessageId { get; private set; }
+
+        public ConfigurationSavedEvent(Guid messageId)
+        {
+            this.MessageId = messageId;
+        }
     }
 }

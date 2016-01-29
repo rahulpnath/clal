@@ -48,14 +48,26 @@ namespace CommandLineApplicationLauncherUI.ViewModel
                     allAssemblies.Add(Assembly.LoadFile(dll));
             }
             allAssemblies.Add(Assembly.GetExecutingAssembly());
-
+            containerBuilder.RegisterType<CmdApplicationConfigurationViewModelFactory>().As<ICmdApplicationConfigurationViewModelFactory>();
             containerBuilder.
                 RegisterAssemblyTypes(allAssemblies.ToArray())
                 .Where(a => a.IsAssignableTo<ViewModelBase>())
                 .AsSelf();
+
+            containerBuilder.RegisterType<CmdApplicationConfigurationService>().
+                As<ICommandHandler<SaveCmdApplicationConfigurationCommand>>();
+
+            //containerBuilder.RegisterType<CmdApplicationConfigurationViewModel>().
+            //    As<IMessageHandler<ConfigurationSavedEvent>>();
+
             containerBuilder
-                .RegisterGeneric(typeof(JsonChannel<>))
+                .RegisterGeneric(typeof(DirectChannel<>))
                 .As(typeof(IChannel<>));
+
+            containerBuilder
+                .RegisterAssemblyTypes(allAssemblies.ToArray())
+                .AsClosedTypesOf(typeof(ICommandHandler<>));
+
             containerBuilder
                 .RegisterAssemblyTypes(allAssemblies.ToArray())
                 .AsClosedTypesOf(typeof(IStoreWriter<>));

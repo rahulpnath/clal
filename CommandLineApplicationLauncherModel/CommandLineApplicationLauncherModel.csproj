@@ -41,8 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdApplicationConfiguration.cs" />
+    <Compile Include="CmdApplicationConfigurationService.cs" />
     <Compile Include="CmdApplicationMeta.cs" />
+    <Compile Include="ConfigurationSavedEvent.cs" />
     <Compile Include="IChannel.cs" />
+    <Compile Include="ICommandHandler.cs" />
+    <Compile Include="IEventHandler.cs" />
     <Compile Include="IMessage.cs" />
     <Compile Include="IParameter.cs" />
     <Compile Include="Name.cs" />
