@@ -46,7 +46,6 @@ namespace CommandLineApplicationLauncherUI.ViewModel
 
         public void Handle(ConfigurationSavedEvent command)
         {
-            this.FriendlyName += "SAVED";
         }
     }
 }

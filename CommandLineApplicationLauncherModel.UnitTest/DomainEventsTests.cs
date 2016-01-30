@@ -30,7 +30,7 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Throws<RuntimeBinderException>(() => DomainEvents.Publish<IEvent>(nonEventObject));
         }
 
-        [Theory,AutoMoqData]
+        [Theory, AutoMoqData]
         public void PublishRaisesEventsToSubscriber(
             Mock<IEventHandler<TestEvent>> testHandler,
             TestEvent eventData)
@@ -82,11 +82,11 @@ namespace CommandLineApplicationLauncherModel.UnitTest
 
             DomainEvents.Publish(eventData);
 
-            foreach(var testHandler in testHandlers)
+            foreach (var testHandler in testHandlers)
                 testHandler.Verify(a => a.Handle(eventData), Times.Once());
         }
 
-        [Theory,AutoMoqData]
+        [Theory, AutoMoqData]
         public void PublishAnotherEventDoesNotInvokeHandlersOfOtherEvents(
             Mock<IEventHandler<TestEvent>> testHandler,
             TestAnotherEvent anotherEventData)
@@ -99,16 +99,23 @@ namespace CommandLineApplicationLauncherModel.UnitTest
 
     public class TestEvent : IEvent
     {
+        public Guid CorrelationId
+        {
+            get { return Guid.NewGuid(); }
+        }
+
         public Guid MessageId
         {
-            get
-            {
-                return Guid.NewGuid();
-            }
+            get { return Guid.NewGuid(); }
         }
     }
     public class TestAnotherEvent : IEvent
     {
+        public Guid CorrelationId
+        {
+            get { return Guid.NewGuid(); }
+        }
+
         public Guid MessageId
         {
             get

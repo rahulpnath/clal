@@ -11,5 +11,7 @@ namespace CommandLineApplicationLauncherModel
     { }
 
     public interface IEvent : IMessage
-    { }
+    {
+        Guid CorrelationId { get; }
+    }
 }
