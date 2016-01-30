@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherModel
 {
-    public interface IEventHandler<T>
+    public interface IEventHandler<T> 
     {
         void Handle(T eventData);
     }

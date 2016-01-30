@@ -36,6 +36,7 @@ namespace CommandLineApplicationLauncherUI.ViewModel
             this.Properties = properties;
             this.Channel = channel;
             this.Save = new RelayCommand(this.OnSaveExecuted);
+            DomainEvents.Subscribe(this);
         }
 
         private void OnSaveExecuted()

@@ -15,6 +15,7 @@ namespace CommandLineApplicationLauncherModel
 
         public void Execute(SaveCmdApplicationConfigurationCommand command)
         {
+            DomainEvents.Publish(new ConfigurationSavedEvent(command.MessageId));
         }
     }
 }

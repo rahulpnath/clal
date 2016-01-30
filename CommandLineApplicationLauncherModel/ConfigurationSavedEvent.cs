@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class ConfigurationSavedEvent : IMessage
+    public class ConfigurationSavedEvent : IEvent
     {
         public Guid MessageId { get; private set; }
 
