@@ -144,9 +144,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommandLineApplicationLauncerPersistenceModel\CommandLineApplicationLauncerPersistenceModel.csproj">
+    <ProjectReference Include="..\CommandLineApplicationLauncherPersistenceModel\CommandLineApplicationLauncherPersistenceModel.csproj">
       <Project>{b0291cdf-5883-4d29-bcb6-449a6880697d}</Project>
-      <Name>CommandLineApplicationLauncerPersistenceModel</Name>
+      <Name>CommandLineApplicationLauncherPersistenceModel</Name>
       <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\CommandLineApplicationLauncherFilePersistence\CommandLineApplicationLauncherFilePersistence.csproj">

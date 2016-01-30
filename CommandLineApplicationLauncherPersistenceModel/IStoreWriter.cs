@@ -3,8 +3,8 @@ using System.IO;
 
 namespace CommandLineApplicationLauncherPersistenceModel
 {
-    public interface IStoreWriter<T> where T : IMessage
+    public interface IStoreWriter<T>
     {
-        Stream OpenStreamFor(T message);
+        Stream OpenStreamFor(T item);
     }
 }

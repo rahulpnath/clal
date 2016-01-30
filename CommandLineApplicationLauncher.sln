@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineApplicationLaunc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineApplicationLauncherFilePersistence", "CommandLineApplicationLauncherFilePersistence\CommandLineApplicationLauncherFilePersistence.csproj", "{BA46FDD9-E28D-4CBF-BC54-0F8B8CE7E37C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineApplicationLauncerPersistenceModel", "CommandLineApplicationLauncerPersistenceModel\CommandLineApplicationLauncerPersistenceModel.csproj", "{B0291CDF-5883-4D29-BCB6-449A6880697D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineApplicationLauncherPersistenceModel", "CommandLineApplicationLauncherPersistenceModel\CommandLineApplicationLauncherPersistenceModel.csproj", "{B0291CDF-5883-4D29-BCB6-449A6880697D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

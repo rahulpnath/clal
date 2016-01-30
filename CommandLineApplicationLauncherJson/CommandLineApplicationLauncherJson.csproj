@@ -50,9 +50,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommandLineApplicationLauncerPersistenceModel\CommandLineApplicationLauncerPersistenceModel.csproj">
+    <ProjectReference Include="..\CommandLineApplicationLauncherPersistenceModel\CommandLineApplicationLauncherPersistenceModel.csproj">
       <Project>{b0291cdf-5883-4d29-bcb6-449a6880697d}</Project>
-      <Name>CommandLineApplicationLauncerPersistenceModel</Name>
+      <Name>CommandLineApplicationLauncherPersistenceModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\CommandLineApplicationLauncherModel\CommandLineApplicationLauncherModel.csproj">
       <Project>{929a05c3-7874-4711-a629-285b7b7fcb07}</Project>
