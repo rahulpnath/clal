@@ -9,5 +9,7 @@ namespace CommandLineApplicationLauncherModel
     public class SaveCmdApplicationConfigurationCommand : ICommand
     {
         public Guid MessageId { get; private set; }
+
+        public CmdApplicationConfiguration ApplicationConfiguration { get; set; }
     }
 }

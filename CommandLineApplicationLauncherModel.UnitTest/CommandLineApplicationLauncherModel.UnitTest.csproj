@@ -88,6 +88,7 @@
     <Compile Include="CmdApplicationConfigurationTest.cs" />
     <Compile Include="DomainEventsTests.cs" />
     <Compile Include="Helpers\AutoMoqData.cs" />
+    <Compile Include="Helpers\TestDomainEventHandler.cs" />
     <Compile Include="NameOnlyParameterTest.cs" />
     <Compile Include="NameTests.cs" />
     <Compile Include="NameValueParameterTest.cs" />

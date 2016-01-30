@@ -1,4 +1,5 @@
-﻿using Ploeh.AutoFixture;
+﻿using Moq;
+using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
 using Ploeh.AutoFixture.Xunit2;
 using System;
@@ -24,6 +25,27 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         {
             var assertion = new ConstructorInitializedMemberAssertion(fixture);
             assertion.Verify(typeof(CmdApplicationConfigurationService));
+        }
+
+        [Theory, AutoMoqData]
+        public void ExecuteSaveCmdApplicationConfigurationCommandWithNullThrowsException(CmdApplicationConfigurationService sut)
+        {
+            Assert.Throws<ArgumentNullException>(() => sut.Execute(null));
+        }
+
+        [Theory, AutoMoqData]
+        public void ExecuteSaveCmdApplicationConfigurationWithExistingNameRaisesRejectedEvent(
+            [Frozen]Mock<ICmdApplicationConfigurationRepository> repository,
+            SaveCmdApplicationConfigurationCommand command,
+            TestDomainEventHandler<CmdApplicationConfigurationSaveRejected> handler,
+            CmdApplicationConfigurationService sut)
+        {
+            repository
+                .Setup(a => a.CheckIfConfigurationWithSameNameExists(command.ApplicationConfiguration))
+                .Returns(true);
+            DomainEvents.Subscribe(handler);
+            sut.Execute(command);
+            Assert.True(handler.EventHandlerInvoked);
         }
     }
 }

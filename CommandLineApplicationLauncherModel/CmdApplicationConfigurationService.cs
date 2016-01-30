@@ -16,7 +16,12 @@ namespace CommandLineApplicationLauncherModel
 
         public void Execute(SaveCmdApplicationConfigurationCommand command)
         {
+            if (command == null)
+                throw new ArgumentNullException(nameof(command));
 
+            if (this.Repository.CheckIfConfigurationWithSameNameExists(command.ApplicationConfiguration))
+                DomainEvents.Publish(new CmdApplicationConfigurationSaveRejected());
+                
         }
     }
 }
