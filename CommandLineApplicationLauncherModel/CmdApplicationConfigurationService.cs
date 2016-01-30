@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherModel
 {
     public class CmdApplicationConfigurationService : ICommandHandler<SaveCmdApplicationConfigurationCommand>
     {
-        public CmdApplicationConfigurationService()
+        public ICmdApplicationConfigurationRepository Repository { get; private set; }
+
+        public CmdApplicationConfigurationService(ICmdApplicationConfigurationRepository repository)
         {
-            
+            if (repository == null)
+                throw new ArgumentNullException(nameof(repository));
+
+            this.Repository = repository;
         }
 
         public void Execute(SaveCmdApplicationConfigurationCommand command)
