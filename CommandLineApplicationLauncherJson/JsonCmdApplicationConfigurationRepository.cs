@@ -27,5 +27,23 @@ namespace CommandLineApplicationLauncherJson
         {
             throw new NotImplementedException();
         }
+
+        public string GetConfigurationFileName(CmdApplicationConfiguration applicationConfiguration)
+        {
+            if (applicationConfiguration == null)
+                throw new ArgumentNullException(nameof(applicationConfiguration));
+
+            var nameFormat = "{0}-{1}";
+            return string.Format(
+                nameFormat,
+                applicationConfiguration.ApplicationName,
+                FormatFriendlyName(applicationConfiguration.Name)).ToLower(); 
+        }
+
+        private string FormatFriendlyName(Name name)
+        {
+            var spaceReplace = "_";
+            return name.ToString().Replace(" ", spaceReplace);
+        }
     }
 }

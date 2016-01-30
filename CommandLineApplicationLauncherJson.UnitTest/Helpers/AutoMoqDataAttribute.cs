@@ -4,9 +4,9 @@ using Ploeh.AutoFixture.Xunit2;
 
 namespace CommandLineApplicationLauncherJson.UnitTest
 {
-    public class AutoMoqData : AutoDataAttribute
+    public class AutoMoqDataAttribute : AutoDataAttribute
     {
-        public AutoMoqData() : base(new Fixture().Customize(new AutoMoqCustomization()))
+        public AutoMoqDataAttribute(): base(new Fixture().Customize(new AutoMoqCustomization()))
         {
         }
     }
