@@ -23,11 +23,16 @@ namespace CommandLineApplicationLauncherJson
             this.FileStoreReader = fileStoreReader;
         }
 
-        public bool CheckIfConfigurationWithSameNameExists(CmdApplicationConfiguration application)
+        public bool CheckIfConfigurationWithSameNameExists(CmdApplicationConfiguration applicationConfiguration)
         {
-            throw new NotImplementedException();
+            if (applicationConfiguration == null)
+                throw new ArgumentNullException(nameof(applicationConfiguration));
+
+            var fileName = GetConfigurationFileName(applicationConfiguration);
+            return this.FileStoreReader.CheckIfFileExists(fileName);
         }
 
+        // TODO: More cases to be handled
         public string GetConfigurationFileName(CmdApplicationConfiguration applicationConfiguration)
         {
             if (applicationConfiguration == null)
