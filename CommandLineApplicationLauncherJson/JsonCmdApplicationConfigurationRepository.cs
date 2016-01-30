@@ -1,23 +1,26 @@
 ﻿using CommandLineApplicationLauncherModel;
 using CommandLineApplicationLauncherPersistenceModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherJson
 {
     public class JsonCmdApplicationConfigurationRepository : ICmdApplicationConfigurationRepository
     {
         public IStoreWriter<string> FileStoreWriter { get; private set; }
+        public IStoreReader<string> FileStoreReader { get; private set; }
 
-        public JsonCmdApplicationConfigurationRepository(IStoreWriter<string> fileStoreWriter)
+        public JsonCmdApplicationConfigurationRepository(
+            IStoreWriter<string> fileStoreWriter,
+            IStoreReader<string> fileStoreReader)
         {
             if (fileStoreWriter == null)
                 throw new ArgumentNullException(nameof(fileStoreWriter));
 
+            if (fileStoreReader == null)
+                throw new ArgumentNullException(nameof(fileStoreReader));
+
             this.FileStoreWriter = fileStoreWriter;
+            this.FileStoreReader = fileStoreReader;
         }
 
         public bool CheckIfConfigurationWithSameNameExists(CmdApplicationConfiguration application)
