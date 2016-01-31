@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,26 @@ namespace CommandLineApplicationLauncherUI.ViewModel
             this.Channel = channel;
             this.Save = new RelayCommand(this.OnSaveExecuted);
             DomainEvents.Subscribe(this);
+        }
+
+        public Maybe<CmdApplicationConfiguration> GetCmdApplicationConfiguration()
+        {
+            if (string.IsNullOrEmpty(this.FriendlyName))
+                return Maybe.Empty<CmdApplicationConfiguration>();
+
+            var parameters = new List<IParameter>();
+            foreach (var parameterVm in this.Properties)
+                parameters.AddRange(parameterVm.GetParameter());
+
+            if (!parameters.Any())
+                return Maybe.Empty<CmdApplicationConfiguration>();
+
+            var applicationConfiguration = new CmdApplicationConfiguration(
+                (Name)FriendlyName,
+                ApplicationName,
+                new ReadOnlyCollection<IParameter>(parameters));
+
+            return Maybe.ToMaybe(applicationConfiguration);
         }
 
         private void OnSaveExecuted()
