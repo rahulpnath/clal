@@ -62,9 +62,12 @@ namespace CommandLineApplicationLauncherUI.ViewModel
 
         private void OnSaveExecuted()
         {
-      
-            var cmd = new CmdApplicationConfiguration((Name)FriendlyName, (Name)ApplicationName, new System.Collections.ObjectModel.ReadOnlyCollection<IParameter>(new List<IParameter>()));
-            this.Channel.Send(new SaveCmdApplicationConfigurationCommand() { ApplicationConfiguration = cmd });
+            var applicationConfiguration = this.GetCmdApplicationConfiguration();
+            if (applicationConfiguration.Any())
+                this.Channel.Send(
+                    new SaveCmdApplicationConfigurationCommand(
+                        Guid.NewGuid(),
+                        applicationConfiguration.Single()));
         }
 
         public void Handle(ConfigurationSavedEvent command)
