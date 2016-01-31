@@ -3,6 +3,7 @@ using CommandLineApplicationLauncherUI.ViewModel;
 using Moq;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
+using Ploeh.AutoFixture.Xunit2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,12 +66,6 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
                     ParameterMeta.Create<IParameter>(parameterName)
                 });
             Assert.Throws<ArgumentException>(() => sut.Create(meta));
-        }
-
-        [Theory, AutoMoqData]
-        public void EnsureCommandsAreAllSetUpOnSutConstruction(CmdApplicationConfigurationViewModel sut)
-        {
-            sut.EnsureCommandsAreAllSetUpOnSutConstruction();
         }
     }
 }

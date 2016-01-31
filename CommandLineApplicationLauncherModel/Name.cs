@@ -31,6 +31,15 @@ namespace CommandLineApplicationLauncherModel
             return name.internalName;
         }
 
+        public static bool operator ==(Name one, Name another)
+        {
+            return Equals(one, another);
+        }
+
+        public static bool operator !=(Name one, Name another)
+        {
+            return !Equals(one, another);
+        }
         public override string ToString()
         {
             return this.internalName;

@@ -43,6 +43,21 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Equal(expected, aName.Equals(anotherName));
         }
 
+        [Theory]
+        [InlineData("testName", "testName", true)]
+        [InlineData("testName", "anotherTestName", false)]
+        public void VerifyThatEqualAndNotEqualsOperatorsAreImplementedCorrectly(
+            string name1,
+            string name2,
+            bool expected)
+        {
+            var aName = new Name(name1);
+            var anotherName = new Name(name2);
+
+            Assert.Equal(expected, anotherName == aName);
+            Assert.Equal(!expected, anotherName != aName);
+        }
+
         [Theory, AutoData]
         public void EqualsWithNullNameReturnsFalse(Name validName)
         {

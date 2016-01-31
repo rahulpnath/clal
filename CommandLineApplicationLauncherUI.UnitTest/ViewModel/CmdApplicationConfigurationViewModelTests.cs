@@ -71,5 +71,44 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             var actual = sut.GetCmdApplicationConfiguration();
             Assert.True(actual.Any());
         }
+
+        [Theory, AutoMoqData]
+        public void EnsureCommandsAreAllSetUpOnSutConstruction(CmdApplicationConfigurationViewModel sut)
+        {
+            sut.EnsureCommandsAreAllSetUpOnSutConstruction();
+        }
+
+        [Theory, AutoMoqData]
+        public void SaveCmdApplicationConfigurationCommandNotSendWhenViewModelIsInInvalidState(
+            [Frozen]Mock<IChannel<SaveCmdApplicationConfigurationCommand>> channel,
+            CmdApplicationConfigurationViewModel sut)
+        {
+            sut.FriendlyName = string.Empty;
+            sut.Save.Execute(null);
+            channel.Verify(a => a.Send(It.IsAny<SaveCmdApplicationConfigurationCommand>()), Times.Never());
+
+            sut.FriendlyName = "Valid Friendly Name";
+            Assert.False(sut.Properties.Any(a => a.GetParameter().Any()));
+            sut.Save.Execute(null);
+            channel.Verify(a => a.Send(It.IsAny<SaveCmdApplicationConfigurationCommand>()), Times.Never());
+        }
+
+        [Theory, AutoMoqData]
+        public void SaveCmdApplicationConfigurationCommandSendWhenViewModelIsInValidState(
+            [Frozen]Mock<IChannel<SaveCmdApplicationConfigurationCommand>> channel,
+            CmdApplicationConfigurationViewModel sut)
+        {
+            sut.FriendlyName = "Valid Friendly Name";
+            var vm = new NameOnlyParameterViewModel((Name)"testParameter");
+            vm.IsSelected = true;
+            sut.Properties.Add(vm);
+
+            sut.Save.Execute(null);
+            
+            channel.Verify(m => m.Send(It.Is<SaveCmdApplicationConfigurationCommand>( a =>
+            a.ApplicationConfiguration.ApplicationName == sut.ApplicationName &&
+            a.ApplicationConfiguration.Name == (Name)sut.FriendlyName &&
+            a.ApplicationConfiguration.Parameters.Count == 1)), Times.Once());
+        }
     }
 }
