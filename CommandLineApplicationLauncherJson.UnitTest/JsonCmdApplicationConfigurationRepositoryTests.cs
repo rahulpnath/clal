@@ -39,10 +39,10 @@ namespace CommandLineApplicationLauncherJson.UnitTest
         }
 
         [Theory]
-        [InlineAutoMoqData("appname", "friendlyname", "appname-friendlyname", true, true)]
-        [InlineAutoMoqData("appname", "friendly name", "appname-friendly_name", true, true)]
-        [InlineAutoMoqData("appname", "friendlyname", "appname-friendlyname", false, false)]
-        [InlineAutoMoqData("appname", "friendlyname", "anotherappname-friendlyname", true, false)]
+        [InlineAutoMoqData("appname", "friendlyname", "appname-friendlyname.json", true, true)]
+        [InlineAutoMoqData("appname", "friendly name", "appname-friendly_name.json", true, true)]
+        [InlineAutoMoqData("appname", "friendlyname", "appname-friendlyname.json", false, false)]
+        [InlineAutoMoqData("appname", "friendlyname", "anotherappname-friendlyname.json", true, false)]
         public void CheckIfConfigurationWithSameNameExistsReturnsExpectedValue(
             string applicationName,
             string friendlyName,
@@ -66,8 +66,8 @@ namespace CommandLineApplicationLauncherJson.UnitTest
         }
 
         [Theory]
-        [InlineAutoMoqData("appName", "friendly Name", "appname-friendly_name")]
-        [InlineAutoMoqData("appNameAnother", "friendly Name", "appnameanother-friendly_name")]
+        [InlineAutoMoqData("appName", "friendly Name", "appname-friendly_name.json")]
+        [InlineAutoMoqData("appNameAnother", "friendly Name", "appnameanother-friendly_name.json")]
         public void GetConfigurationFileNameReturnsExpectedValue(
             string applicationName,
             string friendlyName,

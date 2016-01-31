@@ -41,6 +41,7 @@ namespace CommandLineApplicationLauncherUI.ViewModel
 
         private void OnSaveExecuted()
         {
+      
             var cmd = new CmdApplicationConfiguration((Name)FriendlyName, (Name)ApplicationName, new System.Collections.ObjectModel.ReadOnlyCollection<IParameter>(new List<IParameter>()));
             this.Channel.Send(new SaveCmdApplicationConfigurationCommand() { ApplicationConfiguration = cmd });
         }
