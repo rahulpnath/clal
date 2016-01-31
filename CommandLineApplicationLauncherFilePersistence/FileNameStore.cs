@@ -5,16 +5,16 @@ using System;
 
 namespace CommandLineApplicationLauncherFilePersistence
 {
-    public class FileNameStore : IStoreWriter<SaveCmdApplicationConfigurationCommand>, IStoreReader<string>
+    public class FileNameStore : IStoreWriter<string>, IStoreReader<string>
     {
         public bool CheckIfFileExists(string item)
         {
-            throw new NotImplementedException();
+            return File.Exists(item);
         }
 
-        public Stream OpenStreamFor(SaveCmdApplicationConfigurationCommand message)
+        public Stream OpenStreamFor(string item)
         {
-            return File. OpenWrite(string.Format("{0}.{1}", message.MessageId, "json"));
+            return File.OpenWrite(item);
         }
     }
 }

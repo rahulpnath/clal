@@ -82,6 +82,12 @@ namespace CommandLineApplicationLauncherJson.UnitTest
             Assert.Equal(expected, actual);
         }
 
+        [Theory, AutoMoqData]
+        public void CreateNewConfigurationWithNullValueThrowsException(JsonCmdApplicationConfigurationRepository sut)
+        {
+            Assert.Throws<ArgumentNullException>(() => sut.CreateNewConfiguration(null));
+        }
+
         private static CmdApplicationConfiguration GetApplicationConfiguration(string applicationName, string friendlyName, IFixture fixture)
         {
             // TODO: This can be generalized 

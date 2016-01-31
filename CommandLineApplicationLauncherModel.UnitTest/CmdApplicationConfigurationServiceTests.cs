@@ -37,15 +37,15 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         public void ExecuteSaveCmdApplicationConfigurationWithExistingNameRaisesRejectedEvent(
             [Frozen]Mock<ICmdApplicationConfigurationRepository> repository,
             SaveCmdApplicationConfigurationCommand command,
-            TestDomainEventHandler<CmdApplicationConfigurationSaveRejected> handler,
+            TestDomainEventHandler<CmdApplicationConfigurationSaveRejected> testHandler,
             CmdApplicationConfigurationService sut)
         {
             repository
                 .Setup(a => a.CheckIfConfigurationWithSameNameExists(command.ApplicationConfiguration))
                 .Returns(true);
-            DomainEvents.Subscribe(handler);
+            DomainEvents.Subscribe(testHandler);
             sut.Execute(command);
-            Assert.True(handler.EventHandlerInvoked);
+            Assert.True(testHandler.EventHandlerInvoked);
         }
     }
 }

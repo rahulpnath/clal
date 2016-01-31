@@ -1,11 +1,14 @@
 ﻿using CommandLineApplicationLauncherModel;
 using CommandLineApplicationLauncherPersistenceModel;
+using Newtonsoft.Json;
 using System;
+using System.IO;
 
 namespace CommandLineApplicationLauncherJson
 {
     public class JsonCmdApplicationConfigurationRepository : ICmdApplicationConfigurationRepository
     {
+        private readonly JsonSerializer serializer;
         public IStoreWriter<string> FileStoreWriter { get; private set; }
         public IStoreReader<string> FileStoreReader { get; private set; }
 
@@ -21,6 +24,7 @@ namespace CommandLineApplicationLauncherJson
 
             this.FileStoreWriter = fileStoreWriter;
             this.FileStoreReader = fileStoreReader;
+            this.serializer = new JsonSerializer();
         }
 
         public bool CheckIfConfigurationWithSameNameExists(CmdApplicationConfiguration applicationConfiguration)
@@ -32,13 +36,24 @@ namespace CommandLineApplicationLauncherJson
             return this.FileStoreReader.CheckIfFileExists(fileName);
         }
 
+        public void CreateNewConfiguration(CmdApplicationConfiguration applicationConfiguration)
+        {
+            if (applicationConfiguration == null)
+                throw new ArgumentNullException(nameof(applicationConfiguration));
+
+            var fileName = this.GetConfigurationFileName(applicationConfiguration);
+            using (var stream = this.FileStoreWriter.OpenStreamFor(fileName))
+            using (var writer = new StreamWriter(stream))
+                this.serializer.Serialize(writer, applicationConfiguration);
+        }
+
         // TODO: More cases to be handled
         public string GetConfigurationFileName(CmdApplicationConfiguration applicationConfiguration)
         {
             if (applicationConfiguration == null)
                 throw new ArgumentNullException(nameof(applicationConfiguration));
 
-            var nameFormat = "{0}-{1}";
+            var nameFormat = "{0}-{1}.json";
             return string.Format(
                 nameFormat,
                 applicationConfiguration.ApplicationName,

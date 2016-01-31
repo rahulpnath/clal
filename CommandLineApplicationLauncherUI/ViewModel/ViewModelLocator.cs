@@ -48,7 +48,14 @@ namespace CommandLineApplicationLauncherUI.ViewModel
                     allAssemblies.Add(Assembly.LoadFile(dll));
             }
             allAssemblies.Add(Assembly.GetExecutingAssembly());
+
+            containerBuilder
+                .RegisterAssemblyTypes(allAssemblies.ToArray())
+                .Where(a => a.Name.EndsWith("Repository"))
+                .AsImplementedInterfaces();
+
             containerBuilder.RegisterType<CmdApplicationConfigurationViewModelFactory>().As<ICmdApplicationConfigurationViewModelFactory>();
+
             containerBuilder.
                 RegisterAssemblyTypes(allAssemblies.ToArray())
                 .Where(a => a.IsAssignableTo<ViewModelBase>())
@@ -70,7 +77,9 @@ namespace CommandLineApplicationLauncherUI.ViewModel
 
             containerBuilder
                 .RegisterAssemblyTypes(allAssemblies.ToArray())
-                .AsClosedTypesOf(typeof(IStoreWriter<>));
+                .Where(a => a.GetInterfaces().Length > 0)
+                .AsImplementedInterfaces();
+
             container = containerBuilder.Build();
         }
 

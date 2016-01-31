@@ -9,5 +9,6 @@ namespace CommandLineApplicationLauncherModel
     public interface ICmdApplicationConfigurationRepository
     {
         bool CheckIfConfigurationWithSameNameExists(CmdApplicationConfiguration application);
+        void CreateNewConfiguration(CmdApplicationConfiguration applicationConfiguration);
     }
 }

@@ -21,7 +21,8 @@ namespace CommandLineApplicationLauncherModel
 
             if (this.Repository.CheckIfConfigurationWithSameNameExists(command.ApplicationConfiguration))
                 DomainEvents.Publish(new CmdApplicationConfigurationSaveRejected());
-                
+
+            this.Repository.CreateNewConfiguration(command.ApplicationConfiguration);
         }
     }
 }
