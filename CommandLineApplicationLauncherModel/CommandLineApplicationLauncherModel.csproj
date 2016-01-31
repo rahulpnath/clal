@@ -52,6 +52,7 @@
     <Compile Include="IEventHandler.cs" />
     <Compile Include="IMessage.cs" />
     <Compile Include="IParameter.cs" />
+    <Compile Include="Maybe.cs" />
     <Compile Include="Name.cs" />
     <Compile Include="NameOnlyParameter.cs" />
     <Compile Include="NameValueParameter.cs" />
