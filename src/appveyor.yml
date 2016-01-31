@@ -1,6 +1,0 @@
-test:
-  assemblies: '**\*.UnitTest.dll'
-before_build:
-  - nuget restore
-cache:
-  - src\packages -> **\packages.config
