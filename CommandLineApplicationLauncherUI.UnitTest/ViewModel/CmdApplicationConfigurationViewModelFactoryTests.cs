@@ -66,5 +66,11 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
                 });
             Assert.Throws<ArgumentException>(() => sut.Create(meta));
         }
+
+        [Theory, AutoMoqData]
+        public void EnsureCommandsAreAllSetUpOnSutConstruction(CmdApplicationConfigurationViewModel sut)
+        {
+            sut.EnsureCommandsAreAllSetUpOnSutConstruction();
+        }
     }
 }
