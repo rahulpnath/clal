@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommandLineApplicationLauncherModel;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     public abstract class ParameterViewModel : ViewModelBase
     {
         public abstract Type GetParameterType();
+
+        public abstract Maybe<IParameter> GetParameter();
     }
 }

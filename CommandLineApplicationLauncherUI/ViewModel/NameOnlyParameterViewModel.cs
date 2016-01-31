@@ -26,5 +26,14 @@ namespace CommandLineApplicationLauncherUI.ViewModel
         {
             return typeof(NameOnlyParameter);
         }
+
+        public override Maybe<IParameter> GetParameter()
+        {
+            if (!this.IsSelected)
+                return Maybe.Empty<IParameter>();
+
+            var parameter = new NameOnlyParameter(this.Name);
+            return Maybe.ToMaybe<IParameter>(parameter);
+        }
     }
 }

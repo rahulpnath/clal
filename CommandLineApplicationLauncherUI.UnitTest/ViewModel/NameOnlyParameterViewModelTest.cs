@@ -30,5 +30,22 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             var assertion = new ConstructorInitializedMemberAssertion(fixture);
             assertion.Verify(typeof(NameOnlyParameterViewModel).GetConstructors());
         }
+
+        [Theory, AutoData]
+        public void GetParameterReturnsEmptyIfSelectedFalse(NameOnlyParameterViewModel sut)
+        {
+            sut.IsSelected = false;
+            var parameter = sut.GetParameter();
+            Assert.Equal(Maybe.Empty<IParameter>(), parameter);
+        }
+
+        [Theory, AutoData]
+        public void GetParameterReturnsParameterIfSelected(NameOnlyParameterViewModel sut)
+        {
+            var expected = Maybe.ToMaybe(new NameOnlyParameter(sut.Name));
+            sut.IsSelected = true;
+            var actual = sut.GetParameter();
+            Assert.Equal(expected, actual);
+        }
     }
 }
