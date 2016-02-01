@@ -83,6 +83,7 @@
     <Compile Include="ViewModel\CmdApplicationConfigurationListViewModel.cs" />
     <Compile Include="ViewModel\CmdApplicationConfigurationViewModelFactory.cs" />
     <Compile Include="ViewModel\ICmdApplicationConfigurationViewModelFactory.cs" />
+    <Compile Include="ViewModel\IReader.cs" />
     <Compile Include="ViewModel\NameOnlyParameterViewModel.cs" />
     <Compile Include="ViewModel\NameValueParameterViewModel.cs" />
     <Compile Include="ViewModel\ParameterViewModel.cs" />
