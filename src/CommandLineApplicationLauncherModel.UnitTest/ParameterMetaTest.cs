@@ -21,6 +21,21 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Equal(typeof(ParameterTest), sut.ParameterType);
         }
 
+        [Theory, AutoData]
+        public void SutWithDefaultDisplayNameReturnsEmptyName(Name aName)
+        {
+            var sut = ParameterMeta.Create<ParameterTest>(aName);
+            Assert.Equal(Name.EmptyName, sut.DisplayName);
+        }
+
+
+        [Theory, AutoData]
+        public void SutWithDisplayNameReturnsName(Name aName, Name aDisplayName)
+        {
+            var sut = ParameterMeta.Create<ParameterTest>(aName, aDisplayName);
+            Assert.Equal(aDisplayName, sut.DisplayName);
+        }
+
         private class ParameterTest : IParameter { }
     }
 }

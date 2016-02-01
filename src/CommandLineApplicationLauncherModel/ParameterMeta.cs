@@ -10,22 +10,33 @@ namespace CommandLineApplicationLauncherModel
     {
         public Name Name { get; private set; }
         public Type ParameterType { get; private set; }
+        public Name DisplayName { get; set; }
 
-        public static ParameterMeta Create<T>(Name name) where T : IParameter
+        public static ParameterMeta Create<T>(Name name, Name displayName = null) where T : IParameter
         {
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
 
-            return new ParameterMeta(name, typeof(T));
+            if (displayName == null)
+                displayName = Name.EmptyName;
+
+            return new ParameterMeta(name, typeof(T), displayName);
         }
 
-        private ParameterMeta(Name name, Type type)
+        private ParameterMeta(Name name, Type type, Name displayName)
         {
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
+
+            if (type == null)
+                throw new ArgumentNullException(nameof(type));
+
+            if (displayName == null)
+                throw new ArgumentNullException(nameof(displayName));
 
             this.Name = name;
             this.ParameterType = type;
+            this.DisplayName = displayName;
         }
     }
 }
