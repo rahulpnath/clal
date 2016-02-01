@@ -18,11 +18,11 @@ namespace CommandLineApplicationLauncherUI
                     (Name)"ssms",
                     new List<ParameterMeta>()
                     {
-                        ParameterMeta.Create<NameValueParameter>((Name)"-S"),
-                        ParameterMeta.Create<NameValueParameter>((Name)"-d"),
-                        ParameterMeta.Create<NameValueParameter>((Name)"-U"),
-                        ParameterMeta.Create<NameValueParameter>((Name)"-P"),
-                        ParameterMeta.Create<NameOnlyParameter>((Name)"-E"),
+                        ParameterMeta.Create<NameValueParameter>((Name)"-S", (Name)"servername"),
+                        ParameterMeta.Create<NameValueParameter>((Name)"-d", (Name)"databasename"),
+                        ParameterMeta.Create<NameValueParameter>((Name)"-U", (Name)"username"),
+                        ParameterMeta.Create<NameValueParameter>((Name)"-P", (Name)"password"),
+                        ParameterMeta.Create<NameOnlyParameter>((Name)"-E", (Name)"use windows authentication"),
                         ParameterMeta.Create<NameOnlyParameter>((Name)"-nosplash"),
                     });
             }
