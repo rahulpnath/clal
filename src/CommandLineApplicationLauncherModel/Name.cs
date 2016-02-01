@@ -10,6 +10,19 @@ namespace CommandLineApplicationLauncherModel
     {
         private string internalName;
 
+        public static Name EmptyName
+        {
+            get
+            {
+                return new Name();
+            }
+        }
+
+        private Name()
+        {
+            this.internalName = string.Empty;
+        }
+
         public Name(string name)
         {
             if (string.IsNullOrWhiteSpace(name))

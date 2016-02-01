@@ -43,6 +43,18 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Equal(expected, aName.Equals(anotherName));
         }
 
+        [Theory, AutoMoqData]
+        public void EmptyNameReturnsAValidName(Name aName)
+        {
+            var emptyName = Name.EmptyName;
+            Assert.NotNull(emptyName);
+            Assert.True(emptyName == Name.EmptyName);
+            Assert.True(emptyName.Equals(emptyName));
+            Assert.True(emptyName != aName);
+            Assert.Equal(string.Empty, emptyName.ToString());
+            Assert.Equal(emptyName.GetHashCode(), emptyName.GetHashCode());
+        }
+
         [Theory]
         [InlineData("testName", "testName", true)]
         [InlineData("testName", "anotherTestName", false)]
