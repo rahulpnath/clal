@@ -30,6 +30,19 @@ namespace CommandLineApplicationLauncherModel.UnitTest
 
 
         [Theory, AutoData]
+        public void CtorWithTypeNotIParameterThrowsException(Name aName, Name aDisplayName)
+        {
+            Assert.Throws<ArgumentException>(() => new ParameterMeta(aName, typeof(object), aDisplayName));
+        }
+
+        [Theory, AutoData]
+        public void CtorWithTypeIParameterCreatesSut(Name aName, Name aDisplayName)
+        {
+            var sut = new ParameterMeta(aName, typeof(ParameterTest), aDisplayName);
+            Assert.NotNull(sut);
+        }
+
+        [Theory, AutoData]
         public void SutWithDisplayNameReturnsName(Name aName, Name aDisplayName)
         {
             var sut = ParameterMeta.Create<ParameterTest>(aName, aDisplayName);

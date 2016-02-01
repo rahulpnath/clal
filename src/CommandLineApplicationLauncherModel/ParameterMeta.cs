@@ -23,13 +23,16 @@ namespace CommandLineApplicationLauncherModel
             return new ParameterMeta(name, typeof(T), displayName);
         }
 
-        private ParameterMeta(Name name, Type type, Name displayName)
+        public ParameterMeta(Name name, Type type, Name displayName)
         {
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
 
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
+
+            if (!typeof(IParameter).IsAssignableFrom(type))
+                throw new ArgumentException("Type should be of IParameter", nameof(type));
 
             if (displayName == null)
                 throw new ArgumentNullException(nameof(displayName));
