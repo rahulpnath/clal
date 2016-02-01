@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\ViewModelExtensions.cs" />
+    <Compile Include="ViewModel\CmdApplicationConfigurationListViewModelTests.cs" />
     <Compile Include="ViewModel\CmdApplicationConfigurationViewModelFactoryTests.cs" />
     <Compile Include="Helpers\AutoMoqData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

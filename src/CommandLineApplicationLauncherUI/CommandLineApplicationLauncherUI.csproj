@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="SsmsCmdApplication.cs" />
+    <Compile Include="ViewModel\CmdApplicationConfigurationListViewModel.cs" />
     <Compile Include="ViewModel\CmdApplicationConfigurationViewModelFactory.cs" />
     <Compile Include="ViewModel\ICmdApplicationConfigurationViewModelFactory.cs" />
     <Compile Include="ViewModel\NameOnlyParameterViewModel.cs" />
