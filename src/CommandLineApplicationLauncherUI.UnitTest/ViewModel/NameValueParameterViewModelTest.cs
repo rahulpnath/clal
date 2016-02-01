@@ -36,6 +36,13 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             assertion.Verify(typeof(NameValueParameterViewModel).GetConstructors());
         }
 
+        [Theory, AutoData]
+        public void SutWithoutDisplayNameReturnsEmptyDisplayName(Name aName)
+        {
+            var sut = new NameValueParameterViewModel(aName);
+            Assert.Equal(Name.EmptyName, sut.DisplayName);
+        }
+
         [Theory, AutoMoqData]
         public void GetParameterReturnsEmptyIfNoValueIsPresent(NameValueParameterViewModel sut)
         {

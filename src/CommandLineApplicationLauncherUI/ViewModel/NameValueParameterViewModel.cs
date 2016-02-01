@@ -12,14 +12,25 @@ namespace CommandLineApplicationLauncherUI.ViewModel
     {
         public Name Name { get; private set; }
 
+        public Name DisplayName { get; private set; }
+
         public string Value { get; set; }
 
-        public NameValueParameterViewModel(Name name)
+        public NameValueParameterViewModel(Name name) : this(name, Name.EmptyName)
+        {
+        }
+
+
+        public NameValueParameterViewModel(Name name, Name displayName)
         {
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
 
+            if (displayName == null)
+                throw new ArgumentNullException(nameof(displayName));
+
             this.Name = name;
+            this.DisplayName = displayName;
         }
 
         public override Type GetParameterType()

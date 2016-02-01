@@ -25,6 +25,13 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         }
 
         [Theory, AutoData]
+        public void SutWithoutDisplayNameReturnsEmptyDisplayName(Name aName)
+        {
+            var sut = new NameOnlyParameterViewModel(aName);
+            Assert.Equal(Name.EmptyName, sut.DisplayName);
+        }
+
+        [Theory, AutoData]
         public void CtorParametersAreInitialized(IFixture fixture)
         {
             var assertion = new ConstructorInitializedMemberAssertion(fixture);

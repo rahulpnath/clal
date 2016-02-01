@@ -30,11 +30,11 @@ namespace CommandLineApplicationLauncherUI.ViewModel
                 ParameterViewModel viewModel = null;
                 if (parameterMeta.ParameterType == typeof(NameValueParameter))
                 {
-                    viewModel = new NameValueParameterViewModel(parameterMeta.Name);
+                    viewModel = new NameValueParameterViewModel(parameterMeta.Name, parameterMeta.DisplayName);
                 }
                 else if (parameterMeta.ParameterType == typeof(NameOnlyParameter))
                 {
-                    viewModel = new NameOnlyParameterViewModel(parameterMeta.Name);
+                    viewModel = new NameOnlyParameterViewModel(parameterMeta.Name, parameterMeta.DisplayName);
                 }
                 else
                 {
