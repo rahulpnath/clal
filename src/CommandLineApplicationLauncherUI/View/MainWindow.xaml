@@ -8,6 +8,14 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="Command Line Application Launcher" Height="350" Width="525">
     <Grid>
-        <view:CmdApplicationConfigurationView DataContext="{Binding CmdApplicationConfigurationViewModel}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <view:CmdApplicationConfigurationListView
+            Grid.Column ="0"/>
+        <view:CmdApplicationConfigurationView
+            Grid.Column ="1"
+            DataContext="{Binding CmdApplicationConfigurationViewModel}" />
     </Grid>
 </Window>

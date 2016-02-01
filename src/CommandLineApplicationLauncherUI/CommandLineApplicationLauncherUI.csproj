@@ -85,6 +85,10 @@
     <Compile Include="ViewModel\NameOnlyParameterViewModel.cs" />
     <Compile Include="ViewModel\NameValueParameterViewModel.cs" />
     <Compile Include="ViewModel\ParameterViewModel.cs" />
+    <Page Include="View\CmdApplicationConfigurationListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CmdApplicationConfigurationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +104,9 @@
     <Compile Include="ViewModel\CmdApplicationConfigurationViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\CmdApplicationConfigurationListView.xaml.cs">
+      <DependentUpon>CmdApplicationConfigurationListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CmdApplicationConfigurationView.xaml.cs">
       <DependentUpon>CmdApplicationConfigurationView.xaml</DependentUpon>
     </Compile>
