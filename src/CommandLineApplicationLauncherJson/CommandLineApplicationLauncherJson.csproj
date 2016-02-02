@@ -58,6 +58,10 @@
       <Project>{929a05c3-7874-4711-a629-285b7b7fcb07}</Project>
       <Name>CommandLineApplicationLauncherModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CommandLineApplicationLauncherViewModel\CommandLineApplicationLauncherViewModel.csproj">
+      <Project>{59a557e6-752e-4ad5-8515-fb7106e03f4a}</Project>
+      <Name>CommandLineApplicationLauncherViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

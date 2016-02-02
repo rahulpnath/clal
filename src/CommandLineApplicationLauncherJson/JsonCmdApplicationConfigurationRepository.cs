@@ -1,12 +1,16 @@
 ﻿using CommandLineApplicationLauncherModel;
 using CommandLineApplicationLauncherPersistenceModel;
+using CommandLineApplicationLauncherViewModel;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace CommandLineApplicationLauncherJson
 {
-    public class JsonCmdApplicationConfigurationRepository : ICmdApplicationConfigurationRepository
+    public class JsonCmdApplicationConfigurationRepository 
+        : ICmdApplicationConfigurationRepository, 
+          IReader<string,IEnumerable<CmdApplicationConfiguration>>
     {
         private readonly JsonSerializer serializer;
         public IStoreWriter<string> FileStoreWriter { get; private set; }
@@ -64,6 +68,11 @@ namespace CommandLineApplicationLauncherJson
         {
             var spaceReplace = "_";
             return name.ToString().Replace(" ", spaceReplace);
+        }
+
+        public IEnumerable<CmdApplicationConfiguration> Query(string applicationName)
+        {
+            throw new NotImplementedException();
         }
     }
 }
