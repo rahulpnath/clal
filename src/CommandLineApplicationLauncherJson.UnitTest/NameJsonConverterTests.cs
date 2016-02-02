@@ -33,7 +33,7 @@ namespace CommandLineApplicationLauncherJson.UnitTest
         }
 
         [Theory, AutoMoqData]
-        public void SutCanReadJsonName(NameJsonConverter sut, Name aName)
+        public void SutCanReadAndWriteJsonName(NameJsonConverter sut, Name aName)
         {
             var serializer = new JsonSerializer();
             serializer.Converters.Add(sut);
