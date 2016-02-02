@@ -8,17 +8,18 @@ namespace CommandLineApplicationLauncherFilePersistence
     public class FileNameStore : IStoreWriter<CmdApplicationConfiguration>, IStoreReader<CmdApplicationConfiguration>
     {
         private const string fileExtension  = "json";
+        private const string rootDirectory = "configs";
 
         public bool CheckIfFileExists(CmdApplicationConfiguration item)
         {
-            var fileName = item.GetFileName(fileExtension);
-            return File.Exists(fileName);
+            var filePath = item.GetFilePath(fileExtension, rootDirectory);
+            return File.Exists(filePath);
         }
 
         public Stream OpenStreamFor(CmdApplicationConfiguration item)
         {
-            var fileName = item.GetFileName(fileExtension);
-            return File.OpenWrite(fileName);
+            var filePath = item.GetFilePath(fileExtension, rootDirectory);
+            return File.OpenWrite(filePath);
         }
 
         
