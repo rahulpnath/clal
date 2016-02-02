@@ -29,6 +29,7 @@ namespace CommandLineApplicationLauncherJson
             this.FileStoreWriter = fileStoreWriter;
             this.FileStoreReader = fileStoreReader;
             this.serializer = new JsonSerializer();
+            this.serializer.Converters.Add(new NameJsonConverter());
         }
 
         public bool CheckIfConfigurationWithSameNameExists(CmdApplicationConfiguration applicationConfiguration)

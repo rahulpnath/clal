@@ -1,5 +1,6 @@
 ﻿using CommandLineApplicationLauncherModel;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,17 @@ namespace CommandLineApplicationLauncherJson
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            return (Name)(reader.Value as string);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            JToken t = JToken.FromObject(value);
+            var valueAsName = value as Name;
+            if (valueAsName == null)
+                return;
+
+            serializer.Serialize(writer, valueAsName.ToString());
         }
     }
 }
