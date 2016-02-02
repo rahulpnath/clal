@@ -9,8 +9,7 @@ using System.IO;
 namespace CommandLineApplicationLauncherJson
 {
     public class JsonCmdApplicationConfigurationRepository 
-        : ICmdApplicationConfigurationRepository, 
-          IReader<string,IEnumerable<CmdApplicationConfiguration>>
+        : ICmdApplicationConfigurationRepository
     {
         private readonly JsonSerializer serializer;
         public IStoreWriter<CmdApplicationConfiguration> FileStoreWriter { get; private set; }
@@ -50,11 +49,6 @@ namespace CommandLineApplicationLauncherJson
             using (var stream = this.FileStoreWriter.OpenStreamFor(applicationConfiguration))
             using (var writer = new StreamWriter(stream))
                 this.serializer.Serialize(writer, applicationConfiguration);
-        }
-
-        public IEnumerable<CmdApplicationConfiguration> Query(string applicationName)
-        {
-            throw new NotImplementedException();
         }
     }
 }

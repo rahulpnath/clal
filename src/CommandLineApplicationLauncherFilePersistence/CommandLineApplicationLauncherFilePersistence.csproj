@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdApplicationConigurationExtensions.cs" />
-    <Compile Include="FileNameStore.cs" />
+    <Compile Include="CmdApplicationConfigurationStore.cs" />
+    <Compile Include="CmdApplicationMetaExtensions.cs" />
+    <Compile Include="CmdApplicationMetaStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

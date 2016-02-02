@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdApplicationConigurationExtensionsTests.cs" />
+    <Compile Include="CmdApplicationMetaTests.cs" />
     <Compile Include="Helpers\AutoMoqDataAttribute.cs" />
     <Compile Include="Helpers\InlineAutoMoqDataAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

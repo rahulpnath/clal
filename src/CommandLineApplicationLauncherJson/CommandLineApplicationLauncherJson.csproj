@@ -47,6 +47,7 @@
     <Compile Include="DirectChannel.cs" />
     <Compile Include="JsonChannel.cs" />
     <Compile Include="JsonCmdApplicationConfigurationRepository.cs" />
+    <Compile Include="JsonCmdApplicationMetaRepository.cs" />
     <Compile Include="NameJsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

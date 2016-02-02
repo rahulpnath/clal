@@ -12,7 +12,8 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <view:CmdApplicationConfigurationListView
+        <view:CmdApplicationConfigurationListView 
+            DataContext="{Binding CmdApplicationConfigurationListViewModel, Source={StaticResource Locator}}"
             Grid.Column ="0"/>
         <view:CmdApplicationConfigurationView
             Grid.Column ="1"

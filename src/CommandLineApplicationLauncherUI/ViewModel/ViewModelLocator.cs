@@ -84,7 +84,15 @@ namespace CommandLineApplicationLauncherUI.ViewModel
         {
             get
             {
-                return container.Resolve<MainViewModel>();
+                return this.container.Resolve<MainViewModel>();
+            }
+        }
+
+        public CmdApplicationConfigurationListViewModel CmdApplicationConfigurationListViewModel
+        {
+            get
+            {
+                return this.container.Resolve<CmdApplicationConfigurationListViewModel>();
             }
         }
 
