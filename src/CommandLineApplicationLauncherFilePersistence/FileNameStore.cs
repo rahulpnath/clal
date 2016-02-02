@@ -7,14 +7,18 @@ namespace CommandLineApplicationLauncherFilePersistence
 {
     public class FileNameStore : IStoreWriter<string>, IStoreReader<string>
     {
+        private const string fileExtension  = "json";
+
         public bool CheckIfFileExists(string item)
         {
-            return File.Exists(item);
+            var fileName = Path.ChangeExtension(item, fileExtension);
+            return File.Exists(fileName);
         }
 
         public Stream OpenStreamFor(string item)
         {
-            return File.OpenWrite(item);
+            var fileName = Path.ChangeExtension(item, fileExtension);
+            return File.OpenWrite(fileName);
         }
     }
 }

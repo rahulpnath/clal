@@ -57,7 +57,7 @@ namespace CommandLineApplicationLauncherJson
             if (applicationConfiguration == null)
                 throw new ArgumentNullException(nameof(applicationConfiguration));
 
-            var nameFormat = "{0}-{1}.json";
+            var nameFormat = "{0}-{1}";
             return string.Format(
                 nameFormat,
                 applicationConfiguration.ApplicationName,
