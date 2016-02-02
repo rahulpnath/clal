@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CommandLineApplicationLauncherModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace CommandLineApplicationLauncherJson
     {
         public override bool CanConvert(Type objectType)
         {
-            return false;
+            return objectType.Equals(typeof(Name));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
