@@ -62,15 +62,15 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SsmsCmdApplication.cs" />
-    <Compile Include="ViewModel\CmdApplicationConfigurationListViewModel.cs" />
-    <Compile Include="ViewModel\CmdApplicationConfigurationViewModel.cs" />
-    <Compile Include="ViewModel\CmdApplicationConfigurationViewModelFactory.cs" />
-    <Compile Include="ViewModel\ICmdApplicationConfigurationViewModelFactory.cs" />
-    <Compile Include="ViewModel\IReader.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\NameOnlyParameterViewModel.cs" />
-    <Compile Include="ViewModel\NameValueParameterViewModel.cs" />
-    <Compile Include="ViewModel\ParameterViewModel.cs" />
+    <Compile Include="CmdApplicationConfigurationListViewModel.cs" />
+    <Compile Include="CmdApplicationConfigurationViewModel.cs" />
+    <Compile Include="CmdApplicationConfigurationViewModelFactory.cs" />
+    <Compile Include="ICmdApplicationConfigurationViewModelFactory.cs" />
+    <Compile Include="IReader.cs" />
+    <Compile Include="MainViewModel.cs" />
+    <Compile Include="NameOnlyParameterViewModel.cs" />
+    <Compile Include="NameValueParameterViewModel.cs" />
+    <Compile Include="ParameterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
