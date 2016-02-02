@@ -11,34 +11,16 @@ namespace CommandLineApplicationLauncherFilePersistence
 
         public bool CheckIfFileExists(CmdApplicationConfiguration item)
         {
-            var fileName = this.GetConfigurationFileName(item);
+            var fileName = item.GetFileName(fileExtension);
             return File.Exists(fileName);
         }
 
         public Stream OpenStreamFor(CmdApplicationConfiguration item)
         {
-            var fileName = this.GetConfigurationFileName(item);
+            var fileName = item.GetFileName(fileExtension);
             return File.OpenWrite(fileName);
         }
 
-        // TODO: More cases to be handled
-        public string GetConfigurationFileName(CmdApplicationConfiguration applicationConfiguration)
-        {
-            if (applicationConfiguration == null)
-                throw new ArgumentNullException(nameof(applicationConfiguration));
-
-            var nameFormat = "{0}-{1}.{2}";
-            return string.Format(
-                nameFormat,
-                applicationConfiguration.ApplicationName,
-                FormatFriendlyName(applicationConfiguration.Name),
-                fileExtension).ToLower();
-        }
-
-        private string FormatFriendlyName(Name name)
-        {
-            var spaceReplace = "_";
-            return name.ToString().Replace(" ", spaceReplace);
-        }
+        
     }
 }

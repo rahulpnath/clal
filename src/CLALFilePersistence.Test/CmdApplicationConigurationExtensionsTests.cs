@@ -1,37 +1,41 @@
 ﻿using CommandLineApplicationLauncherFilePersistence;
 using CommandLineApplicationLauncherModel;
 using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.Xunit2;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace CLALFilePersistence.Test
 {
-    public class FileNameStoreTests
+    public class CmdApplicationConigurationExtensionsTests
     {
-        [Theory, AutoData]
-        public void GetConfigurationFileNameWithNullValueThrowsException(FileNameStore sut)
+        [Fact]
+        public void GetConfigurationFileNameWithNullValueThrowsException()
         {
-            Assert.Throws<ArgumentNullException>(() => sut.GetConfigurationFileName(null));
+            CmdApplicationConfiguration sut = null;
+            Assert.Throws<ArgumentNullException>(() => sut.GetFileName(null));
+        }
+
+        [Theory, AutoMoqData]
+        public void GetConfigurationFileNameWithNullValueThrowsException(CmdApplicationConfiguration sut)
+        {
+            Assert.Throws<ArgumentNullException>(() => sut.GetFileName(null));
         }
 
         [Theory]
-        [InlineAutoMoqData("appName", "friendly Name", "appname-friendly_name.json")]
-        [InlineAutoMoqData("appNameAnother", "friendly Name", "appnameanother-friendly_name.json")]
+        [InlineAutoMoqData("appName", "friendly Name", "json", "appname-friendly_name.json")]
+        [InlineAutoMoqData("appNameAnother", "friendly Name", "json", "appnameanother-friendly_name.json")]
         public void GetConfigurationFileNameReturnsExpectedValue(
             string applicationName,
             string friendlyName,
+            string extension,
             string expected,
-            FileNameStore sut,
             IFixture fixture)
         {
+
             var applicationConfiguration = GetApplicationConfiguration(applicationName, friendlyName, fixture);
 
-            var actual = sut.GetConfigurationFileName(applicationConfiguration);
+            var actual = applicationConfiguration.GetFileName(extension);
 
             Assert.Equal(expected, actual);
         }
