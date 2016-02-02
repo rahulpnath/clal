@@ -1,7 +1,6 @@
 ﻿using CommandLineApplicationLauncherPersistenceModel;
 using System.IO;
 using CommandLineApplicationLauncherModel;
-using System;
 
 namespace CommandLineApplicationLauncherFilePersistence
 {
@@ -21,7 +20,5 @@ namespace CommandLineApplicationLauncherFilePersistence
             var filePath = item.GetFilePath(fileExtension, rootDirectory);
             return File.OpenWrite(filePath);
         }
-
-        
     }
 }

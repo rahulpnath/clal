@@ -1,16 +1,12 @@
 ﻿using CommandLineApplicationLauncherModel;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherFilePersistence
 {
     public static class CmdApplicationConigurationExtensions
     {
-        // TODO: More cases to be handled
+        // TODO: More cases to be handled like where the application name can be a full exe path
         public static string GetFileName(this CmdApplicationConfiguration applicationConfiguration, string extension)
         {
             if (applicationConfiguration == null)
