@@ -39,46 +39,20 @@ namespace CommandLineApplicationLauncherJson.UnitTest
         }
 
         [Theory]
-        [InlineAutoMoqData("appname", "friendlyname", "appname-friendlyname", true, true)]
-        [InlineAutoMoqData("appname", "friendly name", "appname-friendly_name", true, true)]
-        [InlineAutoMoqData("appname", "friendlyname", "appname-friendlyname", false, false)]
-        [InlineAutoMoqData("appname", "friendlyname", "anotherappname-friendlyname", true, false)]
+        [InlineAutoMoqData("appname", "friendlyname", true, true)]
+        [InlineAutoMoqData("appname", "friendlyname", false, false)]
         public void CheckIfConfigurationWithSameNameExistsReturnsExpectedValue(
             string applicationName,
             string friendlyName,
-            string fileName,
             bool fileExists,
             bool expected,
             IFixture fixture,
-            [Frozen]Mock<IStoreReader<string>> storeReader,
+            [Frozen]Mock<IStoreReader<CmdApplicationConfiguration>> storeReader,
             JsonCmdApplicationConfigurationRepository sut)
         {
             var applicationConfiguration = GetApplicationConfiguration(applicationName, friendlyName, fixture);
-            storeReader.Setup(a => a.CheckIfFileExists(fileName)).Returns(fileExists);
+            storeReader.Setup(a => a.CheckIfFileExists(applicationConfiguration)).Returns(fileExists);
             var actual = sut.CheckIfConfigurationWithSameNameExists(applicationConfiguration);
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory, AutoMoqData]
-        public void GetConfigurationFileNameWithNullValueThrowsException(JsonCmdApplicationConfigurationRepository sut)
-        {
-            Assert.Throws<ArgumentNullException>(() => sut.GetConfigurationFileName(null));
-        }
-
-        [Theory]
-        [InlineAutoMoqData("appName", "friendly Name", "appname-friendly_name")]
-        [InlineAutoMoqData("appNameAnother", "friendly Name", "appnameanother-friendly_name")]
-        public void GetConfigurationFileNameReturnsExpectedValue(
-            string applicationName,
-            string friendlyName,
-            string expected,
-            JsonCmdApplicationConfigurationRepository sut,
-            IFixture fixture)
-        {
-            var applicationConfiguration = GetApplicationConfiguration(applicationName, friendlyName, fixture);
-
-            var actual = sut.GetConfigurationFileName(applicationConfiguration);
-
             Assert.Equal(expected, actual);
         }
 
