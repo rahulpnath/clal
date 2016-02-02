@@ -10,11 +10,11 @@ namespace CommandLineApplicationLauncherViewModel
 {
     public class CmdApplicationConfigurationListViewModel : ViewModelBase
     {
-        IEnumerable<CmdApplicationConfiguration> result;
+        public IEnumerable<CmdApplicationConfiguration> ApplicationConfigurations { get; set; }
         public CmdApplicationConfigurationListViewModel(
             IReader<CmdApplicationMeta, IEnumerable<CmdApplicationConfiguration>> reader)
         {
-            result = reader.Query(SsmsCmdApplication.Application).ToList();
+            ApplicationConfigurations = reader.Query(SsmsCmdApplication.Application);
         }
     }
 }
