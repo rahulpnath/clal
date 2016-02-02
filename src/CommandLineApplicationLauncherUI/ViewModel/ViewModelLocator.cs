@@ -13,13 +13,10 @@
 */
 
 using Autofac;
-using CommandLineApplicationLauncherFilePersistence;
 using CommandLineApplicationLauncherJson;
 using CommandLineApplicationLauncherModel;
-using CommandLineApplicationLauncherPersistenceModel;
+using CommandLineApplicationLauncherViewModel;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.IO;

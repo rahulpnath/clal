@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace CommandLineApplicationLauncherUI.ViewModel
+namespace CommandLineApplicationLauncherViewModel
 {
     public class CmdApplicationConfigurationViewModel : ViewModelBase, IEventHandler<ConfigurationSavedEvent>
     {

@@ -1,4 +1,5 @@
 ﻿using CommandLineApplicationLauncherUI.ViewModel;
+using CommandLineApplicationLauncherViewModel;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;

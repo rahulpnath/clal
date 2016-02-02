@@ -6,22 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandLineApplicationLauncherUI.ViewModel
+namespace CommandLineApplicationLauncherViewModel
 {
-    public class NameValueParameterViewModel : ParameterViewModel
+    public class NameOnlyParameterViewModel : ParameterViewModel
     {
         public Name Name { get; private set; }
 
         public Name DisplayName { get; private set; }
 
-        public string Value { get; set; }
+        public bool IsSelected { get; set; }
 
-        public NameValueParameterViewModel(Name name) : this(name, Name.EmptyName)
+        public NameOnlyParameterViewModel(Name name) : this(name, Name.EmptyName)
         {
         }
 
-
-        public NameValueParameterViewModel(Name name, Name displayName)
+        public NameOnlyParameterViewModel(Name name, Name displayName)
         {
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
@@ -35,15 +34,15 @@ namespace CommandLineApplicationLauncherUI.ViewModel
 
         public override Type GetParameterType()
         {
-            return typeof(NameValueParameter);
+            return typeof(NameOnlyParameter);
         }
 
         public override Maybe<IParameter> GetParameter()
         {
-            if (string.IsNullOrEmpty(this.Value))
+            if (!this.IsSelected)
                 return Maybe.Empty<IParameter>();
 
-            var parameter = new NameValueParameter(this.Name, this.Value);
+            var parameter = new NameOnlyParameter(this.Name);
             return Maybe.ToMaybe<IParameter>(parameter);
         }
     }

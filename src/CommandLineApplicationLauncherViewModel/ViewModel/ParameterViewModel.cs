@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandLineApplicationLauncherUI.ViewModel
+namespace CommandLineApplicationLauncherViewModel
 {
     public abstract class ParameterViewModel : ViewModelBase
     {

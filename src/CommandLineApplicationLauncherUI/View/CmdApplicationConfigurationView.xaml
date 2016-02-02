@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CommandLineApplicationLauncherUI.View"
-             xmlns:vm="clr-namespace:CommandLineApplicationLauncherUI.ViewModel"
+             xmlns:vm="clr-namespace:CommandLineApplicationLauncherViewModel;assembly=CommandLineApplicationLauncherViewModel"
              mc:Ignorable="d" 
              Grid.IsSharedSizeScope="True"
              d:DesignHeight="300" d:DesignWidth="300">

@@ -126,6 +126,10 @@
       <Project>{d78c87ab-42a9-44fd-922c-35d0187c6c1f}</Project>
       <Name>CommandLineApplicationLauncherUI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CommandLineApplicationLauncherViewModel\CommandLineApplicationLauncherViewModel.csproj">
+      <Project>{59a557e6-752e-4ad5-8515-fb7106e03f4a}</Project>
+      <Name>CommandLineApplicationLauncherViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

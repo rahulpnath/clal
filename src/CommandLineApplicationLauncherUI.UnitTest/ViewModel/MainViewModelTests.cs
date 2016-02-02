@@ -1,5 +1,6 @@
 ﻿using CommandLineApplicationLauncherModel;
 using CommandLineApplicationLauncherUI.ViewModel;
+using CommandLineApplicationLauncherViewModel;
 using Xunit;
 
 namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel

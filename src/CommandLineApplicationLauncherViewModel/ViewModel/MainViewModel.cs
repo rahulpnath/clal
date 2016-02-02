@@ -1,7 +1,7 @@
 using CommandLineApplicationLauncherModel;
 using GalaSoft.MvvmLight;
 
-namespace CommandLineApplicationLauncherUI.ViewModel
+namespace CommandLineApplicationLauncherViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.

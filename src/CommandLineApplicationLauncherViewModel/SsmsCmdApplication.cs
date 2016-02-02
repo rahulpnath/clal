@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandLineApplicationLauncherUI
+namespace CommandLineApplicationLauncherViewModel
 {
     public static class SsmsCmdApplication
     {

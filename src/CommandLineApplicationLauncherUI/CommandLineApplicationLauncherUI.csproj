@@ -79,14 +79,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SsmsCmdApplication.cs" />
-    <Compile Include="ViewModel\CmdApplicationConfigurationListViewModel.cs" />
-    <Compile Include="ViewModel\CmdApplicationConfigurationViewModelFactory.cs" />
-    <Compile Include="ViewModel\ICmdApplicationConfigurationViewModelFactory.cs" />
-    <Compile Include="ViewModel\IReader.cs" />
-    <Compile Include="ViewModel\NameOnlyParameterViewModel.cs" />
-    <Compile Include="ViewModel\NameValueParameterViewModel.cs" />
-    <Compile Include="ViewModel\ParameterViewModel.cs" />
     <Page Include="View\CmdApplicationConfigurationListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,8 +95,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\CmdApplicationConfigurationViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\CmdApplicationConfigurationListView.xaml.cs">
       <DependentUpon>CmdApplicationConfigurationListView.xaml</DependentUpon>
@@ -165,6 +155,10 @@
       <Project>{929a05c3-7874-4711-a629-285b7b7fcb07}</Project>
       <Name>CommandLineApplicationLauncherModel</Name>
       <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\CommandLineApplicationLauncherViewModel\CommandLineApplicationLauncherViewModel.csproj">
+      <Project>{59a557e6-752e-4ad5-8515-fb7106e03f4a}</Project>
+      <Name>CommandLineApplicationLauncherViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
