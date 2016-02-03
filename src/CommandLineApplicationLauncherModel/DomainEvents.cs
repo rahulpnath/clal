@@ -9,12 +9,16 @@ namespace CommandLineApplicationLauncherModel
 {
     public static class DomainEvents
     {
+        private static Object _lock = new Object();
         private static ConcurrentDictionary<Type, HashSet<WeakReference>> subscribers =
             new ConcurrentDictionary<Type, HashSet<WeakReference>>();
 
         public static void ClearAllSubscriptions()
         {
-            subscribers = new ConcurrentDictionary<Type, HashSet<WeakReference>>();
+            lock(_lock)
+            {
+                subscribers = new ConcurrentDictionary<Type, HashSet<WeakReference>>();
+            }
         }
 
         public static void Subscribe<T>(IEventHandler<T> subscriber) where T : IEvent
@@ -22,10 +26,13 @@ namespace CommandLineApplicationLauncherModel
             if (subscriber == null)
                 throw new ArgumentNullException(nameof(subscriber));
 
-            if (!subscribers.ContainsKey(typeof(T)))
-                subscribers[typeof(T)] = new HashSet<WeakReference>();
+            lock(_lock)
+            {
+                if (!subscribers.ContainsKey(typeof(T)))
+                    subscribers[typeof(T)] = new HashSet<WeakReference>();
 
-            subscribers[typeof(T)].Add(new WeakReference(subscriber));
+                subscribers[typeof(T)].Add(new WeakReference(subscriber));
+            }
         }
 
         public static void Publish<T>(T eventMessage) where T : IEvent
