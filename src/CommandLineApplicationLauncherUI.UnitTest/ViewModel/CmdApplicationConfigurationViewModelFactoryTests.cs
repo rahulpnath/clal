@@ -7,6 +7,7 @@ using Ploeh.AutoFixture.Idioms;
 using Ploeh.AutoFixture.Xunit2;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Xunit;
 
@@ -76,6 +77,36 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         {
             CmdApplicationConfiguration NullConfiguration = null;
             Assert.Throws<ArgumentNullException>(() => sut.Create(NullConfiguration));
+        }
+
+        [Theory]
+        [InlineAutoMoqData("friendlyName", "applicationName")]
+        public void CreateWithValidCmdApplicationConfigurationReturnsExpected(
+            string friendlyName,
+            string applicationName,
+            CmdApplicationConfigurationViewModelFactory sut)
+        {
+            var configuration = CreateCmdApplicationConfiguration(friendlyName, applicationName);
+            var actual = sut.Create(configuration);
+            Assert.Equal(friendlyName, actual.FriendlyName);
+            Assert.Equal(applicationName, (string)actual.ApplicationName);
+        }
+
+        private CmdApplicationConfiguration CreateCmdApplicationConfiguration(
+            string friendlyName,
+            string applicationName)
+        {
+            var parameterList = new List<IParameter>();
+            IParameter parameter = new NameOnlyParameter((Name)"NameOnlyParameter");
+            parameterList.Add(parameter);
+            parameter = new NameValueParameter((Name)"NameValueParameter", "Value");
+            parameterList.Add(parameter);
+            var configuration = new CmdApplicationConfiguration(
+                (Name)friendlyName,
+                (Name)applicationName,
+                new ReadOnlyCollection<IParameter>(parameterList));
+
+            return configuration;
         }
     }
 }

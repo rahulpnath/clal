@@ -103,10 +103,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\InlineAutoMoqDataAttribute.cs" />
     <Compile Include="Helpers\ViewModelExtensions.cs" />
     <Compile Include="ViewModel\CmdApplicationConfigurationListViewModelTests.cs" />
     <Compile Include="ViewModel\CmdApplicationConfigurationViewModelFactoryTests.cs" />
-    <Compile Include="Helpers\AutoMoqData.cs" />
+    <Compile Include="Helpers\AutoMoqDataAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CmdApplicationConfigurationViewModelTests.cs" />
     <Compile Include="ViewModel\MainViewModelTests.cs" />

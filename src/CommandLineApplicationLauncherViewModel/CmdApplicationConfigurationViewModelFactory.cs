@@ -51,8 +51,35 @@ namespace CommandLineApplicationLauncherViewModel
         {
             if (applicationConfiguration == null)
                 throw new ArgumentNullException(nameof(applicationConfiguration));
-
-            return null;
+            var properties = new List<ParameterViewModel>();
+            foreach (var parameter in applicationConfiguration.Parameters)
+            {
+                if (parameter.GetType() == typeof(NameOnlyParameter))
+                {
+                    var parameterAsNameOnly = parameter as NameOnlyParameter;
+                    var vm = new NameOnlyParameterViewModel(parameterAsNameOnly.Name);
+                    vm.IsSelected = true;
+                    properties.Add(vm);
+                }
+                else if (parameter.GetType() == typeof(NameValueParameter))
+                {
+                    var parameterAsNameValue = parameter as NameValueParameter;
+                    var vm = new NameValueParameterViewModel(parameterAsNameValue.Name);
+                    vm.Value = parameterAsNameValue.Value;
+                    properties.Add(vm);
+                }
+                else
+                {
+                    throw new ArgumentException(string.Format("Type {0} not supported for parameter",
+                        parameter.GetType().Name));
+                }
+            }
+            var returnValue = new CmdApplicationConfigurationViewModel(
+                applicationConfiguration.ApplicationName,
+                properties,
+                Channel);
+            returnValue.FriendlyName = (string)applicationConfiguration.Name;
+            return returnValue;
         }
     }
 }
