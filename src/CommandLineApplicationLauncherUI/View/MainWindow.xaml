@@ -12,11 +12,20 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <Button Content="Add" HorizontalAlignment="Left"/>
+        </StackPanel>
         <view:CmdApplicationConfigurationListView 
             DataContext="{Binding CmdApplicationConfigurationListViewModel, Source={StaticResource Locator}}"
+            Grid.Row="1"
             Grid.Column ="0"/>
         <view:CmdApplicationConfigurationView
             Grid.Column ="1"
+            Grid.Row="1"
             DataContext="{Binding CmdApplicationConfigurationViewModel}" />
     </Grid>
 </Window>
