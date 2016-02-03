@@ -17,7 +17,7 @@ namespace CommandLineApplicationLauncherViewModel
         {
             ApplicationConfigurations = reader
                 .Query(SsmsCmdApplication.Application)
-                .Select(a => factory.Create(a));
+                .Select(a => factory.Create(a, SsmsCmdApplication.Application));
         }
     }
 }

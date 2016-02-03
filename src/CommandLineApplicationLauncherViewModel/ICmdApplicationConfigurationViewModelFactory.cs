@@ -11,7 +11,9 @@ namespace CommandLineApplicationLauncherViewModel
     {
         CmdApplicationConfigurationViewModel Create(CmdApplicationMeta meta);
 
-        CmdApplicationConfigurationViewModel Create(CmdApplicationConfiguration applicationConfiguration);
+        CmdApplicationConfigurationViewModel Create(
+            CmdApplicationConfiguration applicationConfiguration,
+            CmdApplicationMeta applicationMeta);
     }
 
     
