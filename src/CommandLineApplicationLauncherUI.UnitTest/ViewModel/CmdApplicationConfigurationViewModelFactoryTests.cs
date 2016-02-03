@@ -52,7 +52,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         }
 
         [Theory, AutoMoqData]
-        public void CreateWithInvalidParameterTypeThrowsException(
+        public void CreateWithInvalidParameterMetaTypeThrowsException(
             Name name,
             Name applicationName,
             Name parameterName,
