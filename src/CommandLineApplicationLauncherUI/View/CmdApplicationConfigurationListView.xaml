@@ -9,6 +9,6 @@
     <Grid>
         <ListBox 
             ItemsSource="{Binding ApplicationConfigurations}"
-            DisplayMemberPath="Name" />
+            DisplayMemberPath="FriendlyName" />
     </Grid>
 </UserControl>

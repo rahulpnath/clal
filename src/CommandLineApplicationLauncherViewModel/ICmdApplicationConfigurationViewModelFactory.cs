@@ -10,6 +10,8 @@ namespace CommandLineApplicationLauncherViewModel
     public interface ICmdApplicationConfigurationViewModelFactory
     {
         CmdApplicationConfigurationViewModel Create(CmdApplicationMeta meta);
+
+        CmdApplicationConfigurationViewModel Create(CmdApplicationConfiguration applicationConfiguration);
     }
 
     
