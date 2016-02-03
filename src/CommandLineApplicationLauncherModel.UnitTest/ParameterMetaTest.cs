@@ -49,6 +49,15 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Equal(aDisplayName, sut.DisplayName);
         }
 
-        private class ParameterTest : IParameter { }
+        private class ParameterTest : IParameter
+        {
+            public Name Name
+            {
+                get
+                {
+                    return (Name)"Test";
+                }
+            }
+        }
     }
 }

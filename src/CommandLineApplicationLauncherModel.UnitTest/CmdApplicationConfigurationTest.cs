@@ -30,6 +30,15 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             assertion.Verify(typeof(CmdApplicationConfiguration));
         }
 
-        private class ParameterTest : IParameter { }
+        private class ParameterTest : IParameter
+        {
+            public Name Name
+            {
+                get
+                {
+                    return (Name)"TestParameter";
+                }
+            }
+        }
     }
 }

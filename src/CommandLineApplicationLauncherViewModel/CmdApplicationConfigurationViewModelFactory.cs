@@ -58,27 +58,32 @@ namespace CommandLineApplicationLauncherViewModel
                 throw new ArgumentNullException(nameof(applicationMeta));
 
             var properties = new List<ParameterViewModel>();
-            foreach (var parameter in applicationConfiguration.Parameters)
+            foreach (var parameterMeta in applicationMeta.ParameterMetas)
             {
-                if (parameter.GetType() == typeof(NameOnlyParameter))
+                ParameterViewModel viewModel = null;
+                if (parameterMeta.ParameterType == typeof(NameValueParameter))
                 {
-                    var parameterAsNameOnly = parameter as NameOnlyParameter;
-                    var vm = new NameOnlyParameterViewModel(parameterAsNameOnly.Name);
-                    vm.IsSelected = true;
-                    properties.Add(vm);
+                    var vm = new NameValueParameterViewModel(parameterMeta.Name, parameterMeta.DisplayName);
+                    var parameter = (applicationConfiguration
+                         .Parameters
+                         .FirstOrDefault(a => a.Name == parameterMeta.Name) as NameValueParameter);
+                    if (parameter != null)
+                        vm.Value = parameter.Value;
+
+                    viewModel = vm;
                 }
-                else if (parameter.GetType() == typeof(NameValueParameter))
+                else if (parameterMeta.ParameterType == typeof(NameOnlyParameter))
                 {
-                    var parameterAsNameValue = parameter as NameValueParameter;
-                    var vm = new NameValueParameterViewModel(parameterAsNameValue.Name);
-                    vm.Value = parameterAsNameValue.Value;
-                    properties.Add(vm);
+                    var vm = new NameOnlyParameterViewModel(parameterMeta.Name, parameterMeta.DisplayName);
+                    vm.IsSelected = applicationConfiguration.Parameters.Any(a => a.Name == parameterMeta.Name);
+                    viewModel = vm;
                 }
                 else
                 {
-                    throw new ArgumentException(string.Format("Type {0} not supported for parameter",
-                        parameter.GetType().Name));
+                    throw new ArgumentException(string.Format("Type {0} not supported for parameter {1}", parameterMeta.ParameterType, parameterMeta.Name));
                 }
+
+                properties.Add(viewModel);
             }
             var returnValue = new CmdApplicationConfigurationViewModel(
                 applicationConfiguration.ApplicationName,

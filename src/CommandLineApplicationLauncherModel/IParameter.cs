@@ -2,5 +2,6 @@
 {
     public interface IParameter
     {
+        Name Name { get;}
     }
 }
