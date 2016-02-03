@@ -88,30 +88,30 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         }
 
         [Theory]
-        [InlineAutoMoqData("friendlyName", "applicationName")]
+        [InlineAutoMoqData("friendlyName")]
         public void CreateWithValidCmdApplicationConfigurationReturnsExpected(
             string friendlyName,
-            string applicationName,
             CmdApplicationConfigurationViewModelFactory sut)
         {
-            var configuration = CreateCmdApplicationConfiguration(friendlyName, applicationName);
-            var actual = sut.Create(configuration, SsmsCmdApplication.Application);
+            var meta = SsmsCmdApplication.Application;
+            var configuration = CreateCmdApplicationConfiguration(friendlyName, meta);
+            var actual = sut.Create(configuration, meta);
             Assert.Equal(friendlyName, actual.FriendlyName);
-            Assert.Equal(applicationName, (string)actual.ApplicationName);
+            Assert.Equal(meta.ApplicationName, actual.ApplicationName);
         }
 
         private CmdApplicationConfiguration CreateCmdApplicationConfiguration(
             string friendlyName,
-            string applicationName)
+            CmdApplicationMeta meta)
         {
             var parameterList = new List<IParameter>();
-            IParameter parameter = new NameOnlyParameter((Name)"NameOnlyParameter");
+            IParameter parameter = new NameOnlyParameter((Name)"-E");
             parameterList.Add(parameter);
-            parameter = new NameValueParameter((Name)"NameValueParameter", "Value");
+            parameter = new NameValueParameter((Name)"-S", "Value");
             parameterList.Add(parameter);
             var configuration = new CmdApplicationConfiguration(
                 (Name)friendlyName,
-                (Name)applicationName,
+                (Name)meta.ApplicationName,
                 new ReadOnlyCollection<IParameter>(parameterList));
 
             return configuration;
