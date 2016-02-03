@@ -46,5 +46,13 @@ namespace CommandLineApplicationLauncherViewModel
 
             return new CmdApplicationConfigurationViewModel(meta.ApplicationName, properties, Channel);
         }
+
+        public CmdApplicationConfigurationViewModel Create(CmdApplicationConfiguration applicationConfiguration)
+        {
+            if (applicationConfiguration == null)
+                throw new ArgumentNullException(nameof(applicationConfiguration));
+
+            return null;
+        }
     }
 }

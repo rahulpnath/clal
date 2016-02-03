@@ -31,7 +31,8 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         [Theory, AutoMoqData]
         public void CreateThrowsExcpetionForNullParameters(CmdApplicationConfigurationViewModelFactory factory)
         {
-            Assert.Throws<ArgumentNullException>(() => factory.Create(null));
+            CmdApplicationMeta NullMeta = null;
+            Assert.Throws<ArgumentNullException>(() => factory.Create(NullMeta));
         }
 
         [Theory, AutoMoqData]
@@ -67,6 +68,14 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
                     ParameterMeta.Create<IParameter>(parameterName)
                 });
             Assert.Throws<ArgumentException>(() => sut.Create(meta));
+        }
+
+        [Theory, AutoMoqData]
+        public void CreateWithCmdApplicationConfigurationIfNullThrowsException(
+            CmdApplicationConfigurationViewModelFactory sut)
+        {
+            CmdApplicationConfiguration NullConfiguration = null;
+            Assert.Throws<ArgumentNullException>(() => sut.Create(NullConfiguration));
         }
     }
 }
