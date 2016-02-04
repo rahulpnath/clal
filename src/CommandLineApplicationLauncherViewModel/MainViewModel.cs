@@ -34,7 +34,7 @@ namespace CommandLineApplicationLauncherViewModel
 
         private void OnAddExecuted()
         {
-            MessengerInstance.Send(new AddCmdApplicationConfigurationEvent());
+            Messenger.Default.Send(new AddCmdApplicationConfigurationEvent());
         }
     }
 }

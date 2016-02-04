@@ -39,7 +39,7 @@ namespace CommandLineApplicationLauncherFilePersistence
             var searchPattern = string.Format("*.{1}", fileExtension);
 
             return from file in directory.GetFiles(searchPattern)
-            orderby file.CreationTime
+            orderby file.CreationTime descending
             select file.OpenRead();
         }
     }

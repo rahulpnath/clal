@@ -27,6 +27,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         [Theory, AutoMoqData]
         public void AddCommandRaisesAddNewCmdApplicationConfigurationEvent(IFixture fixture)
         {
+            Messenger.Reset();
             Messenger.Default.Register(this, (AddCmdApplicationConfigurationEvent message) =>
             {
                 Assert.Equal(new AddCmdApplicationConfigurationEvent(), message);

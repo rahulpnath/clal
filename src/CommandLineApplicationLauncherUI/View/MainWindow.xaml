@@ -17,7 +17,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-            <Button 
+            <Button
+                Command="{Binding AddCommand}"
                 HorizontalAlignment="Left">
                 <Image
                     Height="25"
