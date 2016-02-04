@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="Helpers\InlineAutoMoqDataAttribute.cs" />
     <Compile Include="Helpers\ViewModelExtensions.cs" />
+    <Compile Include="Messages\AddCmdApplicationConfigurationEventTests.cs" />
     <Compile Include="ViewModel\CmdApplicationConfigurationListViewModelTests.cs" />
     <Compile Include="ViewModel\CmdApplicationConfigurationViewModelFactoryTests.cs" />
     <Compile Include="Helpers\AutoMoqDataAttribute.cs" />

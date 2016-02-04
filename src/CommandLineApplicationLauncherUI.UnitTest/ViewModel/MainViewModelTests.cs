@@ -1,9 +1,8 @@
-﻿using System;
-using CommandLineApplicationLauncherModel;
-using CommandLineApplicationLauncherUI.ViewModel;
+﻿using CommandLineApplicationLauncherModel;
 using CommandLineApplicationLauncherViewModel;
 using Ploeh.AutoFixture;
 using Xunit;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
 {
@@ -23,6 +22,18 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         {
             MainViewModel sut = CreateMainViewModel(fixture);
             Assert.NotNull(sut.AddCommand);
+        }
+
+        [Theory, AutoMoqData]
+        public void AddCommandRaisesAddNewCmdApplicationConfigurationEvent(IFixture fixture)
+        {
+            Messenger.Default.Register(this, (AddCmdApplicationConfigurationEvent message) =>
+            {
+                Assert.Equal(new AddCmdApplicationConfigurationEvent(), message);
+            });
+
+            var sut = CreateMainViewModel(fixture);
+            sut.AddCommand.Execute(null);
         }
 
         private MainViewModel CreateMainViewModel(IFixture fixture)

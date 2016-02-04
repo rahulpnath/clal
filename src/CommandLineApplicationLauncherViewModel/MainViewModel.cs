@@ -2,6 +2,7 @@ using System;
 using CommandLineApplicationLauncherModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace CommandLineApplicationLauncherViewModel
 {
@@ -33,7 +34,7 @@ namespace CommandLineApplicationLauncherViewModel
 
         private void OnAddExecuted()
         {
-            throw new NotImplementedException();
+            MessengerInstance.Send(new AddCmdApplicationConfigurationEvent());
         }
     }
 }
