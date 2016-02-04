@@ -27,6 +27,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         [Theory, AutoMoqData]
         public void AddCommandRaisesAddNewCmdApplicationConfigurationEvent(IFixture fixture)
         {
+            // TODO: Better way to test these. there is still likelyhood of these failing
             Messenger.Reset();
             Messenger.Default.Register(this, (AddCmdApplicationConfigurationEvent message) =>
             {
