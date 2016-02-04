@@ -17,7 +17,12 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-            <Button Content="Add" HorizontalAlignment="Left"/>
+            <Button 
+                HorizontalAlignment="Left">
+                <Image
+                    Height="25"
+                    Source="/CommandLineApplicationLauncherUI;component/Resources/Icons/add-icon.png" />
+            </Button>
         </StackPanel>
         <!--<view:CmdApplicationConfigurationListView
             x:Name="ApplicationConfigurationList"
