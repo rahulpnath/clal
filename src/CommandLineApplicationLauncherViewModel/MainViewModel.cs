@@ -1,5 +1,7 @@
+using System;
 using CommandLineApplicationLauncherModel;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace CommandLineApplicationLauncherViewModel
 {
@@ -18,13 +20,20 @@ namespace CommandLineApplicationLauncherViewModel
     public class MainViewModel : ViewModelBase
     {
         public CmdApplicationConfigurationViewModel CmdApplicationConfigurationViewModel { get; private set; }
+        public System.Windows.Input.ICommand AddCommand { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(ICmdApplicationConfigurationViewModelFactory factory)
         {
-             this.CmdApplicationConfigurationViewModel = factory.Create(SsmsCmdApplication.Application);
+            this.CmdApplicationConfigurationViewModel = factory.Create(SsmsCmdApplication.Application);
+            this.AddCommand = new RelayCommand(this.OnAddExecuted);
+        }
+
+        private void OnAddExecuted()
+        {
+            throw new NotImplementedException();
         }
     }
 }
