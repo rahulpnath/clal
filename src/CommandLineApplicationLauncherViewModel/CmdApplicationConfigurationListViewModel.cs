@@ -1,20 +1,29 @@
 ﻿using CommandLineApplicationLauncherModel;
 using GalaSoft.MvvmLight;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommandLineApplicationLauncherViewModel
 {
     public class CmdApplicationConfigurationListViewModel : ViewModelBase
     {
-
+        private CmdApplicationConfigurationViewModel selectedConfiguration;
         public ObservableCollection<CmdApplicationConfigurationViewModel> ApplicationConfigurations { get; set; }
         public IReader<CmdApplicationMeta, IEnumerable<CmdApplicationConfiguration>> Reader { get; private set; }
         public ICmdApplicationConfigurationViewModelFactory Factory { get; private set; }
+        public CmdApplicationConfigurationViewModel SelectedConfiguration
+        {
+            get
+            {
+                return this.selectedConfiguration;
+            }
+            set
+            {
+                this.selectedConfiguration = value;
+                this.RaisePropertyChanged(nameof(SelectedConfiguration));
+            }
+        }
 
         public CmdApplicationConfigurationListViewModel(
             IReader<CmdApplicationMeta, IEnumerable<CmdApplicationConfiguration>> reader,
@@ -24,14 +33,16 @@ namespace CommandLineApplicationLauncherViewModel
             this.Factory = factory;
             ApplicationConfigurations = reader
                 .Query(SsmsCmdApplication.Application)
-                .Select(a => factory.Create(a, SsmsCmdApplication.Application)).ToObservableCollection(); ;
+                .Select(a => factory.Create(a, SsmsCmdApplication.Application)).ToObservableCollection();
+            this.SelectedConfiguration = ApplicationConfigurations.FirstOrDefault();
             MessengerInstance.Register<AddCmdApplicationConfigurationEvent>(this, this.OnAddCmdApplicationConfigurationEvent);
         }
 
-        private void OnAddCmdApplicationConfigurationEvent(AddCmdApplicationConfigurationEvent obj)
+        public void OnAddCmdApplicationConfigurationEvent(AddCmdApplicationConfigurationEvent obj)
         {
             var newCmdApplicationEvent = Factory.Create(SsmsCmdApplication.Application);
-            this.ApplicationConfigurations.Insert(0,newCmdApplicationEvent);
+            this.ApplicationConfigurations.Insert(0, newCmdApplicationEvent);
+            this.SelectedConfiguration = newCmdApplicationEvent;
         }
     }
 }

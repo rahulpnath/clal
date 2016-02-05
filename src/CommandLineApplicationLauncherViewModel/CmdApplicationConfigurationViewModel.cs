@@ -10,8 +10,21 @@ namespace CommandLineApplicationLauncherViewModel
 {
     public class CmdApplicationConfigurationViewModel : ViewModelBase, IEventHandler<ConfigurationSavedEvent>
     {
+        private string friendlyName;
+
         public Name ApplicationName { get; private set; }
-        public string FriendlyName { get; set; }
+        public string FriendlyName
+        {
+            get
+            {
+                return this.friendlyName;
+            }
+            set
+            {
+                this.friendlyName = value;
+                RaisePropertyChanged(nameof(FriendlyName));
+            }
+        }
         public List<ParameterViewModel> Properties { get; private set; }
         public System.Windows.Input.ICommand Save { get; private set; }
         public IChannel<SaveCmdApplicationConfigurationCommand> Channel { get; private set; }

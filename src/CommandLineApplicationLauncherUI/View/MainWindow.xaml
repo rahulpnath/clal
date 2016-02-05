@@ -34,6 +34,7 @@
             x:Name="ApplicationConfigurationList"
             Grid.Row="1"
             Grid.Column ="0"
+            SelectedItem="{Binding SelectedConfiguration, Mode=TwoWay}"
             DataContext="{Binding CmdApplicationConfigurationListViewModel, Source={StaticResource Locator}}"
             ItemsSource="{Binding ApplicationConfigurations}"
             DisplayMemberPath="FriendlyName" />

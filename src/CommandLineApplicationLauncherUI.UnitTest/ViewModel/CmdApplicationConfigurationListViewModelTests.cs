@@ -23,6 +23,27 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             Assert.IsAssignableFrom<ViewModelBase>(sut);
         }
 
+        [Theory,AutoMoqData]
+        public void OnAddNewConfigurationSelectedItemIsSetToNewItem(
+            [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
+            IChannel<SaveCmdApplicationConfigurationCommand> channel,
+            CmdApplicationConfigurationListViewModel sut,
+            AddCmdApplicationConfigurationEvent eventMessage)
+        {
+            var expected = SetUpFactoryToReturnANewInstance(channel, mockFactory);
+            sut.OnAddCmdApplicationConfigurationEvent(eventMessage);
+            Assert.Equal(expected, sut.SelectedConfiguration);
+        }
+
+        private CmdApplicationConfigurationViewModel SetUpFactoryToReturnANewInstance(
+            IChannel<SaveCmdApplicationConfigurationCommand> channel,
+            Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory)
+        {
+            var vm = new CmdApplicationConfigurationViewModel((Name)"New", new List<ParameterViewModel>(), channel);
+            mockFactory.Setup(a => a.Create(It.IsAny<CmdApplicationMeta>())).Returns(vm);
+            return vm;
+        }
+
         [Theory(Skip = "Need to inject Messenger"), AutoMoqData]
         public void SutSubscribesToAddCmdApplicationConfigurationEvent(
             Name aName,
@@ -30,8 +51,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
             CmdApplicationConfigurationListViewModel sut)
         {
-            var vm = new CmdApplicationConfigurationViewModel(aName, new List<ParameterViewModel>(), channel);
-            mockFactory.Setup(a => a.Create(It.IsAny<CmdApplicationMeta>())).Returns(vm);
+            SetUpFactoryToReturnANewInstance(channel, mockFactory);
             var expected = sut.ApplicationConfigurations.Count + 1;
             Messenger.Default.Send(new AddCmdApplicationConfigurationEvent());
             Assert.Equal(expected, sut.ApplicationConfigurations.Count);
