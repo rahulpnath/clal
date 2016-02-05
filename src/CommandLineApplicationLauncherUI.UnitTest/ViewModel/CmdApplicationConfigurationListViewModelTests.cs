@@ -3,7 +3,9 @@ using CommandLineApplicationLauncherUI.ViewModel;
 using CommandLineApplicationLauncherViewModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using Moq;
 using Ploeh.AutoFixture;
+using Ploeh.AutoFixture.Xunit2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,20 +24,17 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         }
 
         [Theory, AutoMoqData]
-        public void SutSubscribesToAddCmdApplicationConfigurationEvent(IFixture fixture)
+        public void SutSubscribesToAddCmdApplicationConfigurationEvent(
+            Name aName,
+            IChannel<SaveCmdApplicationConfigurationCommand> channel,
+            [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
+            CmdApplicationConfigurationListViewModel sut)
         {
-            var sut = CreateCmdApplicationConfigurationListViewModel(fixture);
+            var vm = new CmdApplicationConfigurationViewModel(aName, new List<ParameterViewModel>(), channel);
+            mockFactory.Setup(a => a.Create(It.IsAny<CmdApplicationMeta>())).Returns(vm);
             var expected = sut.ApplicationConfigurations.Count + 1;
             Messenger.Default.Send(new AddCmdApplicationConfigurationEvent());
             Assert.Equal(expected, sut.ApplicationConfigurations.Count);
-        }
-
-        private CmdApplicationConfigurationListViewModel CreateCmdApplicationConfigurationListViewModel(IFixture fixture)
-        {
-            var channel = fixture.Create<IChannel<SaveCmdApplicationConfigurationCommand>>();
-            fixture.Inject<ICmdApplicationConfigurationViewModelFactory>( 
-                new CmdApplicationConfigurationViewModelFactory(channel));
-            return fixture.Create<CmdApplicationConfigurationListViewModel>();
         }
     }
 }
