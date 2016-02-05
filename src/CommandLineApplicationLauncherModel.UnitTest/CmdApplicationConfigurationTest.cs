@@ -39,6 +39,11 @@ namespace CommandLineApplicationLauncherModel.UnitTest
                     return (Name)"TestParameter";
                 }
             }
+
+            public string GetValue()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

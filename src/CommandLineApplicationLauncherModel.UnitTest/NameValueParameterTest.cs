@@ -36,5 +36,14 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             Assert.Equal(aParameter, anotherParameter);
             Assert.Equal(aParameter.GetHashCode(), anotherParameter.GetHashCode());
         }
+
+        [Theory]
+        [InlineData("Test", "Value", "Test Value")]
+        [InlineData("-Another", "'Value'", "-Another 'Value'")]
+        public void GetValueReturnsExpected(string name, string value, string expected)
+        {
+            var sut = new NameValueParameter((Name)name, value);
+            Assert.Equal(expected, sut.GetValue());
+        }
     }
 }

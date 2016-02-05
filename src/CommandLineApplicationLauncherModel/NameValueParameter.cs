@@ -36,5 +36,10 @@ namespace CommandLineApplicationLauncherModel
         {
             return this.Name.GetHashCode() ^ this.Value.GetHashCode();
         }
+
+        public string GetValue()
+        {
+            return this.Name.ToString() + " " + this.Value;
+        }
     }
 }

@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 
 namespace CommandLineApplicationLauncherViewModel
@@ -27,6 +28,7 @@ namespace CommandLineApplicationLauncherViewModel
         }
         public List<ParameterViewModel> Properties { get; private set; }
         public System.Windows.Input.ICommand Save { get; private set; }
+        public System.Windows.Input.ICommand Launch { get; private set; }
         public IChannel<SaveCmdApplicationConfigurationCommand> Channel { get; private set; }
 
         public CmdApplicationConfigurationViewModel(
@@ -47,6 +49,7 @@ namespace CommandLineApplicationLauncherViewModel
             this.Properties = properties;
             this.Channel = channel;
             this.Save = new RelayCommand(this.OnSaveExecuted);
+            this.Launch = new RelayCommand(this.OnLaunchExecuted);
             DomainEvents.Subscribe(this);
         }
 
@@ -78,6 +81,12 @@ namespace CommandLineApplicationLauncherViewModel
                     new SaveCmdApplicationConfigurationCommand(
                         Guid.NewGuid(),
                         applicationConfiguration.Single()));
+        }
+
+        private void OnLaunchExecuted()
+        {
+            //this.Properties.Aggregate(string.Empty, (a,b) => a + b.GetParameter().
+            //Process.Start(this.ApplicationName)
         }
 
         public void Handle(ConfigurationSavedEvent command)
