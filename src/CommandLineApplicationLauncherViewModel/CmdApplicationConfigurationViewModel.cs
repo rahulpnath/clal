@@ -85,8 +85,15 @@ namespace CommandLineApplicationLauncherViewModel
 
         private void OnLaunchExecuted()
         {
-            //this.Properties.Aggregate(string.Empty, (a,b) => a + b.GetParameter().
-            //Process.Start(this.ApplicationName)
+            var pa = string.Empty;
+            foreach(var p in this.Properties)
+            {
+                if(p.GetParameter().Any())
+                {
+                    pa = pa+ " "+ p.GetParameter().First().GetValue();
+                }
+            }
+            Process.Start(this.ApplicationName.ToString(), pa);
         }
 
         public void Handle(ConfigurationSavedEvent command)

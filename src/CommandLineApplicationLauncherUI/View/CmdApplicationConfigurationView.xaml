@@ -57,6 +57,7 @@
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
-        <Button Content="Save" Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.Row="3" Command="{Binding Save}" />
+        <Button Content="Save" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="3" Command="{Binding Save}" />
+        <Button Content="Launch" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" Command="{Binding Launch}" />
     </Grid>
 </UserControl>
