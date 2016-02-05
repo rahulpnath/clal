@@ -30,6 +30,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
             CmdApplicationConfigurationListViewModel sut)
         {
+            Messenger.Reset();
             var vm = new CmdApplicationConfigurationViewModel(aName, new List<ParameterViewModel>(), channel);
             mockFactory.Setup(a => a.Create(It.IsAny<CmdApplicationMeta>())).Returns(vm);
             var expected = sut.ApplicationConfigurations.Count + 1;
