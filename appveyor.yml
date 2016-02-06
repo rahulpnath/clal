@@ -1,4 +1,4 @@
 test:
-  assemblies: '**\*.UnitTest.dll'
+  assemblies: '**\*.*Test.dll'
 before_build:
   - nuget restore src\CommandLineApplicationLauncher.sln
