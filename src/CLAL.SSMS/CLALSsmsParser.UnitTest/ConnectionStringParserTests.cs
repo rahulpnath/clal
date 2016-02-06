@@ -31,12 +31,13 @@ namespace CLALSsmsParser.UnitTest
         }
 
         [Theory]
-        [InlineAutoMoqData("server=(local);user id=ab;password= a!Pass113;initial catalog=AdventureWorks")]
+        [InlineAutoMoqData("server=(local);user id=ab;password= a!Pass113;initial catalog=AdventureWorks", 4)]
+        [InlineAutoMoqData("server=(local);Integrated Security = SSPI;;initial catalog=AdventureWorks", 3)]
         public void SutWithValidConnectionStringFormatReturnsConfiguration(
             string invalidConnectionString,
+            int expected,
             ConnectionStringParser sut)
         {
-            var expected = 4;
             var actual = sut.Parse(invalidConnectionString, SsmsCmdApplication.Application);
             Assert.Equal(expected, actual.First().Parameters.Count);
         }
