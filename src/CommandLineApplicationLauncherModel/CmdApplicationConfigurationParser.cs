@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CommandLineApplicationLauncherModel
 {
@@ -8,7 +9,7 @@ namespace CommandLineApplicationLauncherModel
         {
             var friendlyName = this.GetFriendlyName(data, applicationMeta);
             var parameters = this.GetParameters(data, applicationMeta);
-            if (parameters == null)
+            if (parameters == null || !parameters.Any())
                 return Maybe.Empty<CmdApplicationConfiguration>();
 
             var configuration = new CmdApplicationConfiguration(

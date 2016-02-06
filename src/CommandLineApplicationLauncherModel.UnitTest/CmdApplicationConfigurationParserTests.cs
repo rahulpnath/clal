@@ -16,7 +16,27 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         }
 
         [Fact]
-        public void SutReturnsEmptyWhenParametersIsNullOrEmpty()
+        public void SutWithNullParametersReturnsEmpty()
+        {
+            var expected = Maybe.Empty<CmdApplicationConfiguration>();
+            var name = (Name)"AnyName";
+            var parser = new TestParser(name, null);
+            var actual = parser.Parse(new object(), GetApplicationConfigurationMeta());
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void SutWithEmptyParametersReturnsEmpty()
+        {
+            var expected = Maybe.Empty<CmdApplicationConfiguration>();
+            var name = (Name)"AnyName";
+            var parser = new TestParser(name, new List<IParameter>());
+            var actual = parser.Parse(new object(), GetApplicationConfigurationMeta());
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void SutWithValidParametersReturnsConfiguration()
         {
             var expected = Maybe.Empty<CmdApplicationConfiguration>();
             var name = (Name)"AnyName";
