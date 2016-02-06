@@ -13,6 +13,9 @@ namespace CommandLineApplicationLauncherModel
             if (parameters == null || !parameters.Any())
                 return Maybe.Empty<CmdApplicationConfiguration>();
 
+            if (friendlyName == null)
+                friendlyName = Name.EmptyName;
+
             var configuration = new CmdApplicationConfiguration(
                 friendlyName,
                 applicationMeta.ApplicationName,
