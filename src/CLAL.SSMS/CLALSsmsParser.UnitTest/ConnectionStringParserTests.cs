@@ -16,5 +16,18 @@ namespace CLALSsmsParser.UnitTest
         {
             Assert.IsAssignableFrom<CmdApplicationConfigurationParser<string>>(sut);
         }
+
+        [Theory]
+        [InlineAutoMoqData("")]
+        [InlineAutoMoqData("abcde")]
+        [InlineAutoMoqData("server=(local);user id=ab;pass= a!Pass113;initial catalog=AdventureWorks")]
+        public void SutWithInvalidConnectionStringFormatReturnsEmpty(
+            string invalidConnectionString,
+            ConnectionStringParser sut)
+        {
+            var expected = Maybe.Empty<CmdApplicationConfiguration>();
+            var actual = sut.Parse(invalidConnectionString, SsmsCmdApplication.Application);
+            Assert.Equal(expected, actual);
+        }
     }
 }

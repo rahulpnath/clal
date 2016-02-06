@@ -72,7 +72,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMoqDataAttribute.cs" />
     <Compile Include="ConnectionStringParserTests.cs" />
+    <Compile Include="InlineAutoMoqDataAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SsmsCmdApplication.cs" />
   </ItemGroup>
