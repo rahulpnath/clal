@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdApplicationConfiguration.cs" />
+    <Compile Include="CmdApplicationConfigurationParser.cs" />
     <Compile Include="CmdApplicationConfigurationSaveRejected.cs" />
     <Compile Include="CmdApplicationConfigurationService.cs" />
     <Compile Include="CmdApplicationMeta.cs" />

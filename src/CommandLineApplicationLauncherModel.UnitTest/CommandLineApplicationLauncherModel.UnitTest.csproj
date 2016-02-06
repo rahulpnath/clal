@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CmdApplicationConfigurationParserTests.cs" />
     <Compile Include="CmdApplicationConfigurationServiceTests.cs" />
     <Compile Include="CmdApplicationMetaTest.cs" />
     <Compile Include="CmdApplicationConfigurationTest.cs" />
