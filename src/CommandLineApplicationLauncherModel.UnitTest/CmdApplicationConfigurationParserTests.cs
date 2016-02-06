@@ -38,11 +38,10 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         [Fact]
         public void SutWithValidParametersReturnsConfiguration()
         {
-            var expected = Maybe.Empty<CmdApplicationConfiguration>();
             var name = (Name)"AnyName";
-            var parser = new TestParser(name, null);
+            var parser = new TestParser(name, new List<IParameter>() { new NameOnlyParameter((Name)"aParameter") });
             var actual = parser.Parse(new object(), GetApplicationConfigurationMeta());
-            Assert.Equal(expected, actual);
+            Assert.True(actual.Any());
         }
 
         private CmdApplicationMeta GetApplicationConfigurationMeta()

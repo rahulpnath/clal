@@ -9,6 +9,7 @@ namespace CommandLineApplicationLauncherModel
         {
             var friendlyName = this.GetFriendlyName(data, applicationMeta);
             var parameters = this.GetParameters(data, applicationMeta);
+
             if (parameters == null || !parameters.Any())
                 return Maybe.Empty<CmdApplicationConfiguration>();
 
@@ -18,7 +19,7 @@ namespace CommandLineApplicationLauncherModel
                 new System.Collections.ObjectModel.ReadOnlyCollection<IParameter>(parameters)
                 );
 
-            return null;
+            return Maybe.ToMaybe(configuration);
         }
 
         protected abstract Name GetFriendlyName(T data, CmdApplicationMeta applicationMeta);
