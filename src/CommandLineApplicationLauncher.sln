@@ -23,6 +23,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineApplicationLaunc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLALFilePersistence.Test", "CLALFilePersistence.Test\CLALFilePersistence.Test.csproj", "{C7F6F9AD-283A-4EB4-AC23-E390B70891DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLALSsmsParser", "CLAL.SSMS\CLALSsmsParser\CLALSsmsParser.csproj", "{B2AC6994-00C2-41BB-A739-B30BEB832AE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SSMS", "SSMS", "{2A0FFD87-3168-4C92-91B2-A343AF6A5BFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLALSsmsParser.UnitTest", "CLAL.SSMS\CLALSsmsParser.UnitTest\CLALSsmsParser.UnitTest.csproj", "{C3CC6299-0159-4E46-AC09-CA9FA2C7B24A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,8 +75,20 @@ Global
 		{C7F6F9AD-283A-4EB4-AC23-E390B70891DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7F6F9AD-283A-4EB4-AC23-E390B70891DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7F6F9AD-283A-4EB4-AC23-E390B70891DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2AC6994-00C2-41BB-A739-B30BEB832AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2AC6994-00C2-41BB-A739-B30BEB832AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2AC6994-00C2-41BB-A739-B30BEB832AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2AC6994-00C2-41BB-A739-B30BEB832AE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3CC6299-0159-4E46-AC09-CA9FA2C7B24A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3CC6299-0159-4E46-AC09-CA9FA2C7B24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3CC6299-0159-4E46-AC09-CA9FA2C7B24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3CC6299-0159-4E46-AC09-CA9FA2C7B24A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2AC6994-00C2-41BB-A739-B30BEB832AE0} = {2A0FFD87-3168-4C92-91B2-A343AF6A5BFA}
+		{C3CC6299-0159-4E46-AC09-CA9FA2C7B24A} = {2A0FFD87-3168-4C92-91B2-A343AF6A5BFA}
 	EndGlobalSection
 EndGlobal
