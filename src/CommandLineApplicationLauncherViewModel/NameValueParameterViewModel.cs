@@ -44,7 +44,10 @@ namespace CommandLineApplicationLauncherViewModel
 
         public override void WithParameter(IParameter parameter)
         {
-
+            var parameterAsNameValue = parameter as NameValueParameter;
+            this.Value = parameterAsNameValue != null && parameterAsNameValue.Name == this.Name 
+                ? parameterAsNameValue.Value 
+                : string.Empty;
         }
     }
 }

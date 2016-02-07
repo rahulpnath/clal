@@ -1,15 +1,8 @@
 ﻿using CommandLineApplicationLauncherModel;
-using CommandLineApplicationLauncherUI.ViewModel;
 using CommandLineApplicationLauncherViewModel;
-using GalaSoft.MvvmLight;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
 using Ploeh.AutoFixture.Xunit2;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
@@ -58,6 +51,34 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             var expected = Maybe.ToMaybe<NameValueParameter>(new NameValueParameter(sut.Name, sut.Value));
             var actual = sut.GetParameter();
             Assert.Equal(expected, actual);
+        }
+
+        [Theory, AutoData]
+        public void WithParameterWithNullValueDoesNotSetIsSelected(NameValueParameterViewModel sut)
+        {
+            sut.WithParameter(null);
+            Assert.True(string.IsNullOrEmpty(sut.Value));
+        }
+
+        [Theory, AutoData]
+        public void WithParameterWithSameParameterNameSetsIsSelected(
+            [Frozen]Name name,
+            NameValueParameter parameter,
+            NameValueParameterViewModel sut)
+        {
+            Assert.Equal(parameter.Name, sut.Name);
+            sut.WithParameter(parameter);
+            Assert.Equal(parameter.Value, sut.Value);
+        }
+
+        [Theory, AutoData]
+        public void WithParameterWithDiffParameterNameDoesNotSetIsSelected(
+            NameValueParameter parameter,
+            NameValueParameterViewModel sut)
+        {
+            Assert.NotEqual(parameter.Name, sut.Name);
+            sut.WithParameter(parameter);
+            Assert.True(string.IsNullOrEmpty(sut.Value));
         }
     }
 }
