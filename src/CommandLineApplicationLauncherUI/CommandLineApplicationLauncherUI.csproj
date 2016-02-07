@@ -136,6 +136,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CLAL.SSMS\CLALSsmsParser\CLALSsmsParser.csproj">
+      <Project>{b2ac6994-00c2-41bb-a739-b30beb832ae0}</Project>
+      <Name>CLALSsmsParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommandLineApplicationLauncherPersistenceModel\CommandLineApplicationLauncherPersistenceModel.csproj">
       <Project>{b0291cdf-5883-4d29-bcb6-449a6880697d}</Project>
       <Name>CommandLineApplicationLauncherPersistenceModel</Name>

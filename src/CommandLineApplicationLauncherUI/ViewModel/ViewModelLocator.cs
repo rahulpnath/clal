@@ -41,7 +41,8 @@ namespace CommandLineApplicationLauncherUI.ViewModel
             var allAssemblies = new List<Assembly>();
             foreach (string dll in Directory.GetFiles(assemblyPath, "*.dll"))
             {
-                if (Path.GetFileName(dll).Contains("CommandLineApplicationLauncher"))
+                if (Path.GetFileName(dll).Contains("CommandLineApplicationLauncher") ||
+                    Path.GetFileName(dll).Contains("CLAL"))
                     allAssemblies.Add(Assembly.LoadFile(dll));
             }
             allAssemblies.Add(Assembly.GetExecutingAssembly());
@@ -61,8 +62,13 @@ namespace CommandLineApplicationLauncherUI.ViewModel
             containerBuilder.RegisterType<CmdApplicationConfigurationService>().
                 As<ICommandHandler<SaveCmdApplicationConfigurationCommand>>();
 
-            //containerBuilder.RegisterType<CmdApplicationConfigurationViewModel>().
-            //    As<IMessageHandler<ConfigurationSavedEvent>>();
+            containerBuilder
+                .RegisterAssemblyTypes(allAssemblies.ToArray())
+                .Where(a => 
+                    a.BaseType != null 
+                    && a.BaseType.IsGenericType
+                    &&  a.BaseType.GetGenericTypeDefinition() == typeof(CmdApplicationConfigurationParser<>))
+                .AsClosedTypesOf(typeof(CmdApplicationConfigurationParser<>));
 
             containerBuilder
                 .RegisterGeneric(typeof(DirectChannel<>))
