@@ -35,13 +35,14 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             });
 
             var sut = CreateMainViewModel(fixture);
-            sut.AddCommand.Execute(null);
+            sut.AddCommand.Execute(new object());
         }
 
         private MainViewModel CreateMainViewModel(IFixture fixture)
         {
             var channel = fixture.Create<IChannel<SaveCmdApplicationConfigurationCommand>>();
-            return new MainViewModel(new CmdApplicationConfigurationViewModelFactory(channel));
+            fixture.Register<ICmdApplicationConfigurationViewModelFactory>(() => fixture.Create<CmdApplicationConfigurationViewModelFactory>());
+            return fixture.Create<MainViewModel>();
         }
     }
 }

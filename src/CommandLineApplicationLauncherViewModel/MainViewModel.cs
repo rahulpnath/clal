@@ -21,7 +21,7 @@ namespace CommandLineApplicationLauncherViewModel
     public class MainViewModel : ViewModelBase
     {
         public CmdApplicationConfigurationViewModel CmdApplicationConfigurationViewModel { get; private set; }
-        public System.Windows.Input.ICommand AddCommand { get; set; }
+        public System.Windows.Input.ICommand AddCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
