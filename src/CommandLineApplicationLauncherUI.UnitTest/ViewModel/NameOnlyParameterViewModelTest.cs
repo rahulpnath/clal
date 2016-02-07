@@ -53,5 +53,33 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             var actual = sut.GetParameter();
             Assert.Equal(expected, actual);
         }
+
+        [Theory, AutoData]
+        public void WithParameterWithNullValueDoesNotSetIsSelected(NameOnlyParameterViewModel sut)
+        {
+            sut.WithParameter(null);
+            Assert.False(sut.IsSelected);
+        }
+
+        [Theory, AutoData]
+        public void WithParameterWithSameParameterNameSetsIsSelected(
+            [Frozen]Name name,
+            NameOnlyParameter parameter,
+            NameOnlyParameterViewModel sut)
+        {
+            Assert.Equal(parameter.Name, sut.Name);
+            sut.WithParameter(parameter);
+            Assert.True(sut.IsSelected);
+        }
+
+        [Theory, AutoData]
+        public void WithParameterWithDiffParameterNameDoesNotSetIsSelected(
+            NameOnlyParameter parameter,
+            NameOnlyParameterViewModel sut)
+        {
+            Assert.NotEqual(parameter.Name, sut.Name);
+            sut.WithParameter(parameter);
+            Assert.False(sut.IsSelected);
+        }
     }
 }

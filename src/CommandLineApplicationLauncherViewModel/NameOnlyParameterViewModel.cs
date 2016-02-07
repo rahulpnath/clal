@@ -43,7 +43,7 @@ namespace CommandLineApplicationLauncherViewModel
 
         public override void WithParameter(IParameter parameter)
         {
-
+            this.IsSelected = parameter != null && parameter.Name == this.Name;
         }
     }
 }
