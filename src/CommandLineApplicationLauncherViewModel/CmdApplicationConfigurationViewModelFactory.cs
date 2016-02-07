@@ -63,20 +63,15 @@ namespace CommandLineApplicationLauncherViewModel
                 ParameterViewModel viewModel = null;
                 if (parameterMeta.ParameterType == typeof(NameValueParameter))
                 {
-                    var vm = new NameValueParameterViewModel(parameterMeta.Name, parameterMeta.DisplayName);
-                    var parameter = (applicationConfiguration
+                    viewModel = new NameValueParameterViewModel(parameterMeta.Name, parameterMeta.DisplayName);
+                    viewModel.WithParameter(applicationConfiguration
                          .Parameters
-                         .FirstOrDefault(a => a.Name == parameterMeta.Name) as NameValueParameter);
-                    if (parameter != null)
-                        vm.Value = parameter.Value;
-
-                    viewModel = vm;
+                         .FirstOrDefault(a => a.Name == parameterMeta.Name));
                 }
                 else if (parameterMeta.ParameterType == typeof(NameOnlyParameter))
                 {
-                    var vm = new NameOnlyParameterViewModel(parameterMeta.Name, parameterMeta.DisplayName);
-                    vm.IsSelected = applicationConfiguration.Parameters.Any(a => a.Name == parameterMeta.Name);
-                    viewModel = vm;
+                    viewModel = new NameOnlyParameterViewModel(parameterMeta.Name, parameterMeta.DisplayName);
+                    viewModel.WithParameter(applicationConfiguration.Parameters.FirstOrDefault(a => a.Name == parameterMeta.Name));
                 }
                 else
                 {
