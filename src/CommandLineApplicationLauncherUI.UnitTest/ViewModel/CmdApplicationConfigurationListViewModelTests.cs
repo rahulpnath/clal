@@ -27,34 +27,34 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         public void OnAddNewConfigurationSelectedItemIsSetToNewItem(
             [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
             IChannel<SaveCmdApplicationConfigurationCommand> channel,
+            CmdApplicationConfigurationViewModel expected,
             CmdApplicationConfigurationListViewModel sut,
             AddCmdApplicationConfigurationEvent eventMessage)
         {
-            var expected = SetUpFactoryToReturnANewInstance(channel, mockFactory);
+            SetUpFactoryToReturnANewInstance(expected, mockFactory);
             sut.OnAddCmdApplicationConfigurationEvent(eventMessage);
             Assert.Equal(expected, sut.SelectedConfiguration);
-        }
-
-        private CmdApplicationConfigurationViewModel SetUpFactoryToReturnANewInstance(
-            IChannel<SaveCmdApplicationConfigurationCommand> channel,
-            Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory)
-        {
-            var vm = new CmdApplicationConfigurationViewModel((Name)"New", new List<ParameterViewModel>(), channel);
-            mockFactory.Setup(a => a.Create(It.IsAny<CmdApplicationMeta>())).Returns(vm);
-            return vm;
         }
 
         [Theory(Skip = "Need to inject Messenger"), AutoMoqData]
         public void SutSubscribesToAddCmdApplicationConfigurationEvent(
             Name aName,
             IChannel<SaveCmdApplicationConfigurationCommand> channel,
+            CmdApplicationConfigurationViewModel vm,
             [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
             CmdApplicationConfigurationListViewModel sut)
         {
-            SetUpFactoryToReturnANewInstance(channel, mockFactory);
+             SetUpFactoryToReturnANewInstance(vm, mockFactory);
             var expected = sut.ApplicationConfigurations.Count + 1;
             Messenger.Default.Send(new AddCmdApplicationConfigurationEvent());
             Assert.Equal(expected, sut.ApplicationConfigurations.Count);
+        }
+
+        private void SetUpFactoryToReturnANewInstance(
+            CmdApplicationConfigurationViewModel vm,
+            Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory)
+        {
+            mockFactory.Setup(a => a.Create(It.IsAny<CmdApplicationMeta>())).Returns(vm);
         }
     }
 }
