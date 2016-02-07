@@ -1,7 +1,5 @@
 ﻿using CommandLineApplicationLauncherModel;
-using CommandLineApplicationLauncherUI.ViewModel;
 using CommandLineApplicationLauncherViewModel;
-using GalaSoft.MvvmLight;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
 using Ploeh.AutoFixture.Xunit2;
