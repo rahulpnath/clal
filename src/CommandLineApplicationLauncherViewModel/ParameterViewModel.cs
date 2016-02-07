@@ -13,5 +13,7 @@ namespace CommandLineApplicationLauncherViewModel
         public abstract Type GetParameterType();
 
         public abstract Maybe<IParameter> GetParameter();
+
+        public abstract void WithParameter(IParameter parameter);
     }
 }

@@ -41,5 +41,10 @@ namespace CommandLineApplicationLauncherViewModel
             var parameter = new NameValueParameter(this.Name, this.Value);
             return Maybe.ToMaybe<IParameter>(parameter);
         }
+
+        public override void WithParameter(IParameter parameter)
+        {
+
+        }
     }
 }
