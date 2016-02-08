@@ -45,5 +45,10 @@ namespace CommandLineApplicationLauncherViewModel
         {
             this.IsSelected = parameter != null && parameter.Name == this.Name;
         }
+
+        public override Name GetName()
+        {
+            return this.Name;
+        }
     }
 }

@@ -71,22 +71,6 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             Assert.Throws<ArgumentException>(() => sut.Create(meta));
         }
 
-        [Theory, AutoMoqData]
-        public void CreateWithCmdApplicationConfigurationIfNullThrowsException(
-            CmdApplicationConfigurationViewModelFactory sut)
-        {
-            CmdApplicationConfiguration NullConfiguration = null;
-            Assert.Throws<ArgumentNullException>(() => sut.Create(NullConfiguration, SsmsCmdApplication.Application));
-        }
-        [Theory, AutoMoqData]
-        public void CreateWithCmdApplicationConfigurationIfNullMetaThrowsException(
-           CmdApplicationConfigurationViewModelFactory sut,
-           CmdApplicationConfiguration configuration)
-        {
-            CmdApplicationMeta NullMeta = null;
-            Assert.Throws<ArgumentNullException>(() => sut.Create(configuration, NullMeta));
-        }
-
         [Theory]
         [InlineAutoMoqData("friendlyName")]
         public void CreateWithValidCmdApplicationConfigurationReturnsExpected(

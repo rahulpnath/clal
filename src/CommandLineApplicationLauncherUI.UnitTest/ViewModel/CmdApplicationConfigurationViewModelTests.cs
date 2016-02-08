@@ -112,11 +112,16 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             a.ApplicationConfiguration.Parameters.Count == 1)), Times.Once());
         }
 
-
         [Theory, AutoMoqData]
         public void PopulateFromCmdConfigurationWithNullApplicationThrowsException(CmdApplicationConfigurationViewModel sut)
         {
             Assert.Throws<ArgumentNullException>(() => sut.PopulateFromCmdApplicationConfiguration(null));
+        }
+
+        [Theory, AutoMoqData]
+        public void PopulateFromCmdConfigurationWithDifferentApplicationDoesNothing(CmdApplicationConfigurationViewModel sut)
+        {
+
         }
     }
 }

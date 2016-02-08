@@ -80,5 +80,11 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             sut.WithParameter(parameter);
             Assert.True(string.IsNullOrEmpty(sut.Value));
         }
+
+        [Theory, AutoData]
+        public void GetNameReturnsNameAsExpected(NameValueParameterViewModel sut)
+        {
+            Assert.Equal(sut.Name, sut.GetName());
+        }
     }
 }

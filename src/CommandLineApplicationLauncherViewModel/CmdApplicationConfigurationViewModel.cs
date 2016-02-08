@@ -81,6 +81,14 @@ namespace CommandLineApplicationLauncherViewModel
         {
             if (applicationConfiguration == null)
                 throw new ArgumentNullException(nameof(applicationConfiguration));
+            this.ApplicationName = applicationConfiguration.ApplicationName;
+            this.FriendlyName = (string)applicationConfiguration.Name;
+
+            foreach(var property in this.Properties)
+            {
+                var propertyValue = applicationConfiguration.Parameters.FirstOrDefault(a => a.Name == property.GetName());
+                property.WithParameter(propertyValue);
+            }
         }
 
         private void OnSaveExecuted()

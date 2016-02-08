@@ -33,7 +33,13 @@ namespace CommandLineApplicationLauncherViewModel
             this.Factory = factory;
             ApplicationConfigurations = reader
                 .Query(SsmsCmdApplication.Application)
-                .Select(a => factory.Create(a, SsmsCmdApplication.Application)).ToObservableCollection();
+                .Select(a =>
+                {
+                    var vm = factory.Create(SsmsCmdApplication.Application);
+                    vm.PopulateFromCmdApplicationConfiguration(a);
+                    return vm;
+                })
+                .ToObservableCollection();
             this.SelectedConfiguration = ApplicationConfigurations.FirstOrDefault();
             MessengerInstance.Register<AddCmdApplicationConfigurationEvent>(this, this.OnAddCmdApplicationConfigurationEvent);
         }

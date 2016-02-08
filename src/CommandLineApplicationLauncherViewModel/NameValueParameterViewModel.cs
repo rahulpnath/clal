@@ -49,5 +49,10 @@ namespace CommandLineApplicationLauncherViewModel
                 ? parameterAsNameValue.Value 
                 : string.Empty;
         }
+
+        public override Name GetName()
+        {
+            return this.Name;
+        }
     }
 }
