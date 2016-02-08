@@ -73,6 +73,16 @@ namespace CommandLineApplicationLauncherViewModel
             return Maybe.ToMaybe(applicationConfiguration);
         }
 
+        public void Handle(ConfigurationSavedEvent command)
+        {
+        }
+
+        public void PopulateFromCmdApplicationConfiguration(CmdApplicationConfiguration applicationConfiguration)
+        {
+            if (applicationConfiguration == null)
+                throw new ArgumentNullException(nameof(applicationConfiguration));
+        }
+
         private void OnSaveExecuted()
         {
             var applicationConfiguration = this.GetCmdApplicationConfiguration();
@@ -94,10 +104,6 @@ namespace CommandLineApplicationLauncherViewModel
                 }
             }
             Process.Start(this.ApplicationName.ToString(), pa);
-        }
-
-        public void Handle(ConfigurationSavedEvent command)
-        {
         }
     }
 }

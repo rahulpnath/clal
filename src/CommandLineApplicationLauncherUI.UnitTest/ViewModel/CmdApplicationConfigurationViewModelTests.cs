@@ -111,5 +111,12 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             a.ApplicationConfiguration.Name == (Name)sut.FriendlyName &&
             a.ApplicationConfiguration.Parameters.Count == 1)), Times.Once());
         }
+
+
+        [Theory, AutoMoqData]
+        public void PopulateFromCmdConfigurationWithNullApplicationThrowsException(CmdApplicationConfigurationViewModel sut)
+        {
+            Assert.Throws<ArgumentNullException>(() => sut.PopulateFromCmdApplicationConfiguration(null));
+        }
     }
 }
