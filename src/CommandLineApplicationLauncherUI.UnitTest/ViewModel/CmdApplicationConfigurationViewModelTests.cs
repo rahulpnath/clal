@@ -5,10 +5,12 @@ using GalaSoft.MvvmLight;
 using Moq;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
+using Ploeh.AutoFixture.Kernel;
 using Ploeh.AutoFixture.Xunit2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Xunit;
 
 namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
@@ -41,7 +43,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             assertion.Verify(typeof(CmdApplicationConfigurationViewModel).GetConstructors());
         }
 
-        [Theory,AutoMoqData]
+        [Theory, AutoMoqData]
         public void GetCmdApplicationConfigurationReturnsEmptyIfFriendlyNameIsEmpty(CmdApplicationConfigurationViewModel sut)
         {
             sut.FriendlyName = string.Empty;
@@ -105,11 +107,11 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             sut.Properties.Add(vm);
 
             sut.Save.Execute(null);
-            
-            channel.Verify(m => m.Send(It.Is<SaveCmdApplicationConfigurationCommand>( a =>
-            a.ApplicationConfiguration.ApplicationName == sut.ApplicationName &&
-            a.ApplicationConfiguration.Name == (Name)sut.FriendlyName &&
-            a.ApplicationConfiguration.Parameters.Count == 1)), Times.Once());
+
+            channel.Verify(m => m.Send(It.Is<SaveCmdApplicationConfigurationCommand>(a =>
+           a.ApplicationConfiguration.ApplicationName == sut.ApplicationName &&
+           a.ApplicationConfiguration.Name == (Name)sut.FriendlyName &&
+           a.ApplicationConfiguration.Parameters.Count == 1)), Times.Once());
         }
 
         [Theory, AutoMoqData]
@@ -118,10 +120,59 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             Assert.Throws<ArgumentNullException>(() => sut.PopulateFromCmdApplicationConfiguration(null));
         }
 
-        [Theory, AutoMoqData]
-        public void PopulateFromCmdConfigurationWithDifferentApplicationDoesNothing(CmdApplicationConfigurationViewModel sut)
+        [Theory(Skip ="TODO"), AutoMoqData]
+        public void PopulateFromCmdConfigurationWithDifferentApplicationDoesNothing(
+            IFixture fixture,
+            Name applicationName,
+            List<NameOnlyParameterViewModel> properties)
         {
+            var sut = fixture.WithConstructorParameters(new Dictionary<string, object>()
+            {
+                {nameof(applicationName), applicationName},
+                {nameof(properties), properties.Cast<ParameterViewModel>().ToList() }
+            }).Create<CmdApplicationConfigurationViewModel>();
+        }
+    }
 
+    public static class FixtureExtensions
+    {
+        public static IFixture WithConstructorParameters(
+            this IFixture fixture,
+            Dictionary<string, object> parameterNameValues)
+        {
+            if (fixture == null)
+                throw new ArgumentNullException(nameof(fixture));
+
+            if (parameterNameValues == null || !parameterNameValues.Any())
+                return fixture;
+
+            fixture.Customizations.Add(new GenericSpecimenBuilder(parameterNameValues));
+            return fixture;
+        }
+    }
+    class GenericSpecimenBuilder : ISpecimenBuilder
+    {
+        public GenericSpecimenBuilder(Dictionary<string, object> ctorParameters)
+        {
+            this.CtorParameters = ctorParameters;
+        }
+
+        public Dictionary<string, object> CtorParameters { get; private set; }
+
+        public object Create(object request, ISpecimenContext context)
+        {
+            var requestAsParameterInfo = request as ParameterInfo;
+            if (requestAsParameterInfo == null)
+                return new NoSpecimen();
+
+            object value;
+            if (!this.CtorParameters.TryGetValue(requestAsParameterInfo.Name, out value))
+                return new NoSpecimen();
+
+            if (!requestAsParameterInfo.ParameterType.IsAssignableFrom(value.GetType()))
+                return new NoSpecimen();
+
+            return value;
         }
     }
 }

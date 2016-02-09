@@ -81,6 +81,7 @@ namespace CommandLineApplicationLauncherViewModel
         {
             if (applicationConfiguration == null)
                 throw new ArgumentNullException(nameof(applicationConfiguration));
+
             this.ApplicationName = applicationConfiguration.ApplicationName;
             this.FriendlyName = (string)applicationConfiguration.Name;
 
