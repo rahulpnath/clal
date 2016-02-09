@@ -14,11 +14,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" SharedSizeGroup="name" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        
         <Label Content="Application Name" Grid.Row="0" Grid.Column="0" />
         <Label Content="{Binding ApplicationName}" Grid.Row="0" Grid.Column="1" />
         <Label Content="Friendly Name" Grid.Row="1" Grid.Column="0" />
@@ -57,7 +59,11 @@
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
-        <Button Content="Save" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="3" Command="{Binding Save}" />
-        <Button Content="Launch" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" Command="{Binding Launch}" />
+
+        <Label Content="Parse From string" Grid.Row="3" Grid.Column="0" />
+        <TextBox Text="{Binding ParseString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" />
+        
+        <Button Content="Save" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="4" Command="{Binding Save}" />
+        <Button Content="Launch" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="4" Command="{Binding Launch}" />
     </Grid>
 </UserControl>

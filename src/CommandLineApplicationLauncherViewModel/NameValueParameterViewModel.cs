@@ -48,6 +48,7 @@ namespace CommandLineApplicationLauncherViewModel
             this.Value = parameterAsNameValue != null && parameterAsNameValue.Name == this.Name 
                 ? parameterAsNameValue.Value 
                 : string.Empty;
+            this.RaisePropertyChanged(nameof(Value));
         }
 
         public override Name GetName()

@@ -10,13 +10,20 @@ namespace CommandLineApplicationLauncherViewModel
     public class CmdApplicationConfigurationViewModelFactory : ICmdApplicationConfigurationViewModelFactory
     {
         public IChannel<SaveCmdApplicationConfigurationCommand> Channel { get; private set; }
+        public IEnumerable<CmdApplicationConfigurationParser<string>> StringParsers { get; private set; }
 
-        public CmdApplicationConfigurationViewModelFactory(IChannel<SaveCmdApplicationConfigurationCommand> channel)
+        public CmdApplicationConfigurationViewModelFactory(
+            IChannel<SaveCmdApplicationConfigurationCommand> channel,
+            IEnumerable<CmdApplicationConfigurationParser<string>> stringParsers)
         {
             if (channel == null)
                 throw new ArgumentNullException(nameof(channel));
 
+            if (stringParsers == null)
+                throw new ArgumentNullException(nameof(stringParsers));
+
             this.Channel = channel;
+            this.StringParsers = stringParsers;
         }
 
         public CmdApplicationConfigurationViewModel Create(CmdApplicationMeta meta)
@@ -44,7 +51,7 @@ namespace CommandLineApplicationLauncherViewModel
                 properties.Add(viewModel);
             }
 
-            return new CmdApplicationConfigurationViewModel(meta.ApplicationName, properties, Channel);
+            return new CmdApplicationConfigurationViewModel(meta.ApplicationName, properties, Channel, StringParsers);
         }
 
         public CmdApplicationConfigurationViewModel Create(
@@ -83,7 +90,8 @@ namespace CommandLineApplicationLauncherViewModel
             var returnValue = new CmdApplicationConfigurationViewModel(
                 applicationConfiguration.ApplicationName,
                 properties,
-                Channel);
+                Channel,
+                StringParsers);
             returnValue.FriendlyName = (string)applicationConfiguration.Name;
             return returnValue;
         }

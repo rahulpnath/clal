@@ -12,6 +12,7 @@ namespace CommandLineApplicationLauncherViewModel
     public class CmdApplicationConfigurationViewModel : ViewModelBase, IEventHandler<ConfigurationSavedEvent>
     {
         private string friendlyName;
+        private string parseString;
 
         public Name ApplicationName { get; private set; }
         public string FriendlyName
@@ -26,15 +27,36 @@ namespace CommandLineApplicationLauncherViewModel
                 RaisePropertyChanged(nameof(FriendlyName));
             }
         }
+
+        public string ParseString
+        {
+            get
+            {
+                return this.parseString;
+            }
+            set
+            {
+                this.parseString = value;
+                foreach (var parser in StringParsers)
+                {
+                    var v = parser.Parse(value, SsmsCmdApplication.Application);
+                    if (v.Any())
+                        this.PopulateFromCmdApplicationConfiguration(v.Single());
+                }
+            }
+        }
+
         public List<ParameterViewModel> Properties { get; private set; }
         public System.Windows.Input.ICommand Save { get; private set; }
         public System.Windows.Input.ICommand Launch { get; private set; }
         public IChannel<SaveCmdApplicationConfigurationCommand> Channel { get; private set; }
+        public IEnumerable<CmdApplicationConfigurationParser<string>> StringParsers { get; private set; }
 
         public CmdApplicationConfigurationViewModel(
             Name applicationName,
             List<ParameterViewModel> properties,
-            IChannel<SaveCmdApplicationConfigurationCommand> channel)
+            IChannel<SaveCmdApplicationConfigurationCommand> channel,
+            IEnumerable<CmdApplicationConfigurationParser<string>> stringParsers)
         {
             if (applicationName == null)
                 throw new ArgumentNullException(nameof(applicationName));
@@ -45,9 +67,14 @@ namespace CommandLineApplicationLauncherViewModel
             if (channel == null)
                 throw new ArgumentNullException(nameof(channel));
 
+
+            if (stringParsers == null)
+                throw new ArgumentNullException(nameof(stringParsers));
+
             this.ApplicationName = applicationName;
             this.Properties = properties;
             this.Channel = channel;
+            this.StringParsers = stringParsers;
             this.Save = new RelayCommand(this.OnSaveExecuted);
             this.Launch = new RelayCommand(this.OnLaunchExecuted);
             DomainEvents.Subscribe(this);
@@ -83,9 +110,11 @@ namespace CommandLineApplicationLauncherViewModel
                 throw new ArgumentNullException(nameof(applicationConfiguration));
 
             this.ApplicationName = applicationConfiguration.ApplicationName;
-            this.FriendlyName = (string)applicationConfiguration.Name;
 
-            foreach(var property in this.Properties)
+            if (string.IsNullOrEmpty(this.FriendlyName))
+                this.FriendlyName = (string)applicationConfiguration.Name;
+
+            foreach (var property in this.Properties)
             {
                 var propertyValue = applicationConfiguration.Parameters.FirstOrDefault(a => a.Name == property.GetName());
                 property.WithParameter(propertyValue);
@@ -105,11 +134,11 @@ namespace CommandLineApplicationLauncherViewModel
         private void OnLaunchExecuted()
         {
             var pa = string.Empty;
-            foreach(var p in this.Properties)
+            foreach (var p in this.Properties)
             {
-                if(p.GetParameter().Any())
+                if (p.GetParameter().Any())
                 {
-                    pa = pa+ " "+ p.GetParameter().First().GetValue();
+                    pa = pa + " " + p.GetParameter().First().GetValue();
                 }
             }
             Process.Start(this.ApplicationName.ToString(), pa);
