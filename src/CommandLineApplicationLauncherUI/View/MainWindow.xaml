@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:view="clr-namespace:CommandLineApplicationLauncherUI.View"
         mc:Ignorable="d"
+         WindowState="Maximized"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="Command Line Application Launcher" Height="350" Width="525">
     <Grid>
