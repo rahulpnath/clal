@@ -41,6 +41,7 @@
         <view:CmdApplicationConfigurationView
             Grid.Column ="1"
             Grid.Row="1"
-            DataContext="{Binding SelectedItem, ElementName=ApplicationConfigurationList}" />
+            Visibility="{Binding }"
+            DataContext="{Binding SelectedItem, ElementName=ApplicationConfigurationList, TargetNullValue=Collapsed}" />
     </Grid>
 </Window>
