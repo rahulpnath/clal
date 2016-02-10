@@ -23,6 +23,7 @@ namespace CommandLineApplicationLauncherModel
                 DomainEvents.Publish(new CmdApplicationConfigurationSaveRejected());
 
             this.Repository.CreateNewConfiguration(command.ApplicationConfiguration);
+            DomainEvents.Publish(new ConfigurationSavedEvent(Guid.NewGuid(), command.MessageId));
         }
     }
 }

@@ -9,10 +9,14 @@ using System.Linq;
 
 namespace CommandLineApplicationLauncherViewModel
 {
-    public class CmdApplicationConfigurationViewModel : ViewModelBase, IEventHandler<ConfigurationSavedEvent>
+    public class CmdApplicationConfigurationViewModel :
+        ViewModelBase, 
+        IEventHandler<ConfigurationSavedEvent>,
+        IEventHandler<CmdApplicationConfigurationSaveRejected>
     {
         private string friendlyName;
         private string parseString;
+        private string error;
 
         public Name ApplicationName { get; private set; }
         public string FriendlyName
@@ -51,6 +55,18 @@ namespace CommandLineApplicationLauncherViewModel
         public System.Windows.Input.ICommand Launch { get; private set; }
         public IChannel<SaveCmdApplicationConfigurationCommand> Channel { get; private set; }
         public IEnumerable<CmdApplicationConfigurationParser<string>> StringParsers { get; private set; }
+        public string Error
+        {
+            get
+            {
+                return this.error;
+            }
+            private set
+            {
+                this.error = value;
+                this.RaisePropertyChanged(nameof(Error));
+            }
+        }
 
         public CmdApplicationConfigurationViewModel(
             Name applicationName,
@@ -77,11 +93,13 @@ namespace CommandLineApplicationLauncherViewModel
             this.StringParsers = stringParsers;
             this.Save = new RelayCommand(this.OnSaveExecuted);
             this.Launch = new RelayCommand(this.OnLaunchExecuted);
-            DomainEvents.Subscribe(this);
+            DomainEvents.Subscribe<ConfigurationSavedEvent>(this);
+            DomainEvents.Subscribe<CmdApplicationConfigurationSaveRejected>(this);
         }
 
         public Maybe<CmdApplicationConfiguration> GetCmdApplicationConfiguration()
         {
+            this.Error = null;
             if (string.IsNullOrEmpty(this.FriendlyName))
                 return Maybe.Empty<CmdApplicationConfiguration>();
 
@@ -102,6 +120,12 @@ namespace CommandLineApplicationLauncherViewModel
 
         public void Handle(ConfigurationSavedEvent command)
         {
+            this.Error = "Saved Successfull";
+        }
+
+        public void Handle(CmdApplicationConfigurationSaveRejected eventData)
+        {
+            this.Error = "Configuration friendly name already exists";
         }
 
         public void PopulateFromCmdApplicationConfiguration(CmdApplicationConfiguration applicationConfiguration)
@@ -129,6 +153,8 @@ namespace CommandLineApplicationLauncherViewModel
                     new SaveCmdApplicationConfigurationCommand(
                         Guid.NewGuid(),
                         applicationConfiguration.Single()));
+            else
+                this.Error = "Friendly Name and atleast one property should have a value";
         }
 
         private void OnLaunchExecuted()
