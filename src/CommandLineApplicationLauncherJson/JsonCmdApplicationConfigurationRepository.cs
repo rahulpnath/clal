@@ -1,9 +1,7 @@
 ﻿using CommandLineApplicationLauncherModel;
 using CommandLineApplicationLauncherPersistenceModel;
-using CommandLineApplicationLauncherViewModel;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace CommandLineApplicationLauncherJson
