@@ -7,7 +7,7 @@ init:
 - ps: >-
     "git has tag updated" + $env:APPVEYOR_REPO_TAG
 
-    "git tag name" + $env:$APPVEYOR_REPO_TAG_NAME
+    "git tag name" + $env:APPVEYOR_REPO_TAG_NAME
 
 
     if($env:APPVEYOR_REPO_TAG -eq 'true'){
