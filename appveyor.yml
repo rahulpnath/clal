@@ -6,14 +6,11 @@ branches:
 init:
 - cmd: >-
     echo git has tag: %APPVEYOR_REPO_TAG%
-
     echo git tag number: %APPVEYOR_REPO_TAG_NAME%
-
     if /I %APPVEYOR_REPO_TAG%=="true" (
-
     appveyor UpdateBuild -Version "APPVEYOR_REPO_TAG_NAME"
-
     )
+    echo upated
 build:
   verbosity: minimal
 test:
