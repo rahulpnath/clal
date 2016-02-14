@@ -1,19 +1,18 @@
-version: 0.0.{build}
+version: 1.0.{build}
 branches:
   only:
   - master
-  - testBuild
 init:
-- cmd: >-
-    echo git has tag: %APPVEYOR_REPO_TAG%
+- ps: >-
+    "git has tag updated" + "$APPVEYOR_REPO_TAG"
 
-    echo git tag number: %APPVEYOR_REPO_TAG_NAME%
+    "git tag name" + "$APPVEYOR_REPO_TAG_NAME"
 
-    if /I "%APPVEYOR_REPO_TAG%"=="true" (
 
-    appveyor UpdateBuild -Version "APPVEYOR_REPO_TAG_NAME"
-
-    )
+    if($APPVEYOR_REPO_TAG){
+    	"Update Version Number"
+    	Update-AppveyorBuild -Version "$APPVEYOR_REPO_TAG_NAME"
+    }
 build:
   verbosity: minimal
 test:
