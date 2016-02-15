@@ -1,3 +1,4 @@
+version: 0.1.0
 test:
   assemblies: '**\*.*Test.dll'
 before_build:
