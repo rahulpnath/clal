@@ -3,3 +3,4 @@ test:
   assemblies: '**\*.*Test.dll'
 before_build:
   - nuget restore src\CommandLineApplicationLauncher.sln
+  - ps: "$mypwd = ConvertTo-SecureString -String \"/(Z&rbrFG){p/6W@8xZvg\" -Force –AsPlainText\nImport-PfxCertificate –FilePath C:\\projects\\clal\\src\\CommandLineApplicationLauncherUI\\ cert:\\localMachine\\my -Password $mypwd"
