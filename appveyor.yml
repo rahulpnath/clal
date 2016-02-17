@@ -6,4 +6,4 @@ before_build:
   - ps: "$mypwd = ConvertTo-SecureString -String \"/(Z&rbrFG){p/6W@8xZvg\" -Force –AsPlainText\nImport-PfxCertificate –FilePath C:\\projects\\clal\\src\\CommandLineApplicationLauncherUI\\CommandLineApplicationLauncherUI_TemporaryKey.pfx cert:\\currentuser\\my -Password $mypwd"
 artifacts:
   - path: '**\app.publish\*.*'
-  - name: latestBuild
+    name: latestBuild
