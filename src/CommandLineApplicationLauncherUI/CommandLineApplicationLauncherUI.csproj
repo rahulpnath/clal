@@ -65,7 +65,7 @@
     <ManifestCertificateThumbprint>8E9A42A83D240750EA375213187435534366C074</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>CommandLineApplicationLauncherUI_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>CommandLineApplicationLauncherUI_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
