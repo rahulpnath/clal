@@ -4,6 +4,5 @@ test:
 before_build:
   - nuget restore src\CommandLineApplicationLauncher.sln
   - ps: "$mypwd = ConvertTo-SecureString -String \"/(Z&rbrFG){p/6W@8xZvg\" -Force –AsPlainText\nImport-PfxCertificate –FilePath C:\\projects\\clal\\src\\CommandLineApplicationLauncherUI\\CommandLineApplicationLauncherUI_TemporaryKey.pfx cert:\\currentuser\\my -Password $mypwd"
-artifacts:
-  - path: '**\app.publish\**\*.*'
-    name: latestBuild
+after_build:
+  - ps: $root = Resolve-Path .\src\CommandLineApplicationLauncherUI\bin\Debug\app.publish; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName latestBuild }
