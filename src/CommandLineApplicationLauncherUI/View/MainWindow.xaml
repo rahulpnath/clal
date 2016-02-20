@@ -14,6 +14,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -38,12 +39,17 @@
             SelectedItem="{Binding SelectedConfiguration, Mode=TwoWay}"
             DataContext="{Binding CmdApplicationConfigurationListViewModel, Source={StaticResource Locator}}"
             ItemsSource="{Binding ApplicationConfigurations}"
-            BorderThickness="{DynamicResource ApplicationConfigurationList}" 
+            BorderThickness="0"
             Margin="{DynamicResource LeftMargin}" 
             ItemTemplate="{DynamicResource ApplicationConfiguraiton}" />
 
+        <Rectangle 
+            Grid.Column="1" 
+            Grid.Row="1" 
+            HorizontalAlignment="Left" 
+            Width="2" Fill="DarkGray"/>
         <view:CmdApplicationConfigurationView
-            Grid.Column ="1"
+            Grid.Column ="2"
             Grid.Row="1"
             Visibility="{Binding }"
             DataContext="{Binding SelectedItem, ElementName=ApplicationConfigurationList, TargetNullValue=Collapsed}" 
