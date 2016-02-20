@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:CommandLineApplicationLauncherUI" xmlns:System="clr-namespace:System;assembly=mscorlib">
+                    xmlns:local="clr-namespace:CommandLineApplicationLauncherUI"
+                     xmlns:vm="clr-namespace:CommandLineApplicationLauncherViewModel;assembly=CommandLineApplicationLauncherViewModel"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
     <Thickness x:Key="ApplicationConfigurationList">0,0,4,0</Thickness>
     <Thickness x:Key="LeftMargin">5,0</Thickness>
     <System:Double x:Key="ClalFontSize">16</System:Double>
@@ -15,8 +17,40 @@
         <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
     </Style>
 
+    <Style x:Key="StretchContent" TargetType="ListBoxItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+
     <Style x:Key="DisplayNameText" TargetType="{x:Type Label}">
         <Setter Property="FontStyle" Value="Italic" />
         <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
     </Style>
+
+    <DataTemplate DataType="{x:Type vm:NameValueParameterViewModel}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="name" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" >
+                <Label Content="{Binding Name}" Style="{DynamicResource HeaderText}" />
+                <Label Content="{Binding DisplayName}" Style="{DynamicResource DisplayNameText}" />
+            </StackPanel>
+            <TextBox Grid.Column="2" Text="{Binding Value, Mode=TwoWay}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:NameOnlyParameterViewModel}">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="name" Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" >
+                <Label Content="{Binding Name}" Style="{DynamicResource HeaderText}" />
+                <Label Content="{Binding DisplayName}"  Style="{DynamicResource DisplayNameText}" />
+            </StackPanel>
+            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" />
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

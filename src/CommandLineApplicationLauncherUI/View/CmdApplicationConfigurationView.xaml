@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CommandLineApplicationLauncherUI.View"
-             xmlns:vm="clr-namespace:CommandLineApplicationLauncherViewModel;assembly=CommandLineApplicationLauncherViewModel"
+            
              mc:Ignorable="d" 
              Grid.IsSharedSizeScope="True"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -26,43 +26,12 @@
         <Label Content="{Binding ApplicationName}" Grid.Row="0" Grid.Column="1" Style="{DynamicResource HeaderText}" />
         <Label Content="Friendly Name" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}" />
         <TextBox Text="{Binding FriendlyName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" />
-        <ListBox ItemsSource="{Binding Properties}" Grid.Row="2" Grid.ColumnSpan="2">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.Resources>
-                <DataTemplate DataType="{x:Type vm:NameValueParameterViewModel}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="name" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" Orientation="Horizontal" >
-                            <Label Content="{Binding Name}" Style="{DynamicResource HeaderText}" />
-                            <Label Content="{Binding DisplayName}" Style="{DynamicResource DisplayNameText}" />
-                        </StackPanel>
-                        <TextBox Grid.Column="2" Text="{Binding Value, Mode=TwoWay}" />
-                    </Grid>
-                </DataTemplate>
-
-                <DataTemplate DataType="{x:Type vm:NameOnlyParameterViewModel}">
-                    <Grid >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition SharedSizeGroup="name" Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" Orientation="Horizontal" >
-                            <Label Content="{Binding Name}" Style="{DynamicResource HeaderText}" />
-                            <Label Content="{Binding DisplayName}"  Style="{DynamicResource DisplayNameText}" />
-                        </StackPanel>
-                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" />
-                    </Grid>
-                </DataTemplate>
-            </ListBox.Resources>
-        </ListBox>
-
+        <ListBox 
+            BorderThickness="0"
+            ItemsSource="{Binding Properties}" 
+            Grid.Row="2" 
+            Grid.ColumnSpan="2" 
+            ItemContainerStyle="{DynamicResource StretchContent}" />
         <Label Content="Parse From string" Grid.Row="3" Grid.Column="0" Style="{DynamicResource HeaderText}" />
         <TextBox Text="{Binding ParseString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" />
         <TextBlock Foreground="Red" Text="{Binding Error}" Grid.Row="4" Grid.ColumnSpan="2" />
