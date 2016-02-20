@@ -1,11 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:CommandLineApplicationLauncherUI">
+                    xmlns:local="clr-namespace:CommandLineApplicationLauncherUI" xmlns:System="clr-namespace:System;assembly=mscorlib">
     <Thickness x:Key="ApplicationConfigurationList">0,0,4,0</Thickness>
     <Thickness x:Key="LeftMargin">5,0</Thickness>
+    <System:Double x:Key="ClalFontSize">16</System:Double>
+    
     <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
         <Setter Property="Padding" Value="5" />
     </Style>
+    
+    <Style x:Key="HeaderText" TargetType="{x:Type Label}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
+    </Style>
 
+    <Style x:Key="DisplayNameText" TargetType="{x:Type Label}">
+        <Setter Property="FontStyle" Value="Italic" />
+        <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
+    </Style>
 </ResourceDictionary>

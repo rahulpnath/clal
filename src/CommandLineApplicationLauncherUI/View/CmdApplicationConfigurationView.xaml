@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              Grid.IsSharedSizeScope="True"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
@@ -21,10 +21,10 @@
             <ColumnDefinition Width="Auto" SharedSizeGroup="name" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <Label Content="Application Name" Grid.Row="0" Grid.Column="0" />
-        <Label Content="{Binding ApplicationName}" Grid.Row="0" Grid.Column="1" />
-        <Label Content="Friendly Name" Grid.Row="1" Grid.Column="0" />
+
+        <Label Content="Application Name" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}" />
+        <Label Content="{Binding ApplicationName}" Grid.Row="0" Grid.Column="1" Style="{DynamicResource HeaderText}" />
+        <Label Content="Friendly Name" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}" />
         <TextBox Text="{Binding FriendlyName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" />
         <ListBox ItemsSource="{Binding Properties}" Grid.Row="2" Grid.ColumnSpan="2">
             <ListBox.ItemContainerStyle>
@@ -37,11 +37,12 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="name" />
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="displayname" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0"  Content="{Binding Name}" />
-                        <Label Content="{Binding DisplayName}" Grid.Column="1" />
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" >
+                            <Label Content="{Binding Name}" Style="{DynamicResource HeaderText}" />
+                            <Label Content="{Binding DisplayName}" Style="{DynamicResource DisplayNameText}" />
+                        </StackPanel>
                         <TextBox Grid.Column="2" Text="{Binding Value, Mode=TwoWay}" />
                     </Grid>
                 </DataTemplate>
@@ -50,18 +51,19 @@
                     <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition SharedSizeGroup="name" Width="Auto" />
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="displayname" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="{Binding Name}" Grid.Column="0" />
-                        <Label Content="{Binding DisplayName}" Grid.Column="1" />
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" >
+                            <Label Content="{Binding Name}" Style="{DynamicResource HeaderText}" />
+                            <Label Content="{Binding DisplayName}"  Style="{DynamicResource DisplayNameText}" />
+                        </StackPanel>
                         <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" />
                     </Grid>
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
 
-        <Label Content="Parse From string" Grid.Row="3" Grid.Column="0" />
+        <Label Content="Parse From string" Grid.Row="3" Grid.Column="0" Style="{DynamicResource HeaderText}" />
         <TextBox Text="{Binding ParseString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" />
         <TextBlock Foreground="Red" Text="{Binding Error}" Grid.Row="4" Grid.ColumnSpan="2" />
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" >
