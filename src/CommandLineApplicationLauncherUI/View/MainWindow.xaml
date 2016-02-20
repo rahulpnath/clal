@@ -26,7 +26,7 @@
                     Source="/CommandLineApplicationLauncherUI;component/Resources/Icons/add-icon.png" />
             </Button>
         </StackPanel>
-        
+
         <ListBox 
             x:Name="ApplicationConfigurationList"
             Grid.Row="1"
@@ -34,10 +34,10 @@
             SelectedItem="{Binding SelectedConfiguration, Mode=TwoWay}"
             DataContext="{Binding CmdApplicationConfigurationListViewModel, Source={StaticResource Locator}}"
             ItemsSource="{Binding ApplicationConfigurations}"
-            DisplayMemberPath="FriendlyName" 
             BorderThickness="{DynamicResource ApplicationConfigurationList}" 
-            Margin="{DynamicResource LeftMargin}" />
-        
+            Margin="{DynamicResource LeftMargin}" 
+            ItemTemplate="{DynamicResource ApplicationConfiguraiton}" />
+
         <view:CmdApplicationConfigurationView
             Grid.Column ="1"
             Grid.Row="1"
