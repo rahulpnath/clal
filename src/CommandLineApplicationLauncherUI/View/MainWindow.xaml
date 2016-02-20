@@ -26,6 +26,7 @@
                     Source="/CommandLineApplicationLauncherUI;component/Resources/Icons/add-icon.png" />
             </Button>
         </StackPanel>
+        
         <ListBox 
             x:Name="ApplicationConfigurationList"
             Grid.Row="1"
@@ -36,6 +37,7 @@
             DisplayMemberPath="FriendlyName" 
             BorderThickness="{DynamicResource ApplicationConfigurationList}" 
             Margin="{DynamicResource LeftMargin}" />
+        
         <view:CmdApplicationConfigurationView
             Grid.Column ="1"
             Grid.Row="1"
