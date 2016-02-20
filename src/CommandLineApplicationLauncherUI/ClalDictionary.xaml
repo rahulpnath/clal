@@ -6,6 +6,7 @@
     <Thickness x:Key="ApplicationConfigurationList">0,0,4,0</Thickness>
     <Thickness x:Key="LeftMargin">5,0</Thickness>
     <System:Double x:Key="ClalFontSize">16</System:Double>
+    <System:Double x:Key="ClalLargeFontSize">20</System:Double>
     
     <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
@@ -15,6 +16,10 @@
     <Style x:Key="HeaderText" TargetType="{x:Type Label}">
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
+    </Style>
+
+    <Style x:Key="OrText" TargetType="{x:Type Label}" BasedOn="{StaticResource HeaderText}">
+        <Setter Property="FontSize" Value="{StaticResource ClalLargeFontSize}" />
     </Style>
 
     <Style x:Key="StretchContent" TargetType="ListBoxItem">
