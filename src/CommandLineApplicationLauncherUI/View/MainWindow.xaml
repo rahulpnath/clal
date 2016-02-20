@@ -8,6 +8,9 @@
          WindowState="Maximized"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="Command Line Application Launcher" Height="350" Width="525">
+    <Window.InputBindings>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding AddCommand}" />
+    </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -19,6 +22,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
             <Button
+                ToolTip="Add Configuration (Ctrl + A)"
                 Command="{Binding AddCommand}"
                 HorizontalAlignment="Left">
                 <Image
