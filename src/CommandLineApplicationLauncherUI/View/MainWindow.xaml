@@ -10,8 +10,8 @@
         Title="Command Line Application Launcher" Height="350" Width="525">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -26,11 +26,6 @@
                     Source="/CommandLineApplicationLauncherUI;component/Resources/Icons/add-icon.png" />
             </Button>
         </StackPanel>
-        <!--<view:CmdApplicationConfigurationListView
-            x:Name="ApplicationConfigurationList"
-            DataContext="{Binding CmdApplicationConfigurationListViewModel, Source={StaticResource Locator}}"
-            Grid.Row="1"
-            Grid.Column ="0"/>-->
         <ListBox 
             x:Name="ApplicationConfigurationList"
             Grid.Row="1"
@@ -38,11 +33,14 @@
             SelectedItem="{Binding SelectedConfiguration, Mode=TwoWay}"
             DataContext="{Binding CmdApplicationConfigurationListViewModel, Source={StaticResource Locator}}"
             ItemsSource="{Binding ApplicationConfigurations}"
-            DisplayMemberPath="FriendlyName" />
+            DisplayMemberPath="FriendlyName" 
+            BorderThickness="{DynamicResource ApplicationConfigurationList}" 
+            Margin="{DynamicResource LeftMargin}" />
         <view:CmdApplicationConfigurationView
             Grid.Column ="1"
             Grid.Row="1"
             Visibility="{Binding }"
-            DataContext="{Binding SelectedItem, ElementName=ApplicationConfigurationList, TargetNullValue=Collapsed}" />
+            DataContext="{Binding SelectedItem, ElementName=ApplicationConfigurationList, TargetNullValue=Collapsed}" 
+            Margin="{DynamicResource LeftMargin}" />
     </Grid>
 </Window>
