@@ -20,12 +20,12 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+        <StackPanel Margin="5"  Grid.Row="0" Grid.ColumnSpan="2">
             <Button
                 ToolTip="Add Configuration (Ctrl + A)"
                 Command="{Binding AddCommand}"
                 HorizontalAlignment="Left">
-                <Image
+                <Image 
                     Height="25"
                     Source="/CommandLineApplicationLauncherUI;component/Resources/Icons/add-icon.png" />
             </Button>
