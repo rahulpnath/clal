@@ -65,8 +65,8 @@
         <TextBox Text="{Binding ParseString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" />
         <TextBlock Foreground="Red" Text="{Binding Error}" Grid.Row="4" Grid.ColumnSpan="2" />
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" >
-            <Button Content="Save" Command="{Binding Save}" />
-            <Button Content="Launch" Command="{Binding Launch}" />
+            <Button Content="Save" Command="{Binding Save}" Style="{DynamicResource ButtonStyle}"  />
+            <Button Content="Launch" Command="{Binding Launch}" Style="{DynamicResource ButtonStyle}" Margin="{DynamicResource LeftMargin}" />
         </StackPanel>
     </Grid>
 </UserControl>
