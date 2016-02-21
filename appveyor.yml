@@ -15,3 +15,19 @@ deploy:
     secure: YOmcTqGUyjYpJOKAnOAfO30hb59cCBTy+Otlj+qrcAo=
   folder: /site/wwwroot/clal
   artifact: latestBuild
+  
+branches:
+  only: 
+     - master
+  configuration: Release
+  after_build:
+  - ps: $root = Resolve-Path .\src\CommandLineApplicationLauncherUI\bin\Debug\app.publish; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName Release }
+deploy:
+  provider: FTP
+  protocol: ftps
+  host: waws-prod-sg1-003.ftp.azurewebsites.windows.net
+  username: rahulpnath\rahulpnath
+  password:
+    secure: YOmcTqGUyjYpJOKAnOAfO30hb59cCBTy+Otlj+qrcAo=
+  folder: /site/wwwroot/clal/Release/
+  artifact: Release
