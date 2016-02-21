@@ -1,17 +1,41 @@
-version: 0.1.0.{build}
-test:
-  assemblies: '**\*.*Test.dll'
-before_build:
-  - nuget restore src\CommandLineApplicationLauncher.sln
-  - ps: "$mypwd = ConvertTo-SecureString -String \"/(Z&rbrFG){p/6W@8xZvg\" -Force –AsPlainText\nImport-PfxCertificate –FilePath C:\\projects\\clal\\src\\CommandLineApplicationLauncherUI\\CommandLineApplicationLauncherUI_TemporaryKey.pfx cert:\\currentuser\\my -Password $mypwd"
-after_build:
-  - ps: $root = Resolve-Path .\src\CommandLineApplicationLauncherUI\bin\Debug\app.publish; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName latestBuild }
-deploy:
-  provider: FTP
-  protocol: ftps
-  host: waws-prod-sg1-003.ftp.azurewebsites.windows.net
-  username: rahulpnath\rahulpnath
-  password:
-    secure: YOmcTqGUyjYpJOKAnOAfO30hb59cCBTy+Otlj+qrcAo=
-  folder: /site/wwwroot/clal
-  artifact: latestBuild
+-
+  branches:
+    only:
+      - master
+  version: 0.1.0.{build}
+  test:
+    assemblies: '**\*.*Test.dll'
+  configuration: Release
+  before_build:
+    - nuget restore src\CommandLineApplicationLauncher.sln
+    - ps: "$mypwd = ConvertTo-SecureString -String \"/(Z&rbrFG){p/6W@8xZvg\" -Force –AsPlainText\nImport-PfxCertificate –FilePath C:\\projects\\clal\\src\\CommandLineApplicationLauncherUI\\CommandLineApplicationLauncherUI_TemporaryKey.pfx cert:\\currentuser\\my -Password $mypwd"
+  after_build:
+    - ps: $root = Resolve-Path .\src\CommandLineApplicationLauncherUI\bin\Debug\app.publish; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName releaseBuild }
+  deploy:
+    provider: FTP
+    protocol: ftps
+    host: waws-prod-sg1-003.ftp.azurewebsites.windows.net
+    username: rahulpnath\rahulpnath
+    password:
+      secure: YOmcTqGUyjYpJOKAnOAfO30hb59cCBTy+Otlj+qrcAo=
+    folder: /site/wwwroot/clal/Releases
+    artifact: releaseBuild
+-
+  version: 0.1.0.{build}
+  test:
+    assemblies: '**\*.*Test.dll'
+  configuration: Debug
+  before_build:
+    - nuget restore src\CommandLineApplicationLauncher.sln
+    - ps: "$mypwd = ConvertTo-SecureString -String \"/(Z&rbrFG){p/6W@8xZvg\" -Force –AsPlainText\nImport-PfxCertificate –FilePath C:\\projects\\clal\\src\\CommandLineApplicationLauncherUI\\CommandLineApplicationLauncherUI_TemporaryKey.pfx cert:\\currentuser\\my -Password $mypwd"
+  after_build:
+    - ps: $root = Resolve-Path .\src\CommandLineApplicationLauncherUI\bin\Debug\app.publish; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName latestBuild }
+  deploy:
+    provider: FTP
+    protocol: ftps
+    host: waws-prod-sg1-003.ftp.azurewebsites.windows.net
+    username: rahulpnath\rahulpnath
+    password:
+      secure: YOmcTqGUyjYpJOKAnOAfO30hb59cCBTy+Otlj+qrcAo=
+    folder: /site/wwwroot/clal
+    artifact: latestBuild
