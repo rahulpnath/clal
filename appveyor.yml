@@ -18,10 +18,10 @@ deploy:
   
 branches:
   only: 
-     - master
+    - master
   configuration: Release
   after_build:
-  - ps: $root = Resolve-Path .\src\CommandLineApplicationLauncherUI\bin\Debug\app.publish; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName Release }
+    - ps: $root = Resolve-Path .\src\CommandLineApplicationLauncherUI\bin\Debug\app.publish; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName Release }
   deploy:
     provider: FTP
     protocol: ftps
