@@ -15,17 +15,3 @@ deploy:
     secure: YOmcTqGUyjYpJOKAnOAfO30hb59cCBTy+Otlj+qrcAo=
   folder: /site/wwwroot/clal
   artifact: latestBuild
-  
-branches:
-  only: 
-    - master
-  configuration: Release
-  deploy:
-    provider: FTP
-    protocol: ftps
-    host: waws-prod-sg1-003.ftp.azurewebsites.windows.net
-    username: rahulpnath\rahulpnath
-    password:
-        secure: YOmcTqGUyjYpJOKAnOAfO30hb59cCBTy+Otlj+qrcAo=
-    folder: /site/wwwroot/clal/Release/
-    artifact: latestBuild
