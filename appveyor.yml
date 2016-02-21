@@ -2,7 +2,9 @@
   branches:
     only:
       - master
-  version: 0.1.0.{build}
+  environment:
+    ApplicationVersion: 0.1.0
+  version: 0.1.0
   test:
     assemblies: '**\*.*Test.dll'
   configuration: Release
@@ -21,6 +23,8 @@
     folder: /site/wwwroot/clal/Releases
     artifact: releaseBuild
 -
+  environment:
+    ApplicationVersion: 0.1.0.{build}
   version: 0.1.0.{build}
   test:
     assemblies: '**\*.*Test.dll'
