@@ -32,7 +32,7 @@
         <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
     </Style>
     <DataTemplate x:Key="ApplicationConfiguraiton" DataType="{x:Type vm:CmdApplicationConfigurationViewModel}">
-        <Label Content="{Binding FriendlyName}" Style="{DynamicResource HeaderText}" />
+        <Label Content="{Binding FriendlyName, TargetNullValue=' '}" Style="{DynamicResource HeaderText}" />
     </DataTemplate>
     
     <DataTemplate DataType="{x:Type vm:NameValueParameterViewModel}">
