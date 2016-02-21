@@ -25,11 +25,9 @@
             <Button
                 ToolTip="Add Configuration (Ctrl + A)"
                 Command="{Binding AddCommand}"
-                HorizontalAlignment="Left">
-                <Image 
-                    Height="25"
-                    Source="/CommandLineApplicationLauncherUI;component/Resources/Icons/add-icon.png" />
-            </Button>
+                HorizontalAlignment="Left" 
+                Style="{DynamicResource ButtonStyle}" 
+                Content="Add Configuration"/>
         </StackPanel>
 
         <ListBox 
