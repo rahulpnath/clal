@@ -38,7 +38,16 @@ namespace CommandLineApplicationLauncherJson
             {
                 using (var jsonReader = new JsonTextReader(new StreamReader(stream)))
                 {
-                    var applicationConfiguration = serializer.Deserialize<CmdApplicationConfiguration>(jsonReader);
+                    CmdApplicationConfiguration applicationConfiguration;
+                    try
+                    {
+                        applicationConfiguration = serializer.Deserialize<CmdApplicationConfiguration>(jsonReader);
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+
                     yield return applicationConfiguration;
                 }
             }
