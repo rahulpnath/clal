@@ -26,6 +26,9 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://www.rahulpnath.com/clal/</UpdateUrl>
+    <SupportUrl>https://github.com/rahulpnath/clal</SupportUrl>
+    <ErrorReportUrl>https://github.com/rahulpnath/clal</ErrorReportUrl>
+    <ProductName>CLAL</ProductName>
     <PublisherName>Rahul P Nath</PublisherName>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
