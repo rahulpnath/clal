@@ -23,11 +23,14 @@ namespace CommandLineApplicationLauncherViewModel
         public CmdApplicationConfigurationViewModel CmdApplicationConfigurationViewModel { get; private set; }
         public System.Windows.Input.ICommand AddCommand { get; private set; }
 
+        public CmdApplicationConfigurationListViewModel CmdApplicationConfigurationListViewModel { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(ICmdApplicationConfigurationViewModelFactory factory)
+        public MainViewModel(ICmdApplicationConfigurationViewModelFactory factory, CmdApplicationConfigurationListViewModel cmdApplicationConfigurationListViewModel)
         {
+            this.CmdApplicationConfigurationListViewModel = cmdApplicationConfigurationListViewModel;
             this.CmdApplicationConfigurationViewModel = factory.Create(SsmsCmdApplication.Application);
             this.AddCommand = new RelayCommand(this.OnAddExecuted);
         }

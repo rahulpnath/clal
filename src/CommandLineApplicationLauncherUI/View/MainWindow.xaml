@@ -34,8 +34,8 @@
             x:Name="ApplicationConfigurationList"
             Grid.Row="1"
             Grid.Column ="0"
-            SelectedItem="{Binding SelectedConfiguration, Mode=TwoWay}"
-            DataContext="{Binding CmdApplicationConfigurationListViewModel, Source={StaticResource Locator}}"
+            SelectedItem="{Binding CmdApplicationConfigurationListViewModel.SelectedConfiguration, Mode=TwoWay}"
+            DataContext="{Binding CmdApplicationConfigurationListViewModel}"
             ItemsSource="{Binding ApplicationConfigurations}"
             BorderThickness="0"
             Margin="{DynamicResource LeftMargin}" 
@@ -49,7 +49,6 @@
         <view:CmdApplicationConfigurationView
             Grid.Column ="2"
             Grid.Row="1"
-            Visibility="{Binding }"
             DataContext="{Binding SelectedItem, ElementName=ApplicationConfigurationList, TargetNullValue=Collapsed}" 
             Margin="{DynamicResource LeftMargin}" />
     </Grid>
