@@ -18,6 +18,12 @@
         <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
     </Style>
 
+    <Style x:Key="ErrorText" TargetType="{x:Type Label}">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
+        <Setter Property="Foreground" Value="Red" />
+    </Style>
+
     <Style x:Key="OrText" TargetType="{x:Type Label}" BasedOn="{StaticResource HeaderText}">
         <Setter Property="FontSize" Value="{StaticResource ClalLargeFontSize}" />
     </Style>
