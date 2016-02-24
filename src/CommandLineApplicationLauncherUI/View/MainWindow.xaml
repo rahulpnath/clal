@@ -34,7 +34,7 @@
             x:Name="ApplicationConfigurationList"
             Grid.Row="1"
             Grid.Column ="0"
-            SelectedItem="{Binding CmdApplicationConfigurationListViewModel.SelectedConfiguration, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedConfiguration, Mode=TwoWay}"
             DataContext="{Binding CmdApplicationConfigurationListViewModel}"
             ItemsSource="{Binding ApplicationConfigurations}"
             BorderThickness="0"
