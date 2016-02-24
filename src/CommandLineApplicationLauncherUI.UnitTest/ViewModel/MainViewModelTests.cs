@@ -9,15 +9,6 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
     public class MainViewModelTests
     {
         [Theory, AutoMoqData]
-        public void MainViewModelSetToSsmsApplicationByDefault(IFixture fixture)
-        {
-            MainViewModel sut =  CreateMainViewModel(fixture);
-            Assert.Equal(
-                SsmsCmdApplication.Application.ApplicationName,
-                sut.CmdApplicationConfigurationViewModel.ApplicationName);
-        }
-
-        [Theory, AutoMoqData]
         public void SutHasAddCommandInitialized(IFixture fixture)
         {
             MainViewModel sut = CreateMainViewModel(fixture);

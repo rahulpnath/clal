@@ -6,7 +6,6 @@ namespace CommandLineApplicationLauncherViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public CmdApplicationConfigurationViewModel CmdApplicationConfigurationViewModel { get; private set; }
         public System.Windows.Input.ICommand AddCommand { get; private set; }
 
         public CmdApplicationConfigurationListViewModel CmdApplicationConfigurationListViewModel { get; private set; }
