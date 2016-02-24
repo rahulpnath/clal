@@ -10,7 +10,15 @@ namespace CommandLineApplicationLauncherFilePersistence
     public class CmdApplicationConfigurationStore : IStoreWriter<CmdApplicationConfiguration>, IStoreReader<CmdApplicationConfiguration>
     {
         private const string fileExtension  = "json";
-        private const string rootDirectory = "configs";
+        private readonly string rootDirectory;
+
+        public CmdApplicationConfigurationStore()
+        {
+            this.rootDirectory = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "clal",
+                "configs");
+        }
 
         public bool CheckIfFileExists(CmdApplicationConfiguration item)
         {

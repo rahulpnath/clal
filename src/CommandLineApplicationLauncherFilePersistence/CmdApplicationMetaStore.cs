@@ -12,8 +12,15 @@ namespace CommandLineApplicationLauncherFilePersistence
     public class CmdApplicationMetaStore : IStoreReader<CmdApplicationMeta>
     {
         private const string fileExtension = "json";
-        private const string rootDirectory = "configs";
+        private readonly string rootDirectory;
 
+        public CmdApplicationMetaStore()
+        {
+            this.rootDirectory = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "clal",
+                "configs");
+        }
         public bool CheckIfFileExists(CmdApplicationMeta item)
         {
             throw new NotImplementedException();
