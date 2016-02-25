@@ -21,7 +21,7 @@
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />
     </Style>
-
+    
     <Style x:Key="ErrorText" TargetType="{x:Type Label}">
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="{StaticResource ClalFontSize}" />

@@ -26,7 +26,15 @@
         <Label Content="Application Name" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}" />
         <Label Content="{Binding ApplicationName}" Grid.Row="0" Grid.Column="1" Style="{DynamicResource HeaderText}" />
         <Label Content="Friendly Name" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}" />
-        <TextBox Text="{Binding FriendlyName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" />
+        <TextBox 
+            Text="{Binding FriendlyName, Mode=TwoWay}" 
+            Grid.Row="1" Grid.Column="1"
+            Visibility="{Binding IsConfigurationSaved, Mode=OneWay, Converter={StaticResource boolToVisibility}, ConverterParameter='!'}"/>
+        <Label 
+            Content="{Binding FriendlyName, Mode=TwoWay}" 
+            Style="{DynamicResource HeaderText}"  
+            Visibility="{Binding IsConfigurationSaved, Mode=OneWay, Converter={StaticResource boolToVisibility}}"
+            Grid.Row="1" Grid.Column="1" />
         <ListBox 
             BorderThickness="0"
             ItemsSource="{Binding Properties}" 

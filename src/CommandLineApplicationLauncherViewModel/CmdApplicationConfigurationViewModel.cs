@@ -10,7 +10,7 @@ using System.Linq;
 namespace CommandLineApplicationLauncherViewModel
 {
     public class CmdApplicationConfigurationViewModel :
-        ViewModelBase, 
+        ViewModelBase,
         IEventHandler<ConfigurationSavedEvent>,
         IEventHandler<CmdApplicationConfigurationSaveRejected>
     {
@@ -31,6 +31,8 @@ namespace CommandLineApplicationLauncherViewModel
                 RaisePropertyChanged(nameof(FriendlyName));
             }
         }
+
+        public bool IsConfigurationSaved { get; private set; }
 
         public string ParseString
         {
@@ -121,6 +123,7 @@ namespace CommandLineApplicationLauncherViewModel
         public void Handle(ConfigurationSavedEvent command)
         {
             this.Error = "Saved Successfull";
+            this.IsConfigurationSaved = true;
         }
 
         public void Handle(CmdApplicationConfigurationSaveRejected eventData)
@@ -143,6 +146,8 @@ namespace CommandLineApplicationLauncherViewModel
                 var propertyValue = applicationConfiguration.Parameters.FirstOrDefault(a => a.Name == property.GetName());
                 property.WithParameter(propertyValue);
             }
+
+            this.IsConfigurationSaved = true;
         }
 
         private void OnSaveExecuted()

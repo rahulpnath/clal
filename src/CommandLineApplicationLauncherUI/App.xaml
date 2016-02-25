@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="ClalDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:NullToVisibilityConverter x:Key="nullToVisibility" />
+            <local:BoolToVisibilityConverter x:Key="boolToVisibility" />
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:CommandLineApplicationLauncherUI.ViewModel" />
     </ResourceDictionary>
   </Application.Resources>
