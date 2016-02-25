@@ -2,7 +2,7 @@
   branches:
     only:
       - master
-  version: 0.2.0
+  version: 0.2.0.0
   test:
     assemblies: '**\*.*Test.dll'
   configuration: Release
