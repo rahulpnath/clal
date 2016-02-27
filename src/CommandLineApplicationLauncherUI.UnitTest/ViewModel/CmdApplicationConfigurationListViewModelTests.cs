@@ -1,16 +1,9 @@
 ﻿using CommandLineApplicationLauncherModel;
-using CommandLineApplicationLauncherUI.ViewModel;
 using CommandLineApplicationLauncherViewModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Moq;
-using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Xunit2;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
@@ -36,17 +29,18 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             Assert.Equal(expected, sut.SelectedConfiguration);
         }
 
-        [Theory(Skip = "Need to inject Messenger"), AutoMoqData]
+        [Theory, AutoMoqData]
         public void SutSubscribesToAddCmdApplicationConfigurationEvent(
             Name aName,
             IChannel<SaveCmdApplicationConfigurationCommand> channel,
             CmdApplicationConfigurationViewModel vm,
             [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
+            [Frozen]Messenger messenger,
             CmdApplicationConfigurationListViewModel sut)
         {
-             SetUpFactoryToReturnANewInstance(vm, mockFactory);
+            SetUpFactoryToReturnANewInstance(vm, mockFactory);
             var expected = sut.ApplicationConfigurations.Count + 1;
-            Messenger.Default.Send(new AddCmdApplicationConfigurationEvent());
+            messenger.Send(new AddCmdApplicationConfigurationEvent());
             Assert.Equal(expected, sut.ApplicationConfigurations.Count);
         }
 

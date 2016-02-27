@@ -1,5 +1,6 @@
 ﻿using CommandLineApplicationLauncherModel;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -25,12 +26,16 @@ namespace CommandLineApplicationLauncherViewModel
             }
         }
 
+        public IMessenger Messenger { get; private set; }
+
         public CmdApplicationConfigurationListViewModel(
             IReader<CmdApplicationMeta, IEnumerable<CmdApplicationConfiguration>> reader,
-            ICmdApplicationConfigurationViewModelFactory factory)
+            ICmdApplicationConfigurationViewModelFactory factory,
+            Messenger messenger)
         {
             this.Reader = reader;
             this.Factory = factory;
+            this.Messenger = messenger;
             ApplicationConfigurations = reader
                 .Query(SsmsCmdApplication.Application)
                 .Select(a =>
@@ -41,7 +46,7 @@ namespace CommandLineApplicationLauncherViewModel
                 })
                 .ToObservableCollection();
             this.SelectedConfiguration = ApplicationConfigurations.FirstOrDefault();
-            MessengerInstance.Register<AddCmdApplicationConfigurationEvent>(this, this.OnAddCmdApplicationConfigurationEvent);
+            this.Messenger.Register<AddCmdApplicationConfigurationEvent>(this, this.OnAddCmdApplicationConfigurationEvent);
         }
 
         public void OnAddCmdApplicationConfigurationEvent(AddCmdApplicationConfigurationEvent obj)
