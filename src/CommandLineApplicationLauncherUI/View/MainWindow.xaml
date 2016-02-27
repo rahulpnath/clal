@@ -21,13 +21,19 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Margin="5"  Grid.Row="0" Grid.ColumnSpan="2">
+        <StackPanel Margin="5"  Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
             <Button
                 ToolTip="Add Configuration (Ctrl + A)"
                 Command="{Binding AddCommand}"
                 HorizontalAlignment="Left" 
                 Style="{DynamicResource ButtonStyle}" 
                 Content="Add Configuration"/>
+            <Button
+                ToolTip="Delete Configuration (Ctrl + D)"
+                Command="{Binding DeleteCommand}"
+                HorizontalAlignment="Left" 
+                Style="{DynamicResource ButtonStyleMiddle}" 
+                Content="Delete Configuration"/>
         </StackPanel>
 
         <ListBox 

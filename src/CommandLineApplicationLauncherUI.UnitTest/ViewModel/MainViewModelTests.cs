@@ -15,6 +15,13 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             Assert.NotNull(sut.AddCommand);
         }
 
+        [Theory, AutoMoqData]
+        public void SutHasDeleteCommandInitialized(IFixture fixture)
+        {
+            MainViewModel sut = CreateMainViewModel(fixture);
+            Assert.NotNull(sut.DeleteCommand);
+        }
+
         [Theory(Skip ="Failing when run together. need to investigate"), AutoMoqData]
         public void AddCommandRaisesAddNewCmdApplicationConfigurationEvent(IFixture fixture)
         {
@@ -33,7 +40,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         {
             var channel = fixture.Create<IChannel<SaveCmdApplicationConfigurationCommand>>();
             fixture.Register<ICmdApplicationConfigurationViewModelFactory>(() => fixture.Create<CmdApplicationConfigurationViewModelFactory>());
-            return fixture.Create<MainViewModel>();
+            return fixture.Build<MainViewModel>().OmitAutoProperties().Create();
         }
     }
 }
