@@ -17,6 +17,7 @@ using CommandLineApplicationLauncherJson;
 using CommandLineApplicationLauncherModel;
 using CommandLineApplicationLauncherViewModel;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,7 +47,7 @@ namespace CommandLineApplicationLauncherUI.ViewModel
                     allAssemblies.Add(Assembly.LoadFile(dll));
             }
             allAssemblies.Add(Assembly.GetExecutingAssembly());
-
+            containerBuilder.RegisterInstance(Messenger.Default);
             containerBuilder
                 .RegisterAssemblyTypes(allAssemblies.ToArray())
                 .Where(a => a.Name.EndsWith("Repository"))

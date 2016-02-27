@@ -22,24 +22,43 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             Assert.NotNull(sut.DeleteCommand);
         }
 
-        [Theory(Skip ="Failing when run together. need to investigate"), AutoMoqData]
+        [Theory, AutoMoqData]
         public void AddCommandRaisesAddNewCmdApplicationConfigurationEvent(IFixture fixture)
         {
-            // TODO: Better way to test these. there is still likelyhood of these failing
-            Messenger.Reset();
-            Messenger.Default.Register(this, (AddCmdApplicationConfigurationEvent message) =>
+            var messenger = new Messenger();
+            var isInvoked = false;
+            messenger.Register(this, (AddCmdApplicationConfigurationEvent message) =>
             {
+                isInvoked = true;
                 Assert.Equal(new AddCmdApplicationConfigurationEvent(), message);
             });
 
-            var sut = CreateMainViewModel(fixture);
+            var sut = CreateMainViewModel(fixture, messenger);
             sut.AddCommand.Execute(new object());
+            Assert.True(isInvoked);
         }
 
-        private MainViewModel CreateMainViewModel(IFixture fixture)
+        [Theory, AutoMoqData]
+        public void DeleteCommandRaisesAddNewCmdApplicationConfigurationEvent(IFixture fixture)
+        {
+            var messenger = new Messenger();
+            var isInvoked = false;
+            messenger.Register(this, (DeleteCmdApplicationConfigurationEvent message) =>
+            {
+                isInvoked = true;
+                Assert.Equal(new DeleteCmdApplicationConfigurationEvent(), message);
+            });
+
+            var sut = CreateMainViewModel(fixture, messenger);
+            sut.DeleteCommand.Execute(new object());
+            Assert.True(isInvoked);
+        }
+
+        private MainViewModel CreateMainViewModel(IFixture fixture, IMessenger messenger = null)
         {
             var channel = fixture.Create<IChannel<SaveCmdApplicationConfigurationCommand>>();
             fixture.Register<ICmdApplicationConfigurationViewModelFactory>(() => fixture.Create<CmdApplicationConfigurationViewModelFactory>());
+            fixture.Inject(messenger ?? new Messenger());
             return fixture.Build<MainViewModel>().OmitAutoProperties().Create();
         }
     }

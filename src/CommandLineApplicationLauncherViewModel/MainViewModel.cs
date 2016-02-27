@@ -2,7 +2,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System.Windows.Input;
-using System;
 
 namespace CommandLineApplicationLauncherViewModel
 {
@@ -13,24 +12,27 @@ namespace CommandLineApplicationLauncherViewModel
         public ICommand DeleteCommand { get; set; }
 
         public CmdApplicationConfigurationListViewModel CmdApplicationConfigurationListViewModel { get; private set; }
+        public IMessenger Messenger { get; private set; }
 
         public MainViewModel(
             ICmdApplicationConfigurationViewModelFactory factory, 
-            CmdApplicationConfigurationListViewModel cmdApplicationConfigurationListViewModel)
+            CmdApplicationConfigurationListViewModel cmdApplicationConfigurationListViewModel,
+            IMessenger messenger)
         {
             this.CmdApplicationConfigurationListViewModel = cmdApplicationConfigurationListViewModel;
             this.AddCommand = new RelayCommand(this.OnAddExecuted);
             this.DeleteCommand = new RelayCommand(this.OnDeleteExecuted);
+            this.Messenger = messenger;
         }
 
         private void OnDeleteExecuted()
         {
-            throw new NotImplementedException();
+            this.Messenger.Send(new DeleteCmdApplicationConfigurationEvent());
         }
 
         private void OnAddExecuted()
         {
-            Messenger.Default.Send(new AddCmdApplicationConfigurationEvent());
+            this.Messenger.Send(new AddCmdApplicationConfigurationEvent());
         }
     }
 }

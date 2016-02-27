@@ -1,10 +1,10 @@
 ﻿namespace CommandLineApplicationLauncherViewModel
 {
-    public class AddCmdApplicationConfigurationEvent 
+    public class DeleteCmdApplicationConfigurationEvent
     {
-       public override bool Equals(object obj)
+        public override bool Equals(object obj)
         {
-            var objAsAddCmdApplicationConfiugrationEvent = obj as AddCmdApplicationConfigurationEvent;
+            var objAsAddCmdApplicationConfiugrationEvent = obj as DeleteCmdApplicationConfigurationEvent;
             if (objAsAddCmdApplicationConfiugrationEvent == null)
                 return false;
 
