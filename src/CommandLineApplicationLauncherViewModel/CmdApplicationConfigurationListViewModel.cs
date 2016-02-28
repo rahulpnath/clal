@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System;
 
 namespace CommandLineApplicationLauncherViewModel
 {
@@ -47,6 +48,11 @@ namespace CommandLineApplicationLauncherViewModel
                 .ToObservableCollection();
             this.SelectedConfiguration = ApplicationConfigurations.FirstOrDefault();
             this.Messenger.Register<AddCmdApplicationConfigurationEvent>(this, this.OnAddCmdApplicationConfigurationEvent);
+        }
+
+        public void OnDeleteCmdApplicationConfigurationEvent(DeleteCmdApplicationConfigurationEvent eventMessage)
+        {
+            this.ApplicationConfigurations.Remove(this.SelectedConfiguration);
         }
 
         public void OnAddCmdApplicationConfigurationEvent(AddCmdApplicationConfigurationEvent obj)

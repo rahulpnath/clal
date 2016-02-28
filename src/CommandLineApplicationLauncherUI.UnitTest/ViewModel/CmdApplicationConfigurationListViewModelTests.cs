@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Moq;
 using Ploeh.AutoFixture.Xunit2;
+using System.Linq;
 using Xunit;
 
 namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
@@ -16,7 +17,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             Assert.IsAssignableFrom<ViewModelBase>(sut);
         }
 
-        [Theory,AutoMoqData]
+        [Theory, AutoMoqData]
         public void OnAddNewConfigurationSelectedItemIsSetToNewItem(
             [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
             IChannel<SaveCmdApplicationConfigurationCommand> channel,
@@ -27,6 +28,17 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             SetUpFactoryToReturnANewInstance(expected, mockFactory);
             sut.OnAddCmdApplicationConfigurationEvent(eventMessage);
             Assert.Equal(expected, sut.SelectedConfiguration);
+        }
+
+        [Theory, AutoMoqData]
+        public void OnDeleteCmdApplicationConfigurationCommandRemovesItem(
+            CmdApplicationConfigurationListViewModel sut,
+            DeleteCmdApplicationConfigurationEvent eventMessage)
+        {
+            var expected = sut.ApplicationConfigurations.Count - 1;
+            sut.SelectedConfiguration = sut.ApplicationConfigurations.First();
+            sut.OnDeleteCmdApplicationConfigurationEvent(eventMessage);
+            Assert.Equal(expected, sut.ApplicationConfigurations.Count);
         }
 
         [Theory, AutoMoqData]
