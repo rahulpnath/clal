@@ -29,6 +29,11 @@ namespace CommandLineApplicationLauncherFilePersistence
             return File.Exists(filePath);
         }
 
+        public void Delete(CmdApplicationConfiguration item)
+        {
+            throw new NotImplementedException();
+        }
+
         public Stream OpenStreamFor(CmdApplicationConfiguration item)
         {
             if (item == null)

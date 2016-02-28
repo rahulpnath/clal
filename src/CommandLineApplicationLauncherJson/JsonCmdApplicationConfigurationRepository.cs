@@ -48,5 +48,10 @@ namespace CommandLineApplicationLauncherJson
             using (var writer = new StreamWriter(stream))
                 this.serializer.Serialize(writer, applicationConfiguration);
         }
+
+        public void DeleteConfiguration(CmdApplicationConfiguration applicationConfiguration)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

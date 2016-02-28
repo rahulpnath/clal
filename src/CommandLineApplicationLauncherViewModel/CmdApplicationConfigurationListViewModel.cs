@@ -52,6 +52,7 @@ namespace CommandLineApplicationLauncherViewModel
 
         public void OnDeleteCmdApplicationConfigurationEvent(DeleteCmdApplicationConfigurationEvent eventMessage)
         {
+            this.selectedConfiguration.
             this.ApplicationConfigurations.Remove(this.SelectedConfiguration);
         }
 
