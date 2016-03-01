@@ -2,18 +2,18 @@
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class ConfigurationSavedEvent : IEvent
+    public class ConfigurationDeletedEvent : IEvent
     {
         public Guid MessageId { get; private set; }
 
         public Guid CorrelationId { get; private set; }
 
-        public ConfigurationSavedEvent(Guid commandId)
+        public ConfigurationDeletedEvent(Guid commandId)
             : this(Guid.NewGuid(), commandId)
         {
         }
 
-        public ConfigurationSavedEvent(Guid messageId, Guid commandId)
+        public ConfigurationDeletedEvent(Guid messageId, Guid commandId)
         {
             this.MessageId = messageId;
             this.CorrelationId = commandId;

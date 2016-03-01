@@ -45,6 +45,7 @@
     <Compile Include="CmdApplicationConfigurationSaveRejected.cs" />
     <Compile Include="CmdApplicationConfigurationService.cs" />
     <Compile Include="CmdApplicationMeta.cs" />
+    <Compile Include="ConfigurationDeletedEvent.cs" />
     <Compile Include="ConfigurationSavedEvent.cs" />
     <Compile Include="DeleteCmdApplicationConfigurationCommand.cs" />
     <Compile Include="DomainEvents.cs" />

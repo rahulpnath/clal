@@ -3,10 +3,6 @@ using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Idioms;
 using Ploeh.AutoFixture.Xunit2;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace CommandLineApplicationLauncherModel.UnitTest
@@ -30,7 +26,8 @@ namespace CommandLineApplicationLauncherModel.UnitTest
         [Theory, AutoMoqData]
         public void ExecuteSaveCmdApplicationConfigurationCommandWithNullThrowsException(CmdApplicationConfigurationService sut)
         {
-            Assert.Throws<ArgumentNullException>(() => sut.Execute(null));
+            SaveCmdApplicationConfigurationCommand NullCommand = null;
+            Assert.Throws<ArgumentNullException>(() => sut.Execute(NullCommand));
         }
 
         [Theory, AutoMoqData]
@@ -46,6 +43,26 @@ namespace CommandLineApplicationLauncherModel.UnitTest
             DomainEvents.Subscribe(testHandler);
             sut.Execute(command);
             Assert.True(testHandler.EventHandlerInvoked);
+        }
+
+        [Theory, AutoMoqData]
+        public void ExecuteDeleteCmdApplicationConfigurationCommandWithNullThrowsException(
+            CmdApplicationConfigurationService sut)
+        {
+            DeleteCmdApplicationConfigurationCommand NullCommand = null;
+            Assert.Throws<ArgumentNullException>(() => sut.Execute(NullCommand));
+        }
+
+        [Theory, AutoMoqData]
+        public void ExecuteDeleteCmdApplicationConfigurationCommandWithNullThrowsException(
+            CmdApplicationConfigurationService sut,
+            TestDomainEventHandler<ConfigurationDeletedEvent> deleteHandler,
+            DeleteCmdApplicationConfigurationCommand command)
+        {
+            DomainEvents.Subscribe(deleteHandler);
+            sut.Execute(command);
+            Assert.True(deleteHandler.EventHandlerInvoked);
+
         }
     }
 }

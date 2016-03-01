@@ -2,7 +2,9 @@
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class CmdApplicationConfigurationService : ICommandHandler<SaveCmdApplicationConfigurationCommand>
+    public class CmdApplicationConfigurationService : 
+        ICommandHandler<SaveCmdApplicationConfigurationCommand>,
+        ICommandHandler<DeleteCmdApplicationConfigurationCommand>
     {
         public ICmdApplicationConfigurationRepository Repository { get; private set; }
 
@@ -24,6 +26,15 @@ namespace CommandLineApplicationLauncherModel
 
             this.Repository.CreateNewConfiguration(command.ApplicationConfiguration);
             DomainEvents.Publish(new ConfigurationSavedEvent(Guid.NewGuid(), command.MessageId));
+        }
+
+        public void Execute(DeleteCmdApplicationConfigurationCommand command)
+        {
+            if (command == null)
+                throw new ArgumentNullException(nameof(command));
+
+            this.Repository.DeleteConfiguration(command.ApplicationConfiguration);
+            DomainEvents.Publish(new ConfigurationDeletedEvent(command.MessageId));
         }
     }
 }

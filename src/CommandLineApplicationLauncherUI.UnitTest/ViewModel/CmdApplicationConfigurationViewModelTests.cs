@@ -1,5 +1,4 @@
 ﻿using CommandLineApplicationLauncherModel;
-using CommandLineApplicationLauncherUI.ViewModel;
 using CommandLineApplicationLauncherViewModel;
 using GalaSoft.MvvmLight;
 using Moq;
