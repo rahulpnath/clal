@@ -51,7 +51,10 @@ namespace CommandLineApplicationLauncherJson
 
         public void DeleteConfiguration(CmdApplicationConfiguration applicationConfiguration)
         {
-            throw new NotImplementedException();
+            if (applicationConfiguration == null)
+                throw new ArgumentNullException(nameof(applicationConfiguration));
+
+            this.FileStoreWriter.Delete(applicationConfiguration);
         }
     }
 }

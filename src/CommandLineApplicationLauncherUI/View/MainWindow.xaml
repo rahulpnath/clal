@@ -10,6 +10,7 @@
         Title="Command Line Application Launcher" Height="350" Width="525">
     <Window.InputBindings>
         <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding AddCommand}" />
+        <KeyBinding Key="D" Modifiers="Ctrl" Command="{Binding DeleteCommand}" />
     </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>

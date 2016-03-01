@@ -2,7 +2,7 @@
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class DeleteCmdApplicationConfigurationCommand : IMessage
+    public class DeleteCmdApplicationConfigurationCommand : ICommand
     {
         public Guid MessageId { get; private set; }
 

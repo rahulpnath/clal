@@ -67,7 +67,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             IChannel<SaveCmdApplicationConfigurationCommand> channel,
             CmdApplicationConfigurationViewModel vm,
             [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
-            [Frozen]Messenger messenger,
+            [Frozen]IMessenger messenger,
             CmdApplicationConfigurationListViewModel sut)
         {
             SetUpFactoryToReturnANewInstance(vm, mockFactory);

@@ -34,7 +34,7 @@ namespace CommandLineApplicationLauncherViewModel
             IReader<CmdApplicationMeta, IEnumerable<CmdApplicationConfiguration>> reader,
             ICmdApplicationConfigurationViewModelFactory factory,
             IChannel<DeleteCmdApplicationConfigurationCommand> deleteChannel,
-            Messenger messenger)
+            IMessenger messenger)
         {
             this.Reader = reader;
             this.Factory = factory;
@@ -51,6 +51,7 @@ namespace CommandLineApplicationLauncherViewModel
                 .ToObservableCollection();
             this.SelectedConfiguration = ApplicationConfigurations.FirstOrDefault();
             this.Messenger.Register<AddCmdApplicationConfigurationEvent>(this, this.OnAddCmdApplicationConfigurationEvent);
+            this.Messenger.Register<DeleteCmdApplicationConfigurationEvent>(this, this.OnDeleteCmdApplicationConfigurationEvent);
         }
 
         public void OnDeleteCmdApplicationConfigurationEvent(DeleteCmdApplicationConfigurationEvent eventMessage)
