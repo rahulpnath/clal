@@ -36,22 +36,29 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             DeleteCmdApplicationConfigurationEvent eventMessage)
         {
             var expected = sut.ApplicationConfigurations.Count - 1;
-            sut.SelectedConfiguration = sut.ApplicationConfigurations.First();
+            SetupItemToDeleteOn(sut);
             sut.OnDeleteCmdApplicationConfigurationEvent(eventMessage);
             Assert.Equal(expected, sut.ApplicationConfigurations.Count);
         }
 
         [Theory, AutoMoqData]
-        public void OnDeleteCmdApplicationConfigurationEventRemovesFileFromRepository(
-            [Frozen]Mock<ICmdApplicationConfigurationRepository> repositoryMock,
+        public void OnDeleteCmdApplicationConfigurationEventRaisesCommandDeleteItem(
+            [Frozen]Mock<IChannel<DeleteCmdApplicationConfigurationCommand>> channel,
             CmdApplicationConfigurationListViewModel sut,
             DeleteCmdApplicationConfigurationEvent eventMessage)
         {
+            SetupItemToDeleteOn(sut);
+
             sut.OnDeleteCmdApplicationConfigurationEvent(eventMessage);
+            channel.Verify(a => a.Send(It.IsAny<DeleteCmdApplicationConfigurationCommand>()), Times.Once());
+        }
+
+        private static void SetupItemToDeleteOn(CmdApplicationConfigurationListViewModel sut)
+        {
             sut.SelectedConfiguration = sut.ApplicationConfigurations.First();
-            repositoryMock.Verify(
-                a => a.DeleteConfiguration(sut.SelectedConfiguration.GetCmdApplicationConfiguration().First()),
-                Times.Once());
+            var vm = new NameOnlyParameterViewModel((Name)"testParameter");
+            vm.IsSelected = true;
+            sut.SelectedConfiguration.Properties.Add(vm);
         }
 
         [Theory, AutoMoqData]

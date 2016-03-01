@@ -2,13 +2,13 @@
 
 namespace CommandLineApplicationLauncherModel
 {
-    public class SaveCmdApplicationConfigurationCommand : ICommand
+    public class DeleteCmdApplicationConfigurationCommand : IMessage
     {
         public Guid MessageId { get; private set; }
 
         public CmdApplicationConfiguration ApplicationConfiguration { get; private set; }
 
-        public SaveCmdApplicationConfigurationCommand(Guid messageId, CmdApplicationConfiguration applicationConfiguration)
+        public DeleteCmdApplicationConfigurationCommand(Guid messageId, CmdApplicationConfiguration applicationConfiguration)
         {
             if (messageId == null || messageId == Guid.Empty)
                 throw new ArgumentNullException(nameof(messageId));

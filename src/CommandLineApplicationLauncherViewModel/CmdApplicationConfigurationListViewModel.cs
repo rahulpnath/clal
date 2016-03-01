@@ -1,10 +1,10 @@
 ﻿using CommandLineApplicationLauncherModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System;
 
 namespace CommandLineApplicationLauncherViewModel
 {
@@ -28,15 +28,18 @@ namespace CommandLineApplicationLauncherViewModel
         }
 
         public IMessenger Messenger { get; private set; }
+        public IChannel<DeleteCmdApplicationConfigurationCommand> DeleteChannel { get; private set; }
 
         public CmdApplicationConfigurationListViewModel(
             IReader<CmdApplicationMeta, IEnumerable<CmdApplicationConfiguration>> reader,
             ICmdApplicationConfigurationViewModelFactory factory,
+            IChannel<DeleteCmdApplicationConfigurationCommand> deleteChannel,
             Messenger messenger)
         {
             this.Reader = reader;
             this.Factory = factory;
             this.Messenger = messenger;
+            this.DeleteChannel = deleteChannel;
             ApplicationConfigurations = reader
                 .Query(SsmsCmdApplication.Application)
                 .Select(a =>
@@ -52,7 +55,9 @@ namespace CommandLineApplicationLauncherViewModel
 
         public void OnDeleteCmdApplicationConfigurationEvent(DeleteCmdApplicationConfigurationEvent eventMessage)
         {
-            this.selectedConfiguration.
+            this.DeleteChannel.Send(
+                new DeleteCmdApplicationConfigurationCommand(Guid.NewGuid(), 
+                this.SelectedConfiguration.GetCmdApplicationConfiguration().First()));
             this.ApplicationConfigurations.Remove(this.SelectedConfiguration);
         }
 

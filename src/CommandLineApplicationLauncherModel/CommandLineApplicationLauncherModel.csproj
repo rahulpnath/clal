@@ -46,6 +46,7 @@
     <Compile Include="CmdApplicationConfigurationService.cs" />
     <Compile Include="CmdApplicationMeta.cs" />
     <Compile Include="ConfigurationSavedEvent.cs" />
+    <Compile Include="DeleteCmdApplicationConfigurationCommand.cs" />
     <Compile Include="DomainEvents.cs" />
     <Compile Include="IChannel.cs" />
     <Compile Include="ICmdApplicationConfigurationRepository.cs" />

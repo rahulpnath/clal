@@ -120,7 +120,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             Assert.Throws<ArgumentNullException>(() => sut.PopulateFromCmdApplicationConfiguration(null));
         }
 
-        [Theory(Skip ="TODO"), AutoMoqData]
+        [Theory(Skip = "TODO"), AutoMoqData]
         public void PopulateFromCmdConfigurationWithDifferentApplicationDoesNothing(
             IFixture fixture,
             Name applicationName,
@@ -150,7 +150,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             return fixture;
         }
     }
-    class GenericSpecimenBuilder : ISpecimenBuilder
+    public class GenericSpecimenBuilder : ISpecimenBuilder
     {
         public GenericSpecimenBuilder(Dictionary<string, object> ctorParameters)
         {
