@@ -3,6 +3,7 @@ using CommandLineApplicationLauncherViewModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Moq;
+using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Xunit2;
 using System.Linq;
 using Xunit;
@@ -33,11 +34,11 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         [Theory, AutoMoqData]
         public void OnDeleteCmdApplicationConfigurationEventRemovesItem(
             CmdApplicationConfigurationListViewModel sut,
-            DeleteCmdApplicationConfigurationEvent eventMessage)
+            ConfigurationDeletedEvent eventMessage)
         {
             var expected = sut.ApplicationConfigurations.Count - 1;
             SetupItemToDeleteOn(sut);
-            sut.OnDeleteCmdApplicationConfigurationEvent(eventMessage);
+            sut.Handle(eventMessage);
             Assert.Equal(expected, sut.ApplicationConfigurations.Count);
         }
 
@@ -67,9 +68,11 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             IChannel<SaveCmdApplicationConfigurationCommand> channel,
             CmdApplicationConfigurationViewModel vm,
             [Frozen]Mock<ICmdApplicationConfigurationViewModelFactory> mockFactory,
-            [Frozen]IMessenger messenger,
-            CmdApplicationConfigurationListViewModel sut)
+            Messenger messenger,
+            IFixture fixture)
         {
+            fixture.Inject<IMessenger>(messenger);
+            var sut = fixture.Create<CmdApplicationConfigurationListViewModel>();
             SetUpFactoryToReturnANewInstance(vm, mockFactory);
             var expected = sut.ApplicationConfigurations.Count + 1;
             messenger.Send(new AddCmdApplicationConfigurationEvent());

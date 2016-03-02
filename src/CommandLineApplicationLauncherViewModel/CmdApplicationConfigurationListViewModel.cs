@@ -8,7 +8,9 @@ using System.Linq;
 
 namespace CommandLineApplicationLauncherViewModel
 {
-    public class CmdApplicationConfigurationListViewModel : ViewModelBase
+    public class CmdApplicationConfigurationListViewModel :
+        ViewModelBase,
+        IEventHandler<ConfigurationDeletedEvent>
     {
         private CmdApplicationConfigurationViewModel selectedConfiguration;
         public ObservableCollection<CmdApplicationConfigurationViewModel> ApplicationConfigurations { get; set; }
@@ -49,6 +51,7 @@ namespace CommandLineApplicationLauncherViewModel
                     return vm;
                 })
                 .ToObservableCollection();
+            DomainEvents.Subscribe(this);
             this.SelectedConfiguration = ApplicationConfigurations.FirstOrDefault();
             this.Messenger.Register<AddCmdApplicationConfigurationEvent>(this, this.OnAddCmdApplicationConfigurationEvent);
             this.Messenger.Register<DeleteCmdApplicationConfigurationEvent>(this, this.OnDeleteCmdApplicationConfigurationEvent);
@@ -56,10 +59,11 @@ namespace CommandLineApplicationLauncherViewModel
 
         public void OnDeleteCmdApplicationConfigurationEvent(DeleteCmdApplicationConfigurationEvent eventMessage)
         {
-            this.DeleteChannel.Send(
-                new DeleteCmdApplicationConfigurationCommand(Guid.NewGuid(), 
-                this.SelectedConfiguration.GetCmdApplicationConfiguration().First()));
-            this.ApplicationConfigurations.Remove(this.SelectedConfiguration);
+            var selectedConfiguration = this.SelectedConfiguration.GetCmdApplicationConfiguration();
+            if (selectedConfiguration.Any())
+                this.DeleteChannel.Send(
+                    new DeleteCmdApplicationConfigurationCommand(Guid.NewGuid(), selectedConfiguration.First()
+                    ));
         }
 
         public void OnAddCmdApplicationConfigurationEvent(AddCmdApplicationConfigurationEvent obj)
@@ -67,6 +71,11 @@ namespace CommandLineApplicationLauncherViewModel
             var newCmdApplicationEvent = Factory.Create(SsmsCmdApplication.Application);
             this.ApplicationConfigurations.Insert(0, newCmdApplicationEvent);
             this.SelectedConfiguration = newCmdApplicationEvent;
+        }
+
+        public void Handle(ConfigurationDeletedEvent eventData)
+        {
+            this.ApplicationConfigurations.Remove(this.SelectedConfiguration);
         }
     }
 }
