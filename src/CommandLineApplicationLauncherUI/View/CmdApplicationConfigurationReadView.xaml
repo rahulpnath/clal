@@ -1,12 +1,42 @@
-﻿<UserControl x:Class="CommandLineApplicationLauncherUI.View.CmdApplicationConfigurationView"
+﻿<UserControl x:Class="CommandLineApplicationLauncherUI.View.CmdApplicationConfigurationReadView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CommandLineApplicationLauncherUI.View"
+             xmlns:vm="clr-namespace:CommandLineApplicationLauncherViewModel;assembly=CommandLineApplicationLauncherViewModel"
              mc:Ignorable="d" 
              Grid.IsSharedSizeScope="True"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:NameValueParameterViewModel}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="name" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" >
+                    <Label Content="{Binding Name}" Style="{DynamicResource HeaderText}" />
+                    <Label Content="{Binding DisplayName}" Style="{DynamicResource DisplayNameText}" />
+                </StackPanel>
+                <Label Grid.Column="2" Content="{Binding Value, Mode=TwoWay}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:NameOnlyParameterViewModel}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="name" Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" >
+                    <Label Content="{Binding Name}" Style="{DynamicResource HeaderText}" />
+                    <Label Content="{Binding DisplayName}"  Style="{DynamicResource DisplayNameText}" />
+                </StackPanel>
+                <CheckBox IsEnabled="False" IsChecked="{Binding IsSelected, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,14 +55,9 @@
         <Label Content="Application Name" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderText}" />
         <Label Content="{Binding ApplicationName}" Grid.Row="0" Grid.Column="1" Style="{DynamicResource HeaderText}" />
         <Label Content="Friendly Name" Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderText}" />
-        <TextBox 
-            Text="{Binding FriendlyName, Mode=TwoWay}" 
-            Grid.Row="1" Grid.Column="1"
-            Visibility="{Binding IsConfigurationSaved, Mode=OneWay, Converter={StaticResource boolToVisibility}, ConverterParameter='!'}"/>
         <Label 
-            Content="{Binding FriendlyName, Mode=TwoWay}" 
+            Content="{Binding FriendlyName, Mode=OneWay}" 
             Style="{DynamicResource HeaderText}"  
-            Visibility="{Binding IsConfigurationSaved, Mode=OneWay, Converter={StaticResource boolToVisibility}}"
             Grid.Row="1" Grid.Column="1" />
         <ListBox 
             BorderThickness="0"
@@ -40,22 +65,7 @@
             Grid.Row="2" 
             Grid.ColumnSpan="2" 
             ItemContainerStyle="{DynamicResource StretchContent}" />
-        <Label 
-            HorizontalAlignment="Center"
-            Content="Or" 
-            Style="{DynamicResource OrText}" 
-            Grid.Row="3" Grid.ColumnSpan="2" />
-        <Label Content="Parse from string" Grid.Row="4" Grid.Column="0" Style="{DynamicResource HeaderText}" />
-        <TextBox 
-            FontSize="{DynamicResource ClalFontSize}"
-            AcceptsReturn="True"
-            MinHeight="200"
-            TextWrapping="Wrap"
-            Text="{Binding ParseString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            Grid.Row="4" Grid.Column="1" />
-       
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" >
-            <Button Content="Save" Command="{Binding Save}" Style="{DynamicResource ButtonStyle}"  />
             <Button Content="Launch" Command="{Binding Launch}" Style="{DynamicResource ButtonStyle}" Margin="{DynamicResource LeftMargin}" />
         </StackPanel>
         <Label 
