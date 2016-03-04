@@ -107,6 +107,7 @@ namespace CommandLineApplicationLauncherViewModel
         {
             this.IsInEditMode = !this.IsInEditMode;
             this.Save.RaiseCanExecuteChanged();
+            this.RaisePropertyChanged(nameof(IsInEditMode));
         }
 
         public Maybe<CmdApplicationConfiguration> GetCmdApplicationConfiguration()

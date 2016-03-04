@@ -56,15 +56,15 @@
         <view:CmdApplicationConfigurationView
             Grid.Column ="2"
             Grid.Row="1"
-            Visibility="{Binding SelectedItem, ElementName=ApplicationConfigurationList, Converter={StaticResource nullToVisibility}}"
-            DataContext="{Binding SelectedItem, ElementName=ApplicationConfigurationList, Mode=OneWay}" 
+            Visibility="{Binding IsInEditMode, FallbackValue=Collapsed, Converter={StaticResource boolToVisibility}}"
+            DataContext="{Binding CmdApplicationConfigurationListViewModel.SelectedConfiguration, Mode=OneWay}" 
             Margin="{DynamicResource LeftMargin}" />
 
         <view:CmdApplicationConfigurationReadView
             Grid.Column ="2"
             Grid.Row="1"
-            Visibility="{Binding SelectedItem, ElementName=ApplicationConfigurationList, Converter={StaticResource nullToVisibility}, ConverterParameter=!}"
-            DataContext="{Binding SelectedItem, ElementName=ApplicationConfigurationList, Mode=OneWay}" 
+            Visibility="{Binding IsInEditMode, FallbackValue=Collapsed, Converter={StaticResource boolToVisibility}, ConverterParameter=!}"
+            DataContext="{Binding CmdApplicationConfigurationListViewModel.SelectedConfiguration, Mode=OneWay}" 
             Margin="{DynamicResource LeftMargin}" />
         
     </Grid>

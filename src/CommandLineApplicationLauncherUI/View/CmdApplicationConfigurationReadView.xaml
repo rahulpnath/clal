@@ -67,6 +67,7 @@
             ItemContainerStyle="{DynamicResource StretchContent}" />
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" >
             <Button Content="Launch" Command="{Binding Launch}" Style="{DynamicResource ButtonStyle}" Margin="{DynamicResource LeftMargin}" />
+            <Button Content="Edit" Command="{Binding ToggleEdit}" Style="{DynamicResource ButtonStyle}" Margin="{DynamicResource LeftMargin}" />
         </StackPanel>
         <Label 
             Style="{DynamicResource ErrorText}"
