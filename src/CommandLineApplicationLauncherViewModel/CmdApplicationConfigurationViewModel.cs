@@ -55,7 +55,8 @@ namespace CommandLineApplicationLauncherViewModel
         }
 
         public List<ParameterViewModel> Properties { get; private set; }
-        public System.Windows.Input.ICommand Save { get; private set; }
+        public System.Windows.Input.ICommand ToggleEdit { get; private set; }
+        public RelayCommand Save { get; private set; }
         public System.Windows.Input.ICommand Launch { get; private set; }
         public IChannel<SaveCmdApplicationConfigurationCommand> Channel { get; private set; }
         public IEnumerable<CmdApplicationConfigurationParser<string>> StringParsers { get; private set; }
@@ -96,9 +97,16 @@ namespace CommandLineApplicationLauncherViewModel
             this.Channel = channel;
             this.StringParsers = stringParsers;
             this.Save = new RelayCommand(this.OnSaveExecuted, () => this.IsInEditMode);
+            this.ToggleEdit = new RelayCommand(this.OnToggleEditExecuted);
             this.Launch = new RelayCommand(this.OnLaunchExecuted);
             DomainEvents.Subscribe<ConfigurationSavedEvent>(this);
             DomainEvents.Subscribe<CmdApplicationConfigurationSaveRejected>(this);
+        }
+
+        private void OnToggleEditExecuted()
+        {
+            this.IsInEditMode = !this.IsInEditMode;
+            this.Save.RaiseCanExecuteChanged();
         }
 
         public Maybe<CmdApplicationConfiguration> GetCmdApplicationConfiguration()

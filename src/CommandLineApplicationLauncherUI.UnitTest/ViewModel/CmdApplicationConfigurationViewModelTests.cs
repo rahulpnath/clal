@@ -81,10 +81,27 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         }
 
         [Theory,AutoMoqData]
-        public void SaveCommandEnabledOnlyWhenInEditMode(CmdApplicationConfigurationViewModel sut)
+        public void SaveCommandDisabledWhenNotInEditMode(CmdApplicationConfigurationViewModel sut)
         {
             Assert.False(sut.IsInEditMode);
             Assert.False(sut.Save.CanExecute(null));
+        }
+
+        [Theory, AutoMoqData]
+        public void ToggleEditTogglesIsInEditMode(CmdApplicationConfigurationViewModel sut)
+        {
+            Assert.False(sut.IsInEditMode);
+            sut.ToggleEdit.Execute(null);
+            Assert.True(sut.IsInEditMode);
+        }
+
+
+        [Theory, AutoMoqData]
+        public void SaveCommandEnabledWhenInEditMode(CmdApplicationConfigurationViewModel sut)
+        {
+            Assert.False(sut.IsInEditMode);
+            sut.ToggleEdit.Execute(null);
+            Assert.True(sut.Save.CanExecute(null));
         }
 
         [Theory, AutoMoqData]
@@ -92,6 +109,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             [Frozen]Mock<IChannel<SaveCmdApplicationConfigurationCommand>> channel,
             CmdApplicationConfigurationViewModel sut)
         {
+            sut.ToggleEdit.Execute(null);
             sut.FriendlyName = string.Empty;
             sut.Save.Execute(null);
             channel.Verify(a => a.Send(It.IsAny<SaveCmdApplicationConfigurationCommand>()), Times.Never());
@@ -107,6 +125,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             [Frozen]Mock<IChannel<SaveCmdApplicationConfigurationCommand>> channel,
             CmdApplicationConfigurationViewModel sut)
         {
+            sut.ToggleEdit.Execute(null);
             sut.FriendlyName = "Valid Friendly Name";
             var vm = new NameOnlyParameterViewModel((Name)"testParameter");
             vm.IsSelected = true;
