@@ -68,9 +68,10 @@ namespace CommandLineApplicationLauncherViewModel
 
         public void OnAddCmdApplicationConfigurationEvent(AddCmdApplicationConfigurationEvent obj)
         {
-            var newCmdApplicationEvent = Factory.Create(SsmsCmdApplication.Application);
-            this.ApplicationConfigurations.Insert(0, newCmdApplicationEvent);
-            this.SelectedConfiguration = newCmdApplicationEvent;
+            var newCmdApplication = Factory.Create(SsmsCmdApplication.Application);
+            newCmdApplication.ToggleEdit.Execute(null);
+            this.ApplicationConfigurations.Insert(0, newCmdApplication);
+            this.SelectedConfiguration = newCmdApplication;
         }
 
         public void Handle(ConfigurationDeletedEvent eventData)
