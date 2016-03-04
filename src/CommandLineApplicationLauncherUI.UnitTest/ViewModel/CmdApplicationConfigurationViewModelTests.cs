@@ -87,6 +87,15 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             Assert.False(sut.Save.CanExecute(null));
         }
 
+        [Theory,AutoMoqData]
+        public void OnSuccesfullSaveSwtichesToReadMode(CmdApplicationConfigurationViewModel sut)
+        {
+            sut.ToggleEdit.Execute(null);
+            Assert.True(sut.IsInEditMode);
+            DomainEvents.Publish(new ConfigurationSavedEvent(Guid.NewGuid()));
+            Assert.False(sut.IsInEditMode);
+        }
+
         [Theory, AutoMoqData]
         public void ToggleEditTogglesIsInEditMode(CmdApplicationConfigurationViewModel sut)
         {
