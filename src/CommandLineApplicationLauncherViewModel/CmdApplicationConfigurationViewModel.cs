@@ -32,6 +32,8 @@ namespace CommandLineApplicationLauncherViewModel
             }
         }
 
+        public bool IsInEditMode { get; private set; }
+
         public bool IsConfigurationSaved { get; private set; }
 
         public string ParseString
@@ -93,7 +95,7 @@ namespace CommandLineApplicationLauncherViewModel
             this.Properties = properties;
             this.Channel = channel;
             this.StringParsers = stringParsers;
-            this.Save = new RelayCommand(this.OnSaveExecuted);
+            this.Save = new RelayCommand(this.OnSaveExecuted, () => this.IsInEditMode);
             this.Launch = new RelayCommand(this.OnLaunchExecuted);
             DomainEvents.Subscribe<ConfigurationSavedEvent>(this);
             DomainEvents.Subscribe<CmdApplicationConfigurationSaveRejected>(this);

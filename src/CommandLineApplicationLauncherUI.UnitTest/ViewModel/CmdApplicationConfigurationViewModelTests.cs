@@ -80,6 +80,13 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             sut.EnsureCommandsAreAllSetUpOnSutConstruction();
         }
 
+        [Theory,AutoMoqData]
+        public void SaveCommandEnabledOnlyWhenInEditMode(CmdApplicationConfigurationViewModel sut)
+        {
+            Assert.False(sut.IsInEditMode);
+            Assert.False(sut.Save.CanExecute(null));
+        }
+
         [Theory, AutoMoqData]
         public void SaveCmdApplicationConfigurationCommandNotSendWhenViewModelIsInInvalidState(
             [Frozen]Mock<IChannel<SaveCmdApplicationConfigurationCommand>> channel,
