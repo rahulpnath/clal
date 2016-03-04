@@ -17,6 +17,7 @@ namespace CommandLineApplicationLauncherViewModel
         private string friendlyName;
         private string parseString;
         private string error;
+        private bool isInEditMode;
 
         public Name ApplicationName { get; private set; }
         public string FriendlyName
@@ -32,7 +33,18 @@ namespace CommandLineApplicationLauncherViewModel
             }
         }
 
-        public bool IsInEditMode { get; private set; }
+        public bool IsInEditMode
+        {
+            get
+            {
+                return isInEditMode;
+            }
+            private set
+            {
+                this.isInEditMode = value;
+                this.RaisePropertyChanged(nameof(IsInEditMode));
+            }
+        }
 
         public bool IsConfigurationSaved { get; private set; }
 
@@ -107,7 +119,6 @@ namespace CommandLineApplicationLauncherViewModel
         {
             this.IsInEditMode = !this.IsInEditMode;
             this.Save.RaiseCanExecuteChanged();
-            this.RaisePropertyChanged(nameof(IsInEditMode));
         }
 
         public Maybe<CmdApplicationConfiguration> GetCmdApplicationConfiguration()
@@ -135,6 +146,7 @@ namespace CommandLineApplicationLauncherViewModel
         {
             this.Error = "Saved Successfull";
             this.IsConfigurationSaved = true;
+            this.IsInEditMode = false;
         }
 
         public void Handle(CmdApplicationConfigurationSaveRejected eventData)
