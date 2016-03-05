@@ -18,6 +18,7 @@ namespace CommandLineApplicationLauncherViewModel
         private string parseString;
         private string error;
         private bool isInEditMode;
+        private CmdApplicationConfiguration lastSavedConfiguration;
 
         public Name ApplicationName { get; private set; }
         public string FriendlyName
@@ -117,8 +118,11 @@ namespace CommandLineApplicationLauncherViewModel
 
         private void OnToggleEditExecuted()
         {
+            this.PopulateFromCmdApplicationConfiguration(this.lastSavedConfiguration);
+
             this.IsInEditMode = !this.IsInEditMode;
             this.Save.RaiseCanExecuteChanged();
+
         }
 
         public Maybe<CmdApplicationConfiguration> GetCmdApplicationConfiguration()
@@ -147,6 +151,8 @@ namespace CommandLineApplicationLauncherViewModel
             this.Error = "Saved Successfull";
             this.IsConfigurationSaved = true;
             this.IsInEditMode = false;
+            this.lastSavedConfiguration = this.GetCmdApplicationConfiguration().First();
+            this.PopulateFromCmdApplicationConfiguration(this.lastSavedConfiguration);
         }
 
         public void Handle(CmdApplicationConfigurationSaveRejected eventData)
@@ -158,6 +164,8 @@ namespace CommandLineApplicationLauncherViewModel
         {
             if (applicationConfiguration == null)
                 throw new ArgumentNullException(nameof(applicationConfiguration));
+
+            lastSavedConfiguration = applicationConfiguration;
 
             this.ApplicationName = applicationConfiguration.ApplicationName;
 
