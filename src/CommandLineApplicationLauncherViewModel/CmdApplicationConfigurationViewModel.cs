@@ -151,7 +151,7 @@ namespace CommandLineApplicationLauncherViewModel
             this.Error = "Saved Successfull";
             this.IsConfigurationSaved = true;
             this.IsInEditMode = false;
-            this.lastSavedConfiguration = this.GetCmdApplicationConfiguration().First();
+            this.lastSavedConfiguration = this.GetCmdApplicationConfiguration().FirstOrDefault();
             this.PopulateFromCmdApplicationConfiguration(this.lastSavedConfiguration);
         }
 
@@ -163,7 +163,7 @@ namespace CommandLineApplicationLauncherViewModel
         public void PopulateFromCmdApplicationConfiguration(CmdApplicationConfiguration applicationConfiguration)
         {
             if (applicationConfiguration == null)
-                throw new ArgumentNullException(nameof(applicationConfiguration));
+                return;
 
             lastSavedConfiguration = applicationConfiguration;
 

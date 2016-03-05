@@ -151,7 +151,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
         [Theory, AutoMoqData]
         public void PopulateFromCmdConfigurationWithNullApplicationThrowsException(CmdApplicationConfigurationViewModel sut)
         {
-            Assert.Throws<ArgumentNullException>(() => sut.PopulateFromCmdApplicationConfiguration(null));
+            sut.PopulateFromCmdApplicationConfiguration(null);
         }
 
         [Theory(Skip = "TODO"), AutoMoqData]
