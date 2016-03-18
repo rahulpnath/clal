@@ -1,10 +1,6 @@
 ﻿using CommandLineApplicationLauncherModel;
 using Ploeh.AutoFixture.Xunit2;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace CLALSsmsParser.UnitTest
@@ -34,12 +30,26 @@ namespace CLALSsmsParser.UnitTest
         [InlineAutoMoqData("server=(local);user id=ab;password= a!Pass113;initial catalog=AdventureWorks", 4)]
         [InlineAutoMoqData("server=(local);Integrated Security = SSPI;;initial catalog=AdventureWorks", 3)]
         public void SutWithValidConnectionStringFormatReturnsConfiguration(
-            string invalidConnectionString,
+            string validConnectionString,
             int expected,
             ConnectionStringParser sut)
         {
-            var actual = sut.Parse(invalidConnectionString, SsmsCmdApplication.Application);
+            var actual = sut.Parse(validConnectionString, SsmsCmdApplication.Application);
             Assert.Equal(expected, actual.First().Parameters.Count);
+        }
+
+        [Theory]
+        [InlineAutoData("server=(local);user id=ab;password= a!Pass113")]
+        [InlineAutoData("server=(local);Integrated Security = SSPI")]
+        public void ConnectionStringWithoutDatabaseReturnsDefaultText(
+            string validConnectionStringWithoutDatabaseName,
+            ConnectionStringParser sut)
+        {
+            var databaseParameterName = (Name)"-d";
+            var expected = databaseParameterName + " <default>";
+            var actual = sut.Parse(validConnectionStringWithoutDatabaseName, SsmsCmdApplication.Application);
+            var databaseNameParameter = actual.Single().Parameters.Single(a => a.Name == databaseParameterName);
+            Assert.Equal(expected, databaseNameParameter.GetValue());
         }
     }
 }

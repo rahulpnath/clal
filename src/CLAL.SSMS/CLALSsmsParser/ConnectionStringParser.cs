@@ -21,7 +21,11 @@ namespace CLALSsmsParser
             var returnList = new List<IParameter>();
 
             var serverName = new NameValueParameter((Name)"-S", connectionStringBuilder["Server"] as string);
-            var initialCatalog = new NameValueParameter((Name)"-d", connectionStringBuilder["Initial Catalog"] as string);
+            var databaseName = connectionStringBuilder["Initial Catalog"] as string;
+            if (string.IsNullOrEmpty(databaseName))
+                databaseName = "<default>";
+
+            var initialCatalog = new NameValueParameter((Name)"-d", databaseName);
 
             returnList.Add(serverName);
             returnList.Add(initialCatalog);
