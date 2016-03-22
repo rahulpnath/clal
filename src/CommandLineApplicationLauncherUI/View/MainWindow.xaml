@@ -45,6 +45,7 @@
             DataContext="{Binding CmdApplicationConfigurationListViewModel}"
             ItemsSource="{Binding ApplicationConfigurations}"
             BorderThickness="0"
+            MouseDoubleClick="ApplicationConfigurationList_MouseDoubleClick"
             Margin="{DynamicResource LeftMargin}" 
             ItemTemplate="{DynamicResource ApplicationConfiguraiton}" />
 
