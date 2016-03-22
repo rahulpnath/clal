@@ -13,6 +13,7 @@ namespace CommandLineApplicationLauncherViewModel
         IEventHandler<ConfigurationDeletedEvent>
     {
         private CmdApplicationConfigurationViewModel selectedConfiguration;
+        public CmdApplicationMeta CurrentApplicationMeta { get; private set; }
         public ObservableCollection<CmdApplicationConfigurationViewModel> ApplicationConfigurations { get; set; }
         public IReader<CmdApplicationMeta, IEnumerable<CmdApplicationConfiguration>> Reader { get; private set; }
         public ICmdApplicationConfigurationViewModelFactory Factory { get; private set; }
@@ -42,11 +43,12 @@ namespace CommandLineApplicationLauncherViewModel
             this.Factory = factory;
             this.Messenger = messenger;
             this.DeleteChannel = deleteChannel;
+            this.CurrentApplicationMeta = SsmsCmdApplication.Application;
             ApplicationConfigurations = reader
-                .Query(SsmsCmdApplication.Application)
+                .Query(this.CurrentApplicationMeta)
                 .Select(a =>
                 {
-                    var vm = factory.Create(SsmsCmdApplication.Application);
+                    var vm = factory.Create(this.CurrentApplicationMeta);
                     vm.PopulateFromCmdApplicationConfiguration(a);
                     return vm;
                 })
@@ -68,7 +70,7 @@ namespace CommandLineApplicationLauncherViewModel
 
         public void OnAddCmdApplicationConfigurationEvent(AddCmdApplicationConfigurationEvent obj)
         {
-            var newCmdApplication = Factory.Create(SsmsCmdApplication.Application);
+            var newCmdApplication = Factory.Create(this.CurrentApplicationMeta);
             newCmdApplication.ToggleEdit.Execute(null);
             this.ApplicationConfigurations.Insert(0, newCmdApplication);
             this.SelectedConfiguration = newCmdApplication;

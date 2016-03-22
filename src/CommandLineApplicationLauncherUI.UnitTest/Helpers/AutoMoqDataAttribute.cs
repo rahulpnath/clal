@@ -4,6 +4,7 @@ using Ploeh.AutoFixture.AutoMoq;
 using Ploeh.AutoFixture.Xunit2;
 using CommandLineApplicationLauncherModel;
 using System.Collections.Generic;
+using CommandLineApplicationLauncherViewModel;
 
 namespace CommandLineApplicationLauncherUI.UnitTest
 {
@@ -12,6 +13,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest
         public AutoMoqDataAttribute()
             : base(new Fixture().Customize(new AutoMoqCustomization()).Customize(new ParseCustomization()))
         {
+            this.Fixture.Inject<CmdApplicationMeta>(TestCmdApplicationMeta.Application);
         }
     }
 

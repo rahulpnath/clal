@@ -51,7 +51,7 @@ namespace CommandLineApplicationLauncherViewModel
                 properties.Add(viewModel);
             }
 
-            return new CmdApplicationConfigurationViewModel(meta.ApplicationName, properties, Channel, StringParsers);
+            return new CmdApplicationConfigurationViewModel(meta, properties, Channel, StringParsers);
         }
 
         public CmdApplicationConfigurationViewModel Create(
@@ -88,7 +88,7 @@ namespace CommandLineApplicationLauncherViewModel
                 properties.Add(viewModel);
             }
             var returnValue = new CmdApplicationConfigurationViewModel(
-                applicationConfiguration.ApplicationName,
+                applicationMeta,
                 properties,
                 Channel,
                 StringParsers);

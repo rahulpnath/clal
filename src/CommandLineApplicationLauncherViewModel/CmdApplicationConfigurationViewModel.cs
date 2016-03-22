@@ -60,13 +60,14 @@ namespace CommandLineApplicationLauncherViewModel
                 this.parseString = value;
                 foreach (var parser in StringParsers)
                 {
-                    var v = parser.Parse(value, SsmsCmdApplication.Application);
+                    var v = parser.Parse(value, this.ApplicationMeta);
                     if (v.Any())
                         this.PopulateFromCmdApplicationConfiguration(v.Single());
                 }
             }
         }
 
+        public CmdApplicationMeta ApplicationMeta { get; private set; }
         public List<ParameterViewModel> Properties { get; private set; }
         public System.Windows.Input.ICommand ToggleEdit { get; private set; }
         public RelayCommand Save { get; private set; }
@@ -87,13 +88,13 @@ namespace CommandLineApplicationLauncherViewModel
         }
 
         public CmdApplicationConfigurationViewModel(
-            Name applicationName,
+            CmdApplicationMeta applicationMeta,
             List<ParameterViewModel> properties,
             IChannel<SaveCmdApplicationConfigurationCommand> channel,
             IEnumerable<CmdApplicationConfigurationParser<string>> stringParsers)
         {
-            if (applicationName == null)
-                throw new ArgumentNullException(nameof(applicationName));
+            if (applicationMeta == null)
+                throw new ArgumentNullException(nameof(applicationMeta));
 
             if (properties == null)
                 throw new ArgumentNullException(nameof(properties));
@@ -105,7 +106,8 @@ namespace CommandLineApplicationLauncherViewModel
             if (stringParsers == null)
                 throw new ArgumentNullException(nameof(stringParsers));
 
-            this.ApplicationName = applicationName;
+            this.ApplicationMeta = applicationMeta;
+            this.ApplicationName = applicationMeta.ApplicationName;
             this.Properties = properties;
             this.Channel = channel;
             this.StringParsers = stringParsers;

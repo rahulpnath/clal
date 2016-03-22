@@ -1,9 +1,9 @@
 ﻿using CommandLineApplicationLauncherModel;
 using System.Collections.Generic;
 
-namespace CommandLineApplicationLauncherViewModel
+namespace CommandLineApplicationLauncherUI.UnitTest
 {
-    public static class SsmsCmdApplication
+    public static class TestCmdApplicationMeta
     {
         public static CmdApplicationMeta Application
         {

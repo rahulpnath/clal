@@ -43,9 +43,9 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             IChannel<SaveCmdApplicationConfigurationCommand> channel,
             CmdApplicationConfigurationViewModelFactory sut)
         {
-            var viewModel = sut.Create(SsmsCmdApplication.Application);
-            Assert.Equal(SsmsCmdApplication.Application.ApplicationName, viewModel.ApplicationName);
-            foreach (var meta in SsmsCmdApplication.Application.ParameterMetas)
+            var viewModel = sut.Create(TestCmdApplicationMeta.Application);
+            Assert.Equal(TestCmdApplicationMeta.Application.ApplicationName, viewModel.ApplicationName);
+            foreach (var meta in TestCmdApplicationMeta.Application.ParameterMetas)
             {
                 viewModel.Properties.Any(a => a.GetParameterType() == meta.ParameterType);
             }
@@ -77,7 +77,7 @@ namespace CommandLineApplicationLauncherUI.UnitTest.ViewModel
             string friendlyName,
             CmdApplicationConfigurationViewModelFactory sut)
         {
-            var meta = SsmsCmdApplication.Application;
+            var meta = TestCmdApplicationMeta.Application;
             var configuration = CreateCmdApplicationConfiguration(friendlyName, meta);
             var actual = sut.Create(configuration, meta);
             Assert.Equal(friendlyName, actual.FriendlyName);
