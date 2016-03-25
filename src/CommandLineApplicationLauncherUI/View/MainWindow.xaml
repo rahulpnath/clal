@@ -22,7 +22,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Margin="5"  Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+        <StackPanel Margin="5"  Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal">
             <Button
                 ToolTip="Add Configuration (Ctrl + A)"
                 Command="{Binding AddCommand}"
