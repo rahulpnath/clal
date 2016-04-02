@@ -7,7 +7,7 @@
         mc:Ignorable="d"
          WindowState="Maximized"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="Command Line Application Launcher" Height="350" Width="525">
+        Title="CLAL" Height="350" Width="525">
     <Window.InputBindings>
         <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding AddCommand}" />
         <KeyBinding Key="D" Modifiers="Ctrl" Command="{Binding DeleteCommand}" />
