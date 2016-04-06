@@ -2,7 +2,7 @@
   branches:
     only:
       - master
-  version: 0.2.3.0.0
+  version: 0.2.4.0
   test:
     assemblies: '**\*.*Test.dll'
   configuration: Release
@@ -21,7 +21,7 @@
     folder: /site/wwwroot/clal/Releases
     artifact: releaseBuild
 -
-  version: 0.2.3.0.{build}
+  version: 0.2.4.{build}
   test:
     assemblies: '**\*.*Test.dll'
   configuration: Debug
