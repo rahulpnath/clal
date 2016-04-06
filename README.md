@@ -7,7 +7,7 @@ Work in progress.
 
 CLAL (Command Line Application Launcher) is a desktop application to launch any (currently supports only SQL Server Management Studio - ssms) command line application. It helps manage different configurations with which a command line application can be launched - such as different connection strings to various databases.
 
-Install the latest version here
+[**Install the latest version here**](http://bit.ly/1REGiFT)
 
 CLAL allows you to first specify the meta data of the command line application first and then create the various configurations for that by filling in the parameters as specified in the metadata. Currently since this only supports ssms, the metadata edit screen is not present and is hard coded into the application. The image below shows the various database servers that I connect to, and CLAL helps me reach them quickly
 
