@@ -1,6 +1,6 @@
 # <img src="https://raw.githubusercontent.com/rahulpnath/clal/master/Resources/CLAL.png" width="48">   Command Line Application Launcher      
 
-[![Build status](https://ci.appveyor.com/api/projects/status/wdy4hj72r2k5tsuc/branch/master?svg=true)](https://ci.appveyor.com/project/rahulpnath/clal/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/wdy4hj72r2k5tsuc/branch/master?svg=true)](https://ci.appveyor.com/project/rahulpnath/clal/branch/master)  [![Gitter](https://badges.gitter.im/rahulpnath/clal.svg)](https://gitter.im/rahulpnath/clal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
 
 
 Work in progress.
