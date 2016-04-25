@@ -7,7 +7,6 @@
     assemblies: '**\*.*Test.dll'
   configuration: Release
   before_build:
-    - nuget restore src\Clal.sln
     - ps: "$env:ApplicationVersion=$env:APPVEYOR_BUILD_VERSION;$env:UpdateUrl='http://www.rahulpnath.com/clal/Releases/';$env:PublishUrl='http://www.rahulpnath.com/clal/Releases/';$mypwd = ConvertTo-SecureString -String \"/(Z&rbrFG){p/6W@8xZvg\" -Force –AsPlainText\nImport-PfxCertificate –FilePath C:\\projects\\clal\\src\\CommandLineApplicationLauncherUI\\CommandLineApplicationLauncherUI_TemporaryKey.pfx cert:\\currentuser\\my -Password $mypwd"
   after_build:
     - ps: $root = Resolve-Path .\src\CommandLineApplicationLauncherUI\bin\Release\app.publish; [IO.Directory]::GetFiles($root.Path, '*.*', 'AllDirectories') | % { Push-AppveyorArtifact $_ -FileName $_.Substring($root.Path.Length + 1) -DeploymentName releaseBuild }
