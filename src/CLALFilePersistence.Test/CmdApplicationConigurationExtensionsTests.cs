@@ -16,13 +16,6 @@ namespace CLALFilePersistence.Test
             Assert.Throws<ArgumentNullException>(() => sut.GetFileName(null));
         }
 
-        [Fact]
-        public void GetDirectoryOnNullThrowsException()
-        {
-            CmdApplicationConfiguration sut = null;
-            Assert.Throws<ArgumentNullException>(() => sut.GetDirectoryName());
-        }
-
         [Theory]
         [InlineAutoMoqData("appName", "friendly Name", "appName")]
         [InlineAutoMoqData("appNameAnother", "friendly Name", "appNameAnother")]
